@@ -7,6 +7,7 @@ function App() {
         <h1 className='text-red-800 text-7xl'>CodeHire</h1>
         <h3 className='text-purple-400 text-5xl'>Ajj kaam chkk dena mudyo</h3>
         <h4>bhaya op </h4>
+        <h5>Less go</h5>
       </div>
     </>
   )
