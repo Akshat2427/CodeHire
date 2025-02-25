@@ -3,7 +3,10 @@ import React from 'react'
 function App() {
   return (
     <>
-    <h1 className=' text-center text-7xl'> Code Hire</h1>
+      <div className='flex justify-center items-center h-screen flex-col'>
+        <h1 className='text-red-800 text-7xl'>CodeHire</h1>
+        <h3 className='text-purple-400 text-5xl'>Ajj kaam chkk dena mudyo</h3>
+      </div>
     </>
   )
 }
