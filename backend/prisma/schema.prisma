@@ -18,8 +18,7 @@ model User {
   sort_id  Int      @default(autoincrement()) @unique
   email    String   @unique
   password String
-  name     String
-  role    Role     @default(STUDENT)
+  name String 
 }
 
 enum Role {
