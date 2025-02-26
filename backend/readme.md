@@ -1,6 +1,6 @@
-```markdown
 # User Routes Documentation
 
+```markdown
 ## POST /user/register
 - Description: Registers a new user.
 - Status Codes:
@@ -46,10 +46,38 @@ POST /user/register
 {
   "error": "User already exist"
 }
-
 ```
+
 
 ```markdown
 
-### Login routes
+### Login Routes
 
+## POST /user/login
+- Description: Logs in an existing user.
+- Status Codes:
+  - 200: User logged in successfully.
+  - 400: Validation error.
+  - 401: Invalid credentials.
+
+### Request Body
+- email (String, valid email)
+- password (String, min 6 chars)
+
+### Example
+POST /user/login
+{
+  "email": "john@example.com",
+  "password": "mypassword"
+}
+
+
+## Example Response
+### 200 (OK)
+{
+  "token": "string",
+  "user": {
+    "id": "string",
+    // ...existing fields...
+  }
+}
