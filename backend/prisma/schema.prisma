@@ -14,13 +14,15 @@ generator client {
 }
 
 model User {
-  id       Int      @id @default(autoincrement())
+  id       String   @id @default(uuid())
+  sort_id  Int      @default(autoincrement()) @unique
   email    String   @unique
   password String
-  fullName FullName 
+  name String 
 }
 
-model FullName {
-  firstname String
-  lastname  String
+enum Role {
+  STUDENT
+  MENTOR
+  ADMIN
 }
