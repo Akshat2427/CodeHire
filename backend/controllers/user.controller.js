@@ -42,5 +42,28 @@ module.exports.userLogin = async (req, res) => {
         return res.status(401).json({ error: 'Invalid email or password' });
     }
     const token = jwt.sign({ userId: user.id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    res.cookie('token', token);
     res.json({ token , user});
 };
+
+module.exports.userProfile = async (req, res) => {
+    const user = req.user;
+    res.json(user);
+}
+
+module.exports.userLogout = async (req, res) => {
+    const token = req.cookies.token || req.headers.authorization.split(' ')[1];
+    const expiresAt = new Date(Date.now() + 86400 * 1000);
+    try{
+        await prisma.blacklistedToken.create({
+            data: {
+                token,
+                expiresAt
+            }
+        })
+        res.clearCookie('token');
+        res.json({message: 'Logged out successfully'});
+    }catch(error){
+        res.status(500).json({error: 'Server error'});
+    }
+}

@@ -51,7 +51,7 @@ POST /user/register
 
 ```markdown
 
-### Login Routes
+### Login and Logout Routes
 
 ## POST /user/login
 - Description: Logs in an existing user.
@@ -81,3 +81,7 @@ POST /user/login
     // ...existing fields...
   }
 }
+
+## GET /user/logout
+Logs out a user by blacklisting the current token.
+Requires valid authentication.
