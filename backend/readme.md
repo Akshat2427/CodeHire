@@ -48,5 +48,11 @@ POST /user/register
 }
 
 ```
+<<<<<<< HEAD
 
+=======
+```markdown
+
+### Login routes
+>>>>>>> 19fb3345a5429007782b955eca0a0d7583bae77e
 
