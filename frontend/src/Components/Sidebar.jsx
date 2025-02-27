@@ -29,7 +29,7 @@ const Sidebar = () => {
   return (
     <div className="fixed bg-white text-gray-900 h-screen w-60 flex flex-col border-r border-gray-300 shadow-lg z-20">
       {/* Logo */}
-      <div className="p-4 flex items-center space-x-3">
+      <div className="p-2 flex items-center space-x-3">
         <img
           src="https://static.vecteezy.com/system/resources/previews/004/909/777/non_2x/coding-logo-design-template-vector.jpg"
           alt="Logo"

@@ -2,13 +2,15 @@ import React from 'react'
 import Sidebar from './Components/Sidebar'
 import Navbar from './Components/Navbar'
 import Courses from './Components/Courses'
+import Profile from './Components/Profile'
 function App() {
   return (
     <>
 
-      <Navbar />
+      <Navbar title={"Profile Details"} />
       <Sidebar />
-      <Courses />
+      {/* <Profile role={"mentor"} /> */}
+      <Profile role={"student"} />
     </>
   )
 }
