@@ -1,7 +1,7 @@
 import React from 'react'
-import Sidebar from './components_dummy/Sidebar'
-import Navbar from './components_dummy/Navbar'
-import Courses from './components_dummy/Courses'
+import Sidebar from './Components/Sidebar'
+import Navbar from './Components/Navbar'
+import Courses from './Components/Courses'
 function App() {
   return (
     <>
@@ -13,4 +13,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

@@ -4,7 +4,7 @@ const Navbar = () => {
   return (
     <div className="bg-white text-gray-800 h-16 flex items-center px-6 pl-72 fixed w-full top-0 z-10">
       {/* Left Side - Title */}
-      {/* <h1 className="text-2xl font-bold tracking-wide font-[Poppins]">Courses</h1> */}
+      <h1 className="text-2xl font-bold tracking-wide font-[Poppins]">Courses</h1>
 
       {/* Right Side - Search, Notification, Profile */}
       <div className="ml-auto flex items-center space-x-6">

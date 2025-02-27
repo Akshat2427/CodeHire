@@ -1,21 +1,33 @@
 import React, { useState } from "react";
+import {
+  LayoutDashboard,
+  Calendar,
+  Bookmark,
+  LineChart,
+  Compass,
+  IdCard,
+  Wallet,
+  HelpCircle,
+  Settings,
+  User,
+} from "lucide-react";
 
-// Static data for menu items with Font Awesome icons
+// Static data for menu items with Lucide-react icons
 const menuItems = [
-  { name: "Dashboard", icon: "fas fa-home" },
-  { name: "Schedule", icon: "fas fa-calendar-alt" },
-  { name: "Saved Courses", icon: "fas fa-bookmark" },
-  { name: "Report", icon: "fas fa-chart-line" },
-  { name: "Explore Courses", icon: "fas fa-compass" },
-  { name: "Certificates", icon: "fas fa-certificate" },
-  { name: "Transaction", icon: "fas fa-wallet" },
+  { name: "Dashboard", icon: <LayoutDashboard size={20} /> },
+  { name: "Schedule", icon: <Calendar size={20} /> },
+  { name: "Saved Courses", icon: <Bookmark size={20} /> },
+  { name: "Report", icon: <LineChart size={20} /> },
+  { name: "Explore Courses", icon: <Compass size={20} /> },
+  { name: "Certificates", icon: <IdCard size={20} /> },
+  { name: "Transaction", icon: <Wallet size={20} /> },
 ];
 
 const Sidebar = () => {
   const [selected, setSelected] = useState("Dashboard"); // Default selection
 
   return (
-    <div className="fixed bg-white text-gray-900 h-screen w-60 flex flex-col  border-r border-gray-300 shadow-lg z-20">
+    <div className="fixed bg-white text-gray-900 h-screen w-60 flex flex-col border-r border-gray-300 shadow-lg z-20">
       {/* Logo */}
       <div className="p-4 flex items-center space-x-3">
         <img
@@ -38,7 +50,7 @@ const Sidebar = () => {
             }`}
             onClick={() => setSelected(item.name)}
           >
-            <i className={`${item.icon} text-lg mr-3`}></i>
+            <div className="mr-3 text-gray-600">{item.icon}</div>
             <span className="text-md">{item.name}</span>
           </div>
         ))}
@@ -50,23 +62,23 @@ const Sidebar = () => {
           className="flex items-center p-3 px-6 cursor-pointer hover:bg-gray-100 rounded-lg transition-all font-medium"
           onClick={() => setSelected("Help Center")}
         >
-          <i className="fas fa-question-circle text-lg mr-3"></i>
+          <HelpCircle size={20} className="mr-3 text-gray-600" />
           <span className="text-md">Help Center</span>
         </div>
         <div
           className="flex items-center p-3 px-6 cursor-pointer hover:bg-gray-100 rounded-lg transition-all font-medium"
           onClick={() => setSelected("Settings")}
         >
-          <i className="fas fa-cog text-lg mr-3"></i>
+          <Settings size={20} className="mr-3 text-gray-600" />
           <span className="text-md">Settings</span>
         </div>
       </div>
 
       {/* User Profile */}
       <div className="flex items-center p-4 border-t border-gray-200">
-        <i className="fas fa-user-circle text-3xl text-gray-600 mr-3"></i>
+        <User size={28} className="text-gray-600 mr-3" />
         <div>
-          <p className="text-md font-semibold">Akshat</p>
+          <p className="text-md font-semibold">Anshul</p>
           <p className="text-sm text-gray-500">Developer</p>
         </div>
       </div>
