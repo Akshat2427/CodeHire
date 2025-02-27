@@ -1,16 +1,16 @@
 import React from 'react'
-
+import Sidebar from './Components/Sidebar'
+import Navbar from './Components/Navbar'
+import Courses from './Components/Courses'
 function App() {
   return (
     <>
-      <div className='flex justify-center items-center h-screen flex-col'>
-        <h1 className='text-red-800 text-7xl'>CodeHire</h1>
-        <h3 className='text-purple-400 text-5xl'>Ajj kaam chkk dena mudyo</h3>
-        <h4>bhaya op </h4>
-        <h5>Less go</h5>
-      </div>
+
+      <Navbar />
+      <Sidebar />
+      <Courses />
     </>
   )
 }
 
-export default App
+export default App;
