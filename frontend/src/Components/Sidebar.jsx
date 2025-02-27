@@ -1,25 +1,85 @@
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import {
+  LayoutDashboard,
+  Calendar,
+  Bookmark,
+  LineChart,
+  Compass,
+  IdCard,
+  Wallet,
+  HelpCircle,
+  Settings,
+  User,
+} from "lucide-react";
+
+// Static data for menu items with Lucide-react icons
+const menuItems = [
+  { name: "Dashboard", icon: <LayoutDashboard size={20} /> },
+  { name: "Schedule", icon: <Calendar size={20} /> },
+  { name: "Saved Courses", icon: <Bookmark size={20} /> },
+  { name: "Report", icon: <LineChart size={20} /> },
+  { name: "Explore Courses", icon: <Compass size={20} /> },
+  { name: "Certificates", icon: <IdCard size={20} /> },
+  { name: "Transaction", icon: <Wallet size={20} /> },
+];
 
 const Sidebar = () => {
-  return (
-    <div className="h-screen w-64 bg-gray-800 text-white fixed top-0 left-0 p-5 shadow-lg transition-all duration-300">
-      <h2 className="text-2xl font-bold mb-6 text-center">Job Prep</h2>
+  const [selected, setSelected] = useState("Dashboard"); // Default selection
 
-      <div className="flex flex-col space-y-4">
-        <div className="p-3 hover:bg-gray-700 transition duration-300 rounded">
-          <Link to="/" className="block">Dashboard</Link>
+  return (
+    <div className="fixed bg-white text-gray-900 h-screen w-60 flex flex-col border-r border-gray-300 shadow-lg z-20">
+      {/* Logo */}
+      <div className="p-4 flex items-center space-x-3">
+        <img
+          src="https://static.vecteezy.com/system/resources/previews/004/909/777/non_2x/coding-logo-design-template-vector.jpg"
+          alt="Logo"
+          className="h-12 w-12 rounded-full"
+        />
+        <h1 className="text-2xl font-bold tracking-wide font-[Poppins]">CodeHire</h1>
+      </div>
+
+      {/* Menu Items */}
+      <div className="flex-1 mt-4">
+        {menuItems.map((item) => (
+          <div
+            key={item.name}
+            className={`flex items-center p-3 px-6 cursor-pointer rounded-lg transition-all font-medium ${
+              selected === item.name
+                ? "bg-blue-100 text-blue-600 font-semibold"
+                : "hover:bg-gray-100"
+            }`}
+            onClick={() => setSelected(item.name)}
+          >
+            <div className="mr-3 text-gray-600">{item.icon}</div>
+            <span className="text-md">{item.name}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Help Center and Settings */}
+      <div className="mt-2">
+        <div
+          className="flex items-center p-3 px-6 cursor-pointer hover:bg-gray-100 rounded-lg transition-all font-medium"
+          onClick={() => setSelected("Help Center")}
+        >
+          <HelpCircle size={20} className="mr-3 text-gray-600" />
+          <span className="text-md">Help Center</span>
         </div>
-        <div className="p-3 hover:bg-gray-700 transition duration-300 rounded">
-          <Link to="/courses" className="block">Courses</Link>
+        <div
+          className="flex items-center p-3 px-6 cursor-pointer hover:bg-gray-100 rounded-lg transition-all font-medium"
+          onClick={() => setSelected("Settings")}
+        >
+          <Settings size={20} className="mr-3 text-gray-600" />
+          <span className="text-md">Settings</span>
         </div>
-        <div className="p-3 hover:bg-gray-700 transition duration-300 rounded">
-          <Link to="/saved" className="block">Saved Courses</Link>
-        </div>
-        <div className="p-3 hover:bg-gray-700 transition duration-300 rounded">
-          <Link to="/help" className="block">Help Center</Link>
-        </div>
-        <div className="p-3 hover:bg-gray-700 transition duration-300 rounded">
-          <Link to="/settings" className="block">Settings</Link>
+      </div>
+
+      {/* User Profile */}
+      <div className="flex items-center p-4 border-t border-gray-200">
+        <User size={28} className="text-gray-600 mr-3" />
+        <div>
+          <p className="text-md font-semibold">Anshul</p>
+          <p className="text-sm text-gray-500">Developer</p>
         </div>
       </div>
     </div>
