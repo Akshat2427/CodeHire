@@ -85,3 +85,26 @@ POST /user/login
 ## GET /user/logout
 Logs out a user by blacklisting the current token.
 Requires valid authentication.
+```
+
+```markdown
+## GET /user/profile
+- Description: Retrieves the current user's profile.
+- Status Codes:
+  - 200: Profile returned successfully.
+  - 401: Unauthorized (no valid token).
+
+### Example Response
+{
+  "user": {
+    "id": "string",
+    // ...existing fields...
+  }
+}
+```
+
+```markdown
+## Cron Scheduler
+A scheduled job runs periodically to delete or update specific data.
+It can be configured in services/autoDelete.service.js and is automatically started by index.js.
+```
