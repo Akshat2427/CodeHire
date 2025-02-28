@@ -8,19 +8,19 @@ const Courses = () => {
 
   // Sample course data
   const maangCourses = [
-    { title: "Google SDE", companyImg: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg", stages: 8, rating: 4.7 },
-    { title: "Amazon ML", companyImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSN0qIpl2wbLurDxYE3L2TVVMt3TqOG3XAQQ&s", stages: 6, rating: 4.5 },
-    { title: "Meta Frontend", companyImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNbpIfA-_GwTVZBVlpCvdIcLVOsCxn4BmqHA&s", stages: 7, rating: 4.6 },
-    { title: "Apple iOS Dev", companyImg: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg", stages: 5, rating: 4.4 },
-    { title: "Netflix Backend", companyImg: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg", stages: 9, rating: 4.8 },
+    { title: "Google SDE", companyImg: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg", stages: 8, rating: 4.7 , buttonTitle: "Enroll Now" },
+    { title: "Amazon ML", companyImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSN0qIpl2wbLurDxYE3L2TVVMt3TqOG3XAQQ&s", stages: 6, rating: 4.5, buttonTitle: "Enroll Now" },
+    { title: "Meta Frontend", companyImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNbpIfA-_GwTVZBVlpCvdIcLVOsCxn4BmqHA&s", stages: 7, rating: 4.6, buttonTitle: "Enroll Now" },
+    { title: "Apple iOS Dev", companyImg: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg", stages: 5, rating: 4.4, buttonTitle: "Enroll Now" },
+    { title: "Netflix Backend", companyImg: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg", stages: 9, rating: 4.8, buttonTitle: "Enroll Now" },
   ];
   
   const latestCourses = [
-    { title: "Juspay SDE", companyImg: "https://static.thearcweb.com/images/PROD/PROD-d8e5f0f6-ef80-4aa1-9a09-c12de42b1124.jpg", stages: 7, rating: 4.5 },
-    { title: "Zomato Data Analytics", companyImg: "https://upload.wikimedia.org/wikipedia/commons/7/75/Zomato_logo.png", stages: 6, rating: 4.3 },
-    { title: "Swiggy UX/UI", companyImg: "https://upload.wikimedia.org/wikipedia/commons/1/13/Swiggy_logo.png", stages: 5, rating: 4.2 },
-    { title: "Ola AI/ML", companyImg: "https://upload.wikimedia.org/wikipedia/commons/8/8d/Ola_Cabs_logo.svg", stages: 8, rating: 4.7 },
-    { title: "CRED Finance", companyImg: "https://upload.wikimedia.org/wikipedia/en/0/06/Cred_app_logo.png", stages: 7, rating: 4.6 },
+    { title: "Juspay SDE", companyImg: "https://static.thearcweb.com/images/PROD/PROD-d8e5f0f6-ef80-4aa1-9a09-c12de42b1124.jpg", stages: 7, rating: 4.5, buttonTitle: "Enroll Now" },
+    { title: "Zomato Data Analytics", companyImg: "https://upload.wikimedia.org/wikipedia/commons/7/75/Zomato_logo.png", stages: 6, rating: 4.3, buttonTitle: "Enroll Now" },
+    { title: "Swiggy UX/UI", companyImg: "https://upload.wikimedia.org/wikipedia/commons/1/13/Swiggy_logo.png", stages: 5, rating: 4.2, buttonTitle: "Enroll Now" },
+    { title: "Ola AI/ML", companyImg: "https://upload.wikimedia.org/wikipedia/commons/8/8d/Ola_Cabs_logo.svg", stages: 8, rating: 4.7, buttonTitle: "Enroll Now" },
+    { title: "CRED Finance", companyImg: "https://upload.wikimedia.org/wikipedia/en/0/06/Cred_app_logo.png", stages: 7, rating: 4.6 , buttonTitle: "Enroll Now"},
   ];
   
   return (
@@ -29,7 +29,7 @@ const Courses = () => {
       <h2 className="text-2xl font-bold mb-4 mt-8">🔥 MAANG Courses</h2>
       <div className="flex space-x-6 overflow-x-auto scrollbar-hide">
         {maangCourses.map((course, index) => (
-          <Card key={index} {...course} />
+          <Card   key={index} {...course} />
         ))}
       </div>
 

@@ -1,0 +1,30 @@
+import { BookOpen, Clock, CheckCircle, XCircle } from "lucide-react"; // Import Lucide Icons
+
+const cardData = [
+  { title: "All Courses", value: 20, color: "text-red-500", icon: <BookOpen className="text-red-500" /> },
+  { title: "Hours Spent", value: 40, color: "text-blue-500", icon: <Clock className="text-blue-500" /> },
+  { title: "Completed", value: 10, color: "text-purple-500", icon: <CheckCircle className="text-purple-500" /> },
+  { title: "Uncompleted", value: 10, color: "text-indigo-500", icon: <XCircle className="text-indigo-500" /> }
+];
+
+const CardsDashboard = ({ title, value, color, icon }) => (
+  <div className="p-4 bg-white rounded-lg shadow-lg flex items-center gap-4">
+    <div className="w-12 h-12 flex items-center justify-center bg-gray-200 rounded-full">
+      {icon}
+    </div>
+    <div>
+      <h3 className={`text-lg font-semibold ${color}`}>{title}</h3>
+      <p className="text-2xl font-bold text-gray-700">{value}</p>
+    </div>
+  </div>
+);
+
+export default function Dashboard() {
+  return (
+    <div className="grid grid-cols-4 gap-4 mb-6">
+      {cardData.map((card, index) => (
+        <CardsDashboard key={index} {...card} />
+      ))}
+    </div>
+  );
+}
