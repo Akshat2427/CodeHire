@@ -78,7 +78,7 @@ const Sidebar = () => {
       <div className="flex items-center p-4 border-t border-gray-200">
         <User size={28} className="text-gray-600 mr-3" />
         <div>
-          <p className="text-md font-semibold">Anshul</p>
+          <p className="text-md font-semibold">Anshul Choudhary</p>
           <p className="text-sm text-gray-500">Developer</p>
         </div>
       </div>

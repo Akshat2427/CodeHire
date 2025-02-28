@@ -42,3 +42,4 @@ const Card = ({ companyImg, title, stages, rating }) => {
 };
 
 export default Card;
+
