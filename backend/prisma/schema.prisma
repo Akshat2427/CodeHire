@@ -14,19 +14,90 @@ generator client {
 }
 
 model User {
-  id       String   @id @default(uuid())
-  sort_id  Int      @default(autoincrement()) @unique
-  email    String   @unique
-  password String
-  name String 
-  role Role @default(STUDENT)
+  u_id            String           @id @default(uuid())
+  sort_id         Int              @unique @default(autoincrement())
+  email           String           @unique
+  password        String
+  name            String
+  role            Role             @default(STUDENT)
+  enrolledCourses CourseProgress[]
+  interviews      Interview[]
 }
 
-model BlacklistedToken{
-  id Int @id @default(autoincrement())
-  token String @unique
+model BlacklistedToken {
+  id        Int      @id @default(autoincrement())
+  token     String   @unique
   createdAt DateTime @default(now())
   expiresAt DateTime
+}
+
+model Course {
+  c_id             String             @id @default(uuid())
+  c_name           String
+  c_desc           String
+  c_price          Float
+  c_rating         Float
+  rounds           Round[]
+  progresses       CourseProgress[]
+  Resume           Resume[]
+  Hackathon        Hackathon[]
+  Interview        Interview[]
+  OnlineAssessment OnlineAssessment[]
+}
+
+model Round {
+  id              String @id @default(uuid())
+  course          Course @relation(fields: [c_id], references: [c_id], onDelete: Cascade)
+  c_id            String
+  round_name      String // e.g., "Resume", "OA", "Hackathon", "Interview"
+  estimated_score Int
+}
+
+model Resume {
+  r_id                          String   @id @default(uuid())
+  course                        Course   @relation(fields: [c_id], references: [c_id], onDelete: Cascade)
+  c_id                          String
+  r_previous_resume_shortlisted String[] // Keeping as an array for now
+  r_key_words                   String[]
+}
+
+model Hackathon {
+  h_id        String   @id @default(uuid())
+  course      Course   @relation(fields: [c_id], references: [c_id], onDelete: Cascade)
+  c_id        String
+  h_platform  String
+  h_questions String[]
+}
+
+model Interview {
+  i_id                   String  @id @default(uuid())
+  course                 Course  @relation(fields: [c_id], references: [c_id], onDelete: Cascade)
+  c_id                   String
+  total_interview_rounds Int
+  description            String // Common topics for interviewer and candidate
+  interviewer            User?   @relation(fields: [interviewer_id], references: [u_id])
+  interviewer_id         String?
+}
+
+model OnlineAssessment {
+  oa_id     String @id @default(uuid())
+  course    Course @relation(fields: [c_id], references: [c_id], onDelete: Cascade)
+  c_id      String
+  githubAPI String // Assuming this stores a URL or API reference
+}
+
+model CourseProgress {
+  p_id                String  @id @default(uuid())
+  user                User    @relation(fields: [u_id], references: [u_id], onDelete: Cascade)
+  course              Course  @relation(fields: [c_id], references: [c_id], onDelete: Cascade)
+  u_id                String
+  c_id                String
+  current_round       String // Name of the current round (can be an ENUM)
+  progress_percentage Float
+  scores              Int[] // Array of scores in different rounds
+  mentor_assigned     String? // Nullable, store mentor ID if assigned
+  //interviewer         User?    @relation(fields: [interviewer_id], references: [u_id])
+  interviewer_id      String?
 }
 
 enum Role {
