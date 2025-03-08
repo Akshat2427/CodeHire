@@ -5,17 +5,20 @@ import Courses from './Components/Courses'
 import Profile from './Components/Profile'
 import Dashboard from './Components/Dashboard'
 import AuthPage from './Components/AuthPage'
+import AllRoutes from './AllRoutes'
 function App() {
   return (
     <>
 
-      {/* <Navbar title={"Welcome back , Anshul Choudhary"} /> */}
-      {/* <Sidebar />
-      <Courses/> */}
+       <Navbar title={"Welcome back , Anshul Choudhary"} /> 
+       <Sidebar />
+      {/*<Courses/> */}
       {/* <Dashboard></Dashboard> */}
       {/* <Profile role={"mentor"} /> 
        <Profile role={"student"} /> */}
-      <AuthPage/>
+
+       
+      <AllRoutes/>
     </>
   )
 }

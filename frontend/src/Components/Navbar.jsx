@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = ({title}) => {
   return (
@@ -25,11 +26,15 @@ const Navbar = ({title}) => {
         </div>
 
         {/* Profile Picture */}
-        <img
-          src="https://randomuser.me/api/portraits/men/50.jpg"
+
+        <div className="h-14 w-16  flex justify-center items-center ">
+       <Link to={"/profile"}    >
+       <img
+          src="./images/AnshulPhoto_2.jpg"
           alt="Profile"
           className="h-10 w-10 rounded-full"
-        />
+        /></Link>
+        </div>
       </div>
     </div>
   );
