@@ -13,9 +13,9 @@ function App() {
       {/* <Sidebar />
       <Courses/> */}
       {/* <Dashboard></Dashboard> */}
-      {/* <Profile role={"mentor"} /> 
-       <Profile role={"student"} /> */}
-      <AuthPage/>
+      <Profile role={"mentor"} /> 
+       <Profile role={"student"} /> 
+      {/* <AuthPage/> */}
     </>
   )
 }
