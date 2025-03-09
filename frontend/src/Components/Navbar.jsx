@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 
 const Navbar = ({title}) => {
+  const imgUrl = useSelector(state => state.user.user.imgUrl)
   return (
     <div className="bg-white text-gray-800 h-16 flex items-center px-6 pl-72 fixed w-full top-0 z-10">
       {/* Left Side - Title */}
@@ -30,7 +33,8 @@ const Navbar = ({title}) => {
         <div className="h-14 w-16  flex justify-center items-center ">
        <Link to={"/profile"}    >
        <img
-          src="./images/AnshulPhoto_2.jpg"
+          // src={imgUrl || "./images/pfp.jpg"}
+          src={ imgUrl === "./images/pfp.jpg"  ? "./images/pfp.jpg" :   `https://images.weserv.nl/?url=${encodeURIComponent(imgUrl)}`}
           alt="Profile"
           className="h-10 w-10 rounded-full"
         /></Link>

@@ -13,7 +13,8 @@ import {
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
-// Static data for menu items with Lucide-react icons
+import { useSelector } from "react-redux";
+
 const menuItems = [
   { name: "Dashboard", icon: <LayoutDashboard size={20} />, link: "/" },
   { name: "Schedule", icon: <Calendar size={20} />, link: "/schedule" },
@@ -27,6 +28,7 @@ const menuItems = [
 const Sidebar = () => {
   const [selected, setSelected] = useState("Dashboard"); // Default selection
   const navigate = useNavigate();
+  const user = useSelector(state => state.user.user)
 
   return (
     <div className="fixed bg-white text-gray-900 h-screen w-60 flex flex-col border-r border-gray-300 shadow-lg z-20">
@@ -101,11 +103,14 @@ const Sidebar = () => {
            ${selected === "Profile" ? "bg-blue-100 text-blue-600 font-semibold" : ""}`
         }
       >
-        <User size={28} className="text-gray-600 mr-3" />
+      <div className="flex justify-around w-full">
+      <img src={user.imgUrl === "./images/pfp.jpg"  ? "./images/pfp.jpg" :    `https://images.weserv.nl/?url=${encodeURIComponent(user.imgUrl)}` } alt={user.imgUrl} className="h-12 w-12 rounded-full " />
+      
         <div>
-          <p className="text-md font-semibold">Anshul Choudhary</p>
-          <p className="text-sm text-gray-500">Developer</p>
+          <p className="text-md font-semibold">{user.username ?? "User"}</p>
+          <p className="text-sm text-gray-500">{user.role ?? "User"}</p>
         </div>
+      </div>
 
       </div>
 

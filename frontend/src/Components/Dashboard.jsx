@@ -2,7 +2,11 @@ import PieChartComponent from "./PieChartComponent";
 import BarChartComponent from "./BarChartComponent";
 import ScheduleCard from "./ScheduleTask";
 import DashboardCard from "./DashboardCard";
+import { useDispatch } from "react-redux";
+import { pageNameUpdated } from "../store/metaInfo";
+import { useSelector } from "react-redux";
 const CardsDashboard = ({ title, value, color }) => {
+  
   return (
     <div className={`p-4 text-white ${color} rounded-lg shadow-md`}>
       <h3 className="text-lg font-semibold">{title}</h3>
@@ -12,6 +16,9 @@ const CardsDashboard = ({ title, value, color }) => {
 };
 
 export default function Dashboard() {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user.username);
+  dispatch(pageNameUpdated(`Hello 👋 , ${user}`));
   return (
     <main className="w-[85vw] ml-[13vw] p-8 h-screen grid gap-6">
       <div className="p-6 bg-gray-100 min-h-screen mt-6">
