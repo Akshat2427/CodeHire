@@ -7,6 +7,7 @@ import Report from './Components/Report'
 import ExploreCourses from './Components/Courses'
 import Certificates from './Components/Certificates'
 
+
 const AllRoutes = () => {
   return (
     <Routes>
@@ -17,6 +18,8 @@ const AllRoutes = () => {
       <Route path='/report' element={<Report/>}/>
       <Route path='/explore-courses' element={<ExploreCourses/>}/>
       <Route path='/Certificates' element={<Certificates/>}/>
+     
+
     </Routes>
   )
 }

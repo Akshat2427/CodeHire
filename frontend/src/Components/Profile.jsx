@@ -9,12 +9,10 @@ function Profile() {
     // "student" : "mentor";
 
   const user = useSelector((state) => state.user.user);
-  console.log('====================================');
-  console.log(user);
-  console.log('====================================');
-  // here user have id , username , e
-
-   // Default student and mentor profile data
+  
+  // console.log(user);
+  
+ 
 
    const role = user?.role || "student";
    const initialStudentData = {
@@ -56,7 +54,7 @@ function Profile() {
 
   const handleSaveClick = () => {
     setIsEditing(false);
-    console.log("Updated user data:", formData);
+    // console.log("Updated user data:", formData);
   };
 
   return (

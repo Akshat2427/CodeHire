@@ -12,7 +12,7 @@ const Courses = () => {
   ];
 
   const savedCourseIds = useSelector((state) => state.savedCourses.savedCourses);
-  console.log("savedCourseIds",savedCourseIds)
+  // console.log("savedCourseIds",savedCourseIds)
 
   // Filter courses that are saved
   const savedCourses = [];
@@ -23,7 +23,7 @@ const Courses = () => {
      }
    }
   }
-  console.log("savedCourses",savedCourses)
+  // console.log("savedCourses",savedCourses)
 
   return (
     <div className="p-8 ml-64">

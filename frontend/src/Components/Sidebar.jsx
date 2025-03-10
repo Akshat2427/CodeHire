@@ -78,7 +78,7 @@ const Sidebar = () => {
         </div>
 
 
-        <div
+        {/* <div
           className={`flex items-center p-3 px-6 cursor-pointer hover:bg-gray-100 rounded-lg transition-all font-medium 
             ${selected === "Settings" ? "bg-blue-100 text-blue-600 font-semibold" : ""}`
           }
@@ -89,7 +89,7 @@ const Sidebar = () => {
         >
           <Settings size={20} className="mr-3 text-gray-600" />
           <span className="text-md">Settings</span>
-        </div>
+        </div> */}
       </div>
 
       {/* User Profile */}
@@ -103,13 +103,13 @@ const Sidebar = () => {
            ${selected === "Profile" ? "bg-blue-100 text-blue-600 font-semibold" : ""}`
         }
       >
-      <div className="flex justify-around w-full">
-      <img src={user.imgUrl === "./images/pfp.jpg"  ? "./images/pfp.jpg" :    `https://images.weserv.nl/?url=${encodeURIComponent(user.imgUrl)}` } alt={user.imgUrl} className="h-12 w-12 rounded-full " />
+      <div className="flex justify-center items-center">
+     <div className="flex justify-center space-x-5"> <img src={user.imgUrl === "./images/pfp.jpg"  ? "./images/pfp.jpg" :    `https://images.weserv.nl/?url=${encodeURIComponent(user.imgUrl)}` } alt={user.imgUrl} className="h-12 w-12 rounded-full " />
       
-        <div>
-          <p className="text-md font-semibold">{user.username ?? "User"}</p>
-          <p className="text-sm text-gray-500">{user.role ?? "User"}</p>
-        </div>
+      <div>
+        <p className="text-md font-semibold">{user.username ?? "User"}</p>
+        <p className="text-sm text-gray-500">{user.role ?? "User"}</p>
+      </div></div>
       </div>
 
       </div>

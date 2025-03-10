@@ -34,13 +34,18 @@ export default function AuthPage() {
       });
 
       const data = await response.json();
-
-      if (data.error) {
+      // console.log("data : error" , data)
+      if (data.error ) {
         toast.error(`Error: ${data.error}`);
+        return;
+      }
+      if(data.errors){
+        toast.error(`Error: ${data.errors[0]}`);
         return;
       }
 
       toast.success(isLogin ? "Login Successful!" : "Account Created Successfully!");
+      localStorage.setItem("token_codehire" , data.token);
       dispatch(login(data));
     } catch (error) {
       toast.error("Authentication Failed. Try again!");
