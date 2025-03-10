@@ -23,10 +23,10 @@ const GoogleLogin = () => {
         const token = credential?.accessToken;
         const user = result.user;
 
-        console.log("User:", user?.displayName);
-        console.log("Profile Picture:", user?.photoURL);
-        console.log("User Email:", user?.email);
-        console.log("Token:", token);
+        // console.log("User:", user?.displayName);
+        // console.log("Profile Picture:", user?.photoURL);
+        // console.log("User Email:", user?.email);
+        // console.log("Token:", token);
         const userInStore = {
             id:0,
             name: user?.displayName,
@@ -39,6 +39,7 @@ const GoogleLogin = () => {
       })
       .catch((error) => {
         console.log("Error Google : ", error.message);
+        
       });
   };
 

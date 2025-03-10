@@ -21,12 +21,13 @@ const userSlice = createSlice({
     login: (state, action) => {
       console.log("Login Action:", action.payload);
         const userToken = action.payload?.token || null;
-        action.payload = action.payload?.user ;
-        state.user.id = action.payload?.id || 0;
-        state.user.username = action.payload?.name || "User";
-        state.user.email = action.payload?.email ;
-        state.user.role = action.payload?.role;
-        state.user.imgUrl = action.payload?.imgUrl || "./images/pfp.jpg";
+        const result = action.payload?.user ;
+        console.log("ngfhiu" , result);
+        state.user.id = result?.id || 0;
+        state.user.username = result?.name || "User";
+        state.user.email = result?.email ;
+        state.user.role = result?.role;
+        state.user.imgUrl = result?.imgUrl || "./images/pfp.jpg";
         console.log('====================================');
         console.log(state.user);
         console.log('====================================');    
@@ -35,9 +36,24 @@ const userSlice = createSlice({
         
       
     },
-    logout: (state) => {
-      state.user = null;
+    logout: (state ) => {
+      const token = state.token
+        state.user = {
+          id: 1,
+          username: "Anshul Chaudhary",
+          email: "anshul1070.be22@chitkarauniversity.edu.in",
+          role: "student",
+          imgUrl : "./images/AnshulPhoto_2.jpg"
+        },
         state.isAuthenticated = false;
+        localStorage.removeItem("token_codehire")
+        fetch("http://localhost:8080/user/logout",{
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+
      
     },
   },

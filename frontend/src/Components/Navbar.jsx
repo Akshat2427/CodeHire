@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../store/user"; // Import your logout action
 
+const Navbar = ({ title }) => {
+  const dispatch = useDispatch();
+  const imgUrl = useSelector((state) => state.user.user.imgUrl);
+  const [isOpen, setIsOpen] = useState(false);
 
-const Navbar = ({title}) => {
-  const imgUrl = useSelector(state => state.user.user.imgUrl)
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const logoutHandler = () => {
+    dispatch(logout()); // Dispatch logout action
+  };
+
   return (
     <div className="bg-white text-gray-800 h-16 flex items-center px-6 pl-72 fixed w-full top-0 z-10">
       {/* Left Side - Title */}
@@ -28,16 +39,34 @@ const Navbar = ({title}) => {
           <span className="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 rounded-full"></span>
         </div>
 
-        {/* Profile Picture */}
+        {/* Profile Dropdown */}
+        <div className="relative">
+          <div className="h-14 w-16 flex justify-center items-center cursor-pointer" onClick={toggleDropdown}>
+            <img
+              src={
+                imgUrl === "./images/pfp.jpg"
+                  ? "./images/pfp.jpg"
+                  : `https://images.weserv.nl/?url=${encodeURIComponent(imgUrl)}`
+              }
+              alt="Profile"
+              className="h-10 w-10 rounded-full"
+            />
+          </div>
 
-        <div className="h-14 w-16  flex justify-center items-center ">
-       <Link to={"/profile"}    >
-       <img
-          // src={imgUrl || "./images/pfp.jpg"}
-          src={ imgUrl === "./images/pfp.jpg"  ? "./images/pfp.jpg" :   `https://images.weserv.nl/?url=${encodeURIComponent(imgUrl)}`}
-          alt="Profile"
-          className="h-10 w-10 rounded-full"
-        /></Link>
+          {/* Dropdown Menu */}
+          {isOpen && (
+            <div className="absolute right-0 mt-2 w-36 bg-white shadow-lg rounded-md py-2">
+              <Link to="/profile" onClick={toggleDropdown} className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                Profile
+              </Link>
+              <button
+                onClick={() => { logoutHandler(); toggleDropdown(); }}
+                className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+              >
+                Logout
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
