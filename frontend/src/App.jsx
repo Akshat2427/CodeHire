@@ -72,19 +72,16 @@ function App() {
 
   return (
     <>
-      <ToastContainer position="top-right" autoClose={3000} />
-      {user.isAuthenticated ? (
-        <>
-          <Sidebar />
-          <Navbar title={`Hello 👋 , ${user.user.username ?? 'User'}`} />  
-          <AllRoutes />
-          {/* <footer className="bg-gray-800 text-white p-4 text-center ml-60">
-                <p>&copy; 2025 xAI Learning Platform. All rights reserved.</p>
-            </footer> */}
-        </>
-      ) : (
-        <AuthPage />
-      )}
+
+       <Navbar title={"Welcome back , Anshul Choudhary"} /> 
+       <Sidebar />
+      {/* <Courses/> */}
+      {/* <Dashboard></Dashboard> */}
+      {/* <Profile role={"mentor"} /> 
+       <Profile role={"student"} /> */}
+
+       
+      <AllRoutes/>
     </>
   );
 }
