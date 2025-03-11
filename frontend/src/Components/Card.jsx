@@ -1,12 +1,23 @@
 import React from "react";
 import { Bookmark } from "lucide-react"; // Using Lucide for better icons
+import { saveCourse } from "../store/saved_courses";
+import { useDispatch } from "react-redux";
 
-const Card = ({ companyImg, title, stages, rating , buttonTitle }) => {
+const Card = ({ companyImg, title, stages, rating , buttonTitle , id }) => {
+  function addToSaveCourses(id) {
+    const dispatch = useDispatch();
+    return function () {
+      dispatch(saveCourse({ id }));
+    };
+  }
+
+
+
   return (
     <div className="bg-white rounded-2xl shadow-md p-4 flex flex-col items-start w-72 hover:shadow-lg transition-shadow relative">
       {/* Save Icon at Top Right */}
       <button className="absolute  right-5 top-5 text-gray-500 bg-gray-300 opacity-50 p-2 rounded-full hover:bg-gray-500 hover:text-gray-100 transition">
-        <Bookmark size={20} />
+        <Bookmark size={20} onClick={addToSaveCourses(id)} />
       </button>
 
       {/* Company Image */}

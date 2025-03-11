@@ -1,29 +1,38 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 
 
-function Profile({role}) {
+
+function Profile() {
 //   const  role  = "mentor";
     // "student" : "mentor";
 
-  const initialStudentData = {
-    username: 'Student123',
-    email: 'student@example.com',
-    phone: '123-456-7890',
-    university: 'Example University',
-    qualification: 'Bachelors in Technology',
-    address: '123 Elm Street, Apt 4B',
-    graduation : "2025"
+  const user = useSelector((state) => state.user.user);
+  
+  // console.log(user);
+  
+ 
+
+   const role = user?.role || "student";
+   const initialStudentData = {
+    username: user?.username || "Student123",
+    email: user?.email || "student@example.com",
+    phone: user?.phone || "123-456-7890",
+    university: user?.university || "Example University",
+    qualification: user?.qualification || "Bachelors in Technology",
+    address: user?.address || "123 Elm Street, Apt 4B",
+    graduation: user?.graduation || "2025",
   };
 
   const initialMentorData = {
-    username: 'Mentor456',
-    email: 'mentor@example.com',
-    phone: '987-654-3210',
-    currentJob: 'Tech Lead at Example Corp',
-    techSkills: ['React', 'Node.js', 'MongoDB'],
-    address: '123 Elm Street, Apt 4B',
-    availability : ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    username: user?.username || "Mentor456",
+    email: user?.email || "mentor@example.com",
+    phone: user?.phone || "987-654-3210",
+    currentJob: user?.currentJob || "Tech Lead at Example Corp",
+    techSkills: user?.techSkills || ["React", "Node.js", "MongoDB"],
+    address: user?.address || "123 Elm Street, Apt 4B",
+    availability: user?.availability || ["Monday", "Tuesday", "Wednesday"],
   };
 
   const initialFormData = (role == 'student') ? initialStudentData : initialMentorData;
@@ -45,7 +54,7 @@ function Profile({role}) {
 
   const handleSaveClick = () => {
     setIsEditing(false);
-    console.log("Updated user data:", formData);
+    // console.log("Updated user data:", formData);
   };
 
   return (
@@ -58,7 +67,8 @@ function Profile({role}) {
             <div className="relative">
               <img
                 className="h-64 w-64 mt-10 rounded-full border-4 border-gray-300 shadow-lg"
-                src={ "./images/pfp.jpg"}
+                src={ user.imgUrl === "./images/pfp.jpg"  ? "./images/pfp.jpg" : `https://images.weserv.nl/?url=${encodeURIComponent(user.imgUrl)}`}
+                // src={user?.imgUrl || "./images/pfp.jpg"}
                 alt="Profile Pic"
               />
              <div className="h-64 w-64 mt-10  flex flex-col items-center p-4 gap-4 ">

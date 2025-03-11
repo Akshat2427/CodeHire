@@ -1,0 +1,2 @@
+1) in user schema , instead of course progress , there should be an array of courses.
+2) 
