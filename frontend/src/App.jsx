@@ -12,7 +12,7 @@ function App() {
 
        <Navbar title={"Welcome back , Anshul Choudhary"} /> 
        <Sidebar />
-      {/*<Courses/> */}
+      {/* <Courses/> */}
       {/* <Dashboard></Dashboard> */}
       {/* <Profile role={"mentor"} /> 
        <Profile role={"student"} /> */}
