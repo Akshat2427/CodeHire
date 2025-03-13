@@ -2,15 +2,21 @@ import React from "react";
 import { Bookmark } from "lucide-react"; // Using Lucide for better icons
 import { saveCourse } from "../store/saved_courses";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({ companyImg, title, stages, rating , buttonTitle , id }) => {
+  const navigate = useNavigate();
   function addToSaveCourses(id) {
     const dispatch = useDispatch();
     return function () {
       dispatch(saveCourse({ id }));
     };
   }
+  
+  function handelRouteChange(id){
+    navigate(`/course/${id}`)
 
+  }
 
 
   return (
@@ -45,7 +51,7 @@ const Card = ({ companyImg, title, stages, rating , buttonTitle , id }) => {
       <div className="flex-grow"></div>
 
       {/* Enroll Button */}
-      <button className="mt-4 px-5 py-3 bg-blue-500 text-white rounded-lg w-full text-lg text-center hover:bg-blue-600 transition">
+      <button className="mt-4 px-5 py-3 bg-blue-500 text-white rounded-lg w-full text-lg text-center hover:bg-blue-600 transition" onClick={()=>{handelRouteChange(id)}}>
         {buttonTitle}
       </button>
     </div>
