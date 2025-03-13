@@ -101,6 +101,7 @@ export default function AuthPage() {
           <motion.input 
             type="email" 
             placeholder="Email address"
+
             value={email} 
             onChange={(e) => setEmail(e.target.value)} 
             className="w-full px-4 py-2 border border-green-400 rounded-lg bg-green-50 focus:ring-2 focus:ring-green-400"

@@ -17,4 +17,6 @@ router.get('/profile',auth.authUser,require('../controllers/user.controller').us
 
 
 router.get('/logout',auth.authUser,require('../controllers/user.controller').userLogout);
+
+
 module.exports = router;

@@ -20,6 +20,7 @@ model User {
   password        String
   name            String
   role            Role             @default(STUDENT)
+  authProvider AuthProvider @default(EMAIL)  
   enrolledCourses CourseProgress[]
   interviews      Interview[]
 }
@@ -42,7 +43,7 @@ model Course {
   Resume           Resume[]
   Hackathon        Hackathon[]
   Interview        Interview[]
-  OnlineAssessment OnlineAssessment[]
+  // OnlineAssessment OnlineAssessment[]
 }
 
 model Round {
@@ -79,12 +80,7 @@ model Interview {
   interviewer_id         String?
 }
 
-model OnlineAssessment {
-  oa_id     String @id @default(uuid())
-  course    Course @relation(fields: [c_id], references: [c_id], onDelete: Cascade)
-  c_id      String
-  githubAPI String // Assuming this stores a URL or API reference
-}
+
 
 model CourseProgress {
   p_id                String  @id @default(uuid())
@@ -99,6 +95,13 @@ model CourseProgress {
   //interviewer         User?    @relation(fields: [interviewer_id], references: [u_id])
   interviewer_id      String?
 }
+
+enum AuthProvider {
+  EMAIL      // Email & password authentication
+  GOOGLE     // Google OAuth
+  GITHUB     // GitHub OAuth (if added)
+}
+
 
 enum Role {
   STUDENT
