@@ -13,6 +13,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.1",
     "@tailwindcss/vite": "^4.0.9",
+    "@zegocloud/zego-uikit-prebuilt": "^2.14.1-beta",
     "firebase": "^11.4.0",
     "framer-motion": "^12.4.9",
     "gsap": "^3.12.7",
