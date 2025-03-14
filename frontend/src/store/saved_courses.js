@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  savedCourses: [],
+  savedCourses: [{id:1}],
 };
 
 const savedCoursesSlice = createSlice({
