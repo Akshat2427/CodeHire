@@ -84,7 +84,7 @@ module.exports.userMyCourses = async (req, res) => {
     const courses = await prisma.course.findMany({
         where: {
             c_id: {
-                in: user.courseId 
+                in: user.courseId
             }
         }
     });
@@ -104,12 +104,20 @@ module.exports.userCourse = async (req, res) => {
 
 module.exports.userEnrollCourse = async (req, res) => {
     const { id } = req.params;
-    const course = await prisma.course.findUnique({ where: { c_id: id } });
-    //add courseID to user
-    await prisma.user.update({
-        where: { u_id: req.user.u_id },
-        data: { courseId: { push: id } }
-    });
-    res.json(course);
+    const userId = req.user.u_id;
+    try {
+        const progress = await prisma.courseProgress.create({
+            data: {
+                c_id: id,
+                u_id: userId,
+                current_round: 'Resume',
+                progress_percentage: 0,
+                scores: [],
+            }
+        });
+        res.status(201).json(progress);
+    } catch (error) {
+        res.status(400).json({ error: 'Enrollment failed' });
+    }
 }
 

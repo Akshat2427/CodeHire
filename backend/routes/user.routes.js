@@ -29,4 +29,6 @@ router.post('/save-course/:courseId',auth.authUser,require('../controllers/user.
 
 router.post('/courses/:id/enroll',auth.authUser,require('../controllers/user.controller').userEnrollCourse);
 
+
+
 module.exports = router;
