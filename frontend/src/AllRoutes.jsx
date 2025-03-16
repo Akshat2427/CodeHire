@@ -4,11 +4,8 @@ import Schedule from './Components/Schedule'
 import Profile from './Components/Profile'
 import SavedCourses from './Components/SavedCourses'
 import Report from './Components/Report'
-import ExploreCourses from './Components/Courses'
-import MyCourses from './Components/MyCourses'
-import CourseView from './Components/Courses/CourseView'
-import CourseDescription from './Components/Courses/CourseDescription'
-import ReportDetail from './Components/ReportDetail'
+import ExploreCourses from './Components/ExploreCourses'
+import Certificates from './Components/Certificates'
 
 
 const AllRoutes = () => {
