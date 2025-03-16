@@ -1,0 +1,122 @@
+{
+
+    "info": {
+      "company_name": "Optmyzr",
+      "industry": "AdTech & Digital Marketing",
+      "location": "Pune, India",
+      "role": "Software Engineer - Fresher",
+      "imgUrl" : "https://www.optmyzr.com/forestry/blog-feature-images-8_hu4319d5ff4a4e9c05cba253c9f6e69f4d_35295_512x0_resize_q75_box.jpg",
+      "package": {
+        "base_salary": "₹X LPA",
+        "performance_bonus": "₹Y LPA",
+        "stock_options": "Yes/No",
+        "other_benefits": ["Health Insurance", "Work from Home", "Learning Budget"]
+      },
+      "hiring_process": [
+        "Online Assessment",
+        "Technical Interview Round 1",
+        "Technical Interview Round 2",
+        "HR Interview"
+      ],
+      "tech_stack": ["JavaScript", "React.js", "Node.js", "MongoDB", "AWS"],
+      "working_culture": "Fast-paced, problem-solving-oriented, remote-friendly"
+    },
+    "resume": {
+      "selected_keywords": [
+        "Data Structures and Algorithms",
+        "MERN Stack",
+        "System Design",
+        "Problem Solving",
+        "AWS",
+        "Git & GitHub",
+        "Firebase",
+        "Competitive Programming",
+        "Docker",
+        "Tailwind CSS"
+      ],
+      "former_freshers_cdn": [
+        "https://cdn.example.com/resume1.pdf",
+        "https://cdn.example.com/resume2.pdf",
+        "https://cdn.example.com/resume3.pdf"
+      ]
+    },
+    "oa": {
+      "leetcode_questions": [
+        "https://leetcode.com/problems/two-sum/",
+        "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
+        "https://leetcode.com/problems/merge-k-sorted-lists/",
+        "https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/",
+        "https://leetcode.com/problems/lru-cache/",
+        "https://leetcode.com/problems/kth-largest-element-in-an-array/",
+        "https://leetcode.com/problems/word-ladder/",
+        "https://leetcode.com/problems/serialize-and-deserialize-binary-tree/",
+        "https://leetcode.com/problems/shortest-path-in-binary-matrix/",
+        "https://leetcode.com/problems/implement-trie-prefix-tree/",
+        "https://leetcode.com/problems/graph-valid-tree/",
+        "https://leetcode.com/problems/find-median-from-data-stream/",
+        "https://leetcode.com/problems/top-k-frequent-elements/",
+        "https://leetcode.com/problems/maximum-subarray/",
+        "https://leetcode.com/problems/course-schedule/"
+      ]
+    },
+    "interview": {
+      "topics_covered": [
+        "System Design (HLD)",
+        "Database Design",
+        "Object-Oriented Design",
+        "Concurrency",
+        "Scaling Strategies",
+        "REST API Design",
+        "MERN Stack Deep Dive",
+        "Coding (DSA + Problem Solving)"
+      ],
+      "example_questions": [
+        "Design a URL Shortener like Bitly",
+        "How would you handle millions of concurrent users on a chat application?",
+        "Explain the CAP theorem and its relevance in distributed databases",
+        "Given a large dataset, how would you efficiently search for a record?",
+        "What are the different types of database indexing?",
+        "Implement an LRU Cache",
+        "Design a rate limiter for an API",
+        "How would you optimize a slow SQL query?"
+      ],
+      "tips": [
+        "Be clear with System Design fundamentals",
+        "Explain your thought process while coding",
+        "Use diagrams and examples where possible",
+        "Showcase problem-solving skills"
+      ]
+    },
+    "hr_interview": {
+      "soft_skills_tested": [
+        "Communication Skills",
+        "Teamwork",
+        "Leadership",
+        "Problem-Solving Approach",
+        "Company Fit",
+        "Work Ethic"
+      ],
+      "example_questions": [
+        "Tell me about yourself.",
+        "Why do you want to work at Optmyzr?",
+        "What are your strengths and weaknesses?",
+        "Tell me about a time you handled a conflict in a team.",
+        "Where do you see yourself in 5 years?",
+        "What do you know about our company culture?",
+        "Describe a situation where you showed leadership skills."
+      ],
+      "tips": [
+        "Be confident but humble",
+        "Back your answers with real experiences",
+        "Research the company culture before the interview",
+        "Practice storytelling techniques",
+        "Align your answers with the company's values"
+      ]
+    },
+    "progress":{
+        "current_round":"resume",
+        "prev_perforn":[]
+    }
+  }
+  
+ 

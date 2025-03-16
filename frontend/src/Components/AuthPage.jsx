@@ -70,7 +70,7 @@ export default function AuthPage() {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <ToastContainer position="top-right" autoClose={3000} />
+      {/* <ToastContainer position="top-right" autoClose={3000} /> */}
       
       <motion.div 
         className="bg-white p-8 rounded-2xl shadow-2xl w-96 text-center border-2 border-green-500"

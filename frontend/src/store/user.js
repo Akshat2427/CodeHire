@@ -26,7 +26,7 @@ const userSlice = createSlice({
         state.user.id = result?.id || 0;
         state.user.username = result?.name || "User";
         state.user.email = result?.email ;
-        state.user.role = result?.role;
+        state.user.role = result?.role?.toLowerCase() || "student";
         state.user.imgUrl = result?.imgUrl || "./images/pfp.jpg";
         console.log('====================================');
         console.log(state.user);
