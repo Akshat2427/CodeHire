@@ -24,23 +24,38 @@ export default function Schedule() {
   const schedule = useSelector((state) => state.schedule.schedule);
   const localizer = momentLocalizer(moment);
   
-
-  const [view, setView] = useState("month");
-
-  const onView = useCallback((newView) => setView(newView), []);
-
+  // Use a more specific type for view
+  const [view, setView] = useState('month');
+  const [date, setDate] = useState(new Date()); // Add date state for better navigation
   const [events, setEvents] = useState([]);
 
+  // Format events with better date handling
   useEffect(() => {
+    const formattedEvents = schedule.map((event) => {
+      const start = moment(event.startTime).toDate();
+      const end = moment(event.endTime).toDate();
+      
+      return {
+        id: event.id,
+        title: event.task,
+        start: start,
+        end: end,
+        allDay: false, // Explicitly set allDay
+      };
+    }).filter(event => 
+      event.start && event.end && !isNaN(event.start.getTime()) && !isNaN(event.end.getTime())
+    );
     
-    const formattedEvents = schedule.map((event) => ({
-      id: event.id,
-      title: event.task,
-      start: new Date(event.startTime), 
-      end: new Date(event.endTime), 
-    }));
     setEvents(formattedEvents);
   }, [schedule]);
+
+  const handleViewChange = useCallback((newView) => {
+    setView(newView);
+  }, []);
+
+  const handleNavigate = useCallback((newDate) => {
+    setDate(newDate);
+  }, []);
 
   return (
     <div className="ml-60 flex flex-col lg:flex-row h-screen bg-gray-50 p-6">
@@ -48,17 +63,23 @@ export default function Schedule() {
       <div className="mt-10 lg:w-1/3 w-full bg-white shadow-lg rounded-lg p-6 overflow-y-auto">
         <h2 className="text-xl font-bold mb-4">Today's Schedule</h2>
         <div className="space-y-3">
-          {schedule.map((event) => (
-            <div key={event.id} className="flex items-center justify-between p-3 bg-gray-100 rounded-md">
-              <div className="flex items-center space-x-3">
-                <div className="p-2 bg-gray-200 rounded-full">{ICON_MAP[event.icon]}</div>
-                <div>
-                  <p className="text-sm font-semibold">{event.task}</p>
-                  <p className="text-xs text-gray-600">{event.time}</p>
+          {schedule.length === 0 ? (
+            <p className="text-gray-500">No events scheduled</p>
+          ) : (
+            schedule.map((event) => (
+              <div key={event.id} className="flex items-center justify-between p-3 bg-gray-100 rounded-md">
+                <div className="flex items-center space-x-3">
+                  <div className="p-2 bg-gray-200 rounded-full">
+                    {ICON_MAP[event.icon] || <CalendarDays className="text-gray-500" />}
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold">{event.task}</p>
+                    <p className="text-xs text-gray-600">{event.time}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
 
@@ -72,10 +93,14 @@ export default function Schedule() {
           events={events}
           startAccessor="start"
           endAccessor="end"
+          date={date}
+          view={view}
+          onNavigate={handleNavigate}
+          onView={handleViewChange}
+          views={['month', 'week', 'day', 'agenda']}
           style={{ height: 500, width: "100%" }}
-          views={{ month: true, week: true, day: true, agenda: true }} 
-          defaultView={view} 
-          onView={onView}
+          popup // Adds popup for overlapping events
+          drilldownView="day" // Defines what happens on date click
         />
       </div>
     </div>
