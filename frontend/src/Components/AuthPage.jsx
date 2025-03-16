@@ -79,7 +79,7 @@ export default function AuthPage() {
         transition={{ duration: 0.8, ease: "easeOut", type: "spring", stiffness: 100 }}
       >
         <motion.h2 
-          className="text-3xl font-bold text-green-700"
+          className="text-3xl font-bold text-green-700 mb-6"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.4 }}
@@ -94,16 +94,14 @@ export default function AuthPage() {
             value={name} 
             onChange={(e) => setName(e.target.value)} 
             className="w-full px-4 py-2 border border-green-400 rounded-lg bg-green-50 focus:ring-2 focus:ring-green-400"
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
           />
         )}
 
-        <form className="mt-6 space-y-4">
+        <form className="mt-4 space-y-4">
           <motion.input 
             type="email" 
             placeholder="Email address"
+
             value={email} 
             onChange={(e) => setEmail(e.target.value)} 
             className="w-full px-4 py-2 border border-green-400 rounded-lg bg-green-50 focus:ring-2 focus:ring-green-400"

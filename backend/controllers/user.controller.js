@@ -7,7 +7,7 @@ const { validationResult } = require('express-validator');
 module.exports.userRegister = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).json({errors: errors.array()});
+        return res.status(400).json({ errors: errors.array() });
     }
     const { email, password, name, role } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -20,8 +20,8 @@ module.exports.userRegister = async (req, res) => {
                 role: role ? role : 'STUDENT',
             },
         });
-        const token = jwt.sign({ userId: user.id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.status(201).json({user, token});
+        const token = jwt.sign({ userId: user.u_id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        res.status(201).json({ user, token });
     } catch (error) {
         res.status(400).json({ error: 'User already exists' });
     }
@@ -30,7 +30,7 @@ module.exports.userRegister = async (req, res) => {
 module.exports.userLogin = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).json({errors: errors.array()});
+        return res.status(400).json({ errors: errors.array() });
     }
     const { email, password } = req.body;
     const user = await prisma.user.findUnique({ where: { email } });
@@ -41,9 +41,9 @@ module.exports.userLogin = async (req, res) => {
     if (!isMatch) {
         return res.status(401).json({ error: 'Invalid email or password' });
     }
-    const token = jwt.sign({ userId: user.id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user.u_id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
     res.cookie('token', token);
-    res.json({ token , user});
+    res.json({ token, user });
 };
 
 module.exports.userProfile = async (req, res) => {
@@ -54,7 +54,7 @@ module.exports.userProfile = async (req, res) => {
 module.exports.userLogout = async (req, res) => {
     const token = req.cookies.token || req.headers.authorization.split(' ')[1];
     const expiresAt = new Date(Date.now() + 86400 * 1000);
-    try{
+    try {
         await prisma.blacklistedToken.create({
             data: {
                 token,
@@ -62,8 +62,62 @@ module.exports.userLogout = async (req, res) => {
             }
         })
         res.clearCookie('token');
-        res.json({message: 'Logged out successfully'});
-    }catch(error){
-        res.status(500).json({error: 'Server error'});
+        res.json({ message: 'Logged out successfully' });
+    } catch (error) {
+        res.status(500).json({ error: 'Server error' });
     }
 }
+
+module.exports.userSaveCourse = async (req, res) => {
+    const { courseId } = req.params;
+    const course = await prisma.course.findUnique({ where: { c_id: courseId } });
+    //add courseID to user
+    await prisma.user.update({
+        where: { u_id: req.user.u_id },
+        data: { courseId: { push: courseId } }
+    });
+    res.json(course);
+}
+
+module.exports.userMyCourses = async (req, res) => {
+    const user = req.user;
+    const courses = await prisma.course.findMany({
+        where: {
+            c_id: {
+                in: user.courseId
+            }
+        }
+    });
+    res.json(courses);
+}
+
+module.exports.userCourses = async (req, res) => {
+    const courses = await prisma.course.findMany();
+    res.json(courses);
+}
+
+module.exports.userCourse = async (req, res) => {
+    const { id } = req.params;
+    const course = await prisma.course.findUnique({ where: { c_id: id } });
+    res.json(course);
+}
+
+module.exports.userEnrollCourse = async (req, res) => {
+    const { id } = req.params;
+    const userId = req.user.u_id;
+    try {
+        const progress = await prisma.courseProgress.create({
+            data: {
+                c_id: id,
+                u_id: userId,
+                current_round: 'Resume',
+                progress_percentage: 0,
+                scores: [],
+            }
+        });
+        res.status(201).json(progress);
+    } catch (error) {
+        res.status(400).json({ error: 'Enrollment failed' });
+    }
+}
+
