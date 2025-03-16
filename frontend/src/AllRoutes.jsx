@@ -4,7 +4,7 @@ import Schedule from './Components/Schedule'
 import Profile from './Components/Profile'
 import SavedCourses from './Components/SavedCourses'
 import Report from './Components/Report'
-import ExploreCourses from './Components/Courses'
+import ExploreCourses from './Components/ExploreCourses'
 import Certificates from './Components/Certificates'
 
 
