@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import Card from "./Card"; // Importing Card Component
 
-<<<<<<< HEAD
-export const ExploreCourses = () => {
-  return (
-    <div>ExploreCourses</div>
-  )
-}
-=======
 const ExploreCourses = () => {
   const [selectedCategory, setSelectedCategory] = useState("Development");
 
@@ -88,4 +81,3 @@ const ExploreCourses = () => {
 };
 
 export default ExploreCourses;
->>>>>>> ac7b70e (Add nodemon to backend dependencies, rename Courses component to ExploreCourses, and implement course display functionality)

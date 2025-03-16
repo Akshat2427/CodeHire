@@ -4,16 +4,9 @@ import Schedule from './Components/Schedule'
 import Profile from './Components/Profile'
 import SavedCourses from './Components/SavedCourses'
 import Report from './Components/Report'
-<<<<<<< HEAD
-import ExploreCourses from './Components/Courses'
-import MyCourses from './Components/MyCourses'
-import CourseView from './Components/Courses/CourseView'
-import CourseDescription from './Components/Courses/CourseDescription'
-=======
 import ExploreCourses from './Components/ExploreCourses'
 import Certificates from './Components/Certificates'
 
->>>>>>> ac7b70e (Add nodemon to backend dependencies, rename Courses component to ExploreCourses, and implement course display functionality)
 
 const AllRoutes = () => {
   return (
