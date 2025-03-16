@@ -10,6 +10,7 @@ import {
   HelpCircle,
   Settings,
   User,
+  Notebook
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -17,11 +18,11 @@ import { useSelector } from "react-redux";
 
 const menuItems = [
   { name: "Dashboard", icon: <LayoutDashboard size={20} />, link: "/" },
+  { name: "My Courses", icon: <Notebook size={20} />, link: "/my-courses" },
   { name: "Schedule", icon: <Calendar size={20} />, link: "/schedule" },
   { name: "Saved Courses", icon: <Bookmark size={20} />, link: "/saved-courses" },
   { name: "Report", icon: <LineChart size={20} />, link: "/report" },
   { name: "Explore Courses", icon: <Compass size={20} />, link: "/explore-courses" },
-  { name: "Certificates", icon: <IdCard size={20} />, link: "/certificates" },
   { name: "Transaction", icon: <Wallet size={20} />, link: "/transaction" },
 ];
 

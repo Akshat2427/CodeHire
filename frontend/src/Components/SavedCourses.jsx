@@ -28,8 +28,7 @@ const Courses = () => {
   return (
     <div className="p-8 ml-64">
       {/* Section 1: MAANG Courses */}
-      <h2 className="text-2xl font-bold mb-4 mt-8">🔥 Saved  Courses</h2>
-      <div className="flex space-x-6 overflow-x-auto scrollbar-hide">
+      <div className="flex space-x-6 overflow-x-auto scrollbar-hide mt-8">
         {savedCourses.length > 0 ? (
           savedCourses.map((course) => <Card key={course.id} {...course} />)
         ) : (

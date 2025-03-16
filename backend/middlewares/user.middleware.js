@@ -15,7 +15,7 @@ module.exports.authUser = async (req, res, next) => {
             return res.status(401).json({ error: 'Token is blacklisted' });
         }
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const user = await prisma.user.findUnique({ where: { id: decoded.userId } });
+        const user = await prisma.user.findUnique({ where: { u_id: decoded.userId } });
         req.user = user;
         return next();
     } catch (error) {

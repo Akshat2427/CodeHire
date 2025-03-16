@@ -4,7 +4,7 @@ import Schedule from './Components/Schedule'
 import Profile from './Components/Profile'
 import SavedCourses from './Components/SavedCourses'
 import Report from './Components/Report'
-import ExploreCourses from './Components/ExploreCourses'
+import ExploreCourses from './Components/Courses'
 import Certificates from './Components/Certificates'
 
 
@@ -17,7 +17,9 @@ const AllRoutes = () => {
       <Route path='/saved-courses' element={<SavedCourses/>}/>
       <Route path='/report' element={<Report/>}/>
       <Route path='/explore-courses' element={<ExploreCourses/>}/>
-      <Route path='/Certificates' element={<Certificates/>}/>
+      <Route path='/my-courses' element={<MyCourses/>}/>
+      <Route path="/course/description/:id" element={<CourseDescription />} />
+      <Route path="/course/:id" element={<CourseView />} />
      
 
     </Routes>
