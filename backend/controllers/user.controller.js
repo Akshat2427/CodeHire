@@ -90,3 +90,26 @@ module.exports.userMyCourses = async (req, res) => {
     });
     res.json(courses);
 }
+
+module.exports.userCourses = async (req, res) => {
+    const courses = await prisma.course.findMany();
+    res.json(courses);
+}
+
+module.exports.userCourse = async (req, res) => {
+    const { id } = req.params;
+    const course = await prisma.course.findUnique({ where: { c_id: id } });
+    res.json(course);
+}
+
+module.exports.userEnrollCourse = async (req, res) => {
+    const { id } = req.params;
+    const course = await prisma.course.findUnique({ where: { c_id: id } });
+    //add courseID to user
+    await prisma.user.update({
+        where: { u_id: req.user.u_id },
+        data: { courseId: { push: id } }
+    });
+    res.json(course);
+}
+
