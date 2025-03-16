@@ -20,9 +20,10 @@ model User {
   password        String
   name            String
   role            Role             @default(STUDENT)
-  authProvider AuthProvider @default(EMAIL)  
+  authProvider    AuthProvider @default(EMAIL)  
   enrolledCourses CourseProgress[]
   interviews      Interview[]
+  courseId        String[]
 }
 
 model BlacklistedToken {
