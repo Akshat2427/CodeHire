@@ -255,5 +255,267 @@
             { user: "Eve", text: "Practical examples were a game-changer." },
             { user: "Frank", text: "AWS integration was well-explained!" }
         ]
-    }
+    },
+    { id: 11, title: "Razorpay Fintech", companyImg: "https://upload.wikimedia.org/wikipedia/en/thumb/1/19/Razorpay_logo.svg/1200px-Razorpay_logo.svg.png", stages: 6, rating: 4.6, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
+        learningSections: [
+            "Fintech Basics",
+            "Payment System Design",
+            "Blockchain Essentials",
+            "Financial Security"
+        ],
+        comments: [
+            { user: "Ben", text: "Fintech made simple and fun!" },
+            { user: "Clara", text: "Security section was excellent." },
+            { user: "Dan", text: "Great insights into payments!" },
+            { user: "Jack", text: "Swift made so much sense after this!" },
+            { user: "Kelly", text: "Great for beginners and pros alike." },
+            { user: "Leo", text: "Loved the design focus!" },
+            { user: "Dave", text: "Really deepened my understanding of ML!" },
+            { user: "Eve", text: "Practical examples were a game-changer." },
+            { user: "Frank", text: "AWS integration was well-explained!" }
+        ] },
+    { id: 12, title: "Tata AI/ML", companyImg: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Tata_logo.svg", stages: 5, rating: 4.4, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
+        learningSections: [
+            "Fintech Basics",
+            "Payment System Design",
+            "Blockchain Essentials",
+            "Financial Security"
+        ],
+        comments: [
+            { user: "Ben", text: "Fintech made simple and fun!" },
+            { user: "Clara", text: "Security section was excellent." },
+            { user: "Dan", text: "Great insights into payments!" },
+            { user: "Jack", text: "Swift made so much sense after this!" },
+            { user: "Kelly", text: "Great for beginners and pros alike." },
+            { user: "Leo", text: "Loved the design focus!" },
+            { user: "Dave", text: "Really deepened my understanding of ML!" },
+            { user: "Eve", text: "Practical examples were a game-changer." },
+            { user: "Frank", text: "AWS integration was well-explained!" }
+        ] },
+    { id: 13, title: "Paytm ", companyImg: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Paytm_logo.png", stages: 7, rating: 4.5, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
+        learningSections: [
+            "Fintech Basics",
+            "Payment System Design",
+            "Blockchain Essentials",
+            "Financial Security"
+        ],
+        comments: [
+            { user: "Ben", text: "Fintech made simple and fun!" },
+            { user: "Clara", text: "Security section was excellent." },
+            { user: "Dan", text: "Great insights into payments!" },
+            { user: "Jack", text: "Swift made so much sense after this!" },
+            { user: "Kelly", text: "Great for beginners and pros alike." },
+            { user: "Leo", text: "Loved the design focus!" },
+            { user: "Dave", text: "Really deepened my understanding of ML!" },
+            { user: "Eve", text: "Practical examples were a game-changer." },
+            { user: "Frank", text: "AWS integration was well-explained!" }
+        ] },
+    { id: 14, title: "Extra Trending Course", companyImg: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Paytm_logo.png", stages: 6, rating: 4.5, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
+        learningSections: [
+            "Fintech Basics",
+            "Payment System Design",
+            "Blockchain Essentials",
+            "Financial Security"
+        ],
+        comments: [
+            { user: "Ben", text: "Fintech made simple and fun!" },
+            { user: "Clara", text: "Security section was excellent." },
+            { user: "Dan", text: "Great insights into payments!" },
+            { user: "Jack", text: "Swift made so much sense after this!" },
+            { user: "Kelly", text: "Great for beginners and pros alike." },
+            { user: "Leo", text: "Loved the design focus!" },
+            { user: "Dave", text: "Really deepened my understanding of ML!" },
+            { user: "Eve", text: "Practical examples were a game-changer." },
+            { user: "Frank", text: "AWS integration was well-explained!" }
+        ] },
+    { id: 18, title: "Razorpay Fintech", companyImg: "https://upload.wikimedia.org/wikipedia/en/thumb/1/19/Razorpay_logo.svg/1200px-Razorpay_logo.svg.png", stages: 6, rating: 4.6, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
+        learningSections: [
+            "Fintech Basics",
+            "Payment System Design",
+            "Blockchain Essentials",
+            "Financial Security"
+        ],
+        comments: [
+            { user: "Ben", text: "Fintech made simple and fun!" },
+            { user: "Clara", text: "Security section was excellent." },
+            { user: "Dan", text: "Great insights into payments!" },
+            { user: "Jack", text: "Swift made so much sense after this!" },
+            { user: "Kelly", text: "Great for beginners and pros alike." },
+            { user: "Leo", text: "Loved the design focus!" },
+            { user: "Dave", text: "Really deepened my understanding of ML!" },
+            { user: "Eve", text: "Practical examples were a game-changer." },
+            { user: "Frank", text: "AWS integration was well-explained!" }
+        ] },
+    { id: 19, title: "Tata AI/ML", companyImg: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Tata_logo.svg", stages: 5, rating: 4.4, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
+        learningSections: [
+            "Fintech Basics",
+            "Payment System Design",
+            "Blockchain Essentials",
+            "Financial Security"
+        ],
+        comments: [
+            { user: "Ben", text: "Fintech made simple and fun!" },
+            { user: "Clara", text: "Security section was excellent." },
+            { user: "Dan", text: "Great insights into payments!" },
+            { user: "Jack", text: "Swift made so much sense after this!" },
+            { user: "Kelly", text: "Great for beginners and pros alike." },
+            { user: "Leo", text: "Loved the design focus!" },
+            { user: "Dave", text: "Really deepened my understanding of ML!" },
+            { user: "Eve", text: "Practical examples were a game-changer." },
+            { user: "Frank", text: "AWS integration was well-explained!" }
+        ] },
+    { id: 20, title: "Paytm Product Management", companyImg: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Paytm_logo.png", stages: 7, rating: 4.5, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
+        learningSections: [
+            "Fintech Basics",
+            "Payment System Design",
+            "Blockchain Essentials",
+            "Financial Security"
+        ],
+        comments: [
+            { user: "Ben", text: "Fintech made simple and fun!" },
+            { user: "Clara", text: "Security section was excellent." },
+            { user: "Dan", text: "Great insights into payments!" },
+            { user: "Jack", text: "Swift made so much sense after this!" },
+            { user: "Kelly", text: "Great for beginners and pros alike." },
+            { user: "Leo", text: "Loved the design focus!" },
+            { user: "Dave", text: "Really deepened my understanding of ML!" },
+            { user: "Eve", text: "Practical examples were a game-changer." },
+            { user: "Frank", text: "AWS integration was well-explained!" }
+        ] },
+  
+    { id: 15, title: "SpaceX Aerospace Dev", companyImg: "https://upload.wikimedia.org/wikipedia/commons/d/de/SpaceX-Logo.svg", stages: 9, rating: 4.9, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
+        learningSections: [
+            "Fintech Basics",
+            "Payment System Design",
+            "Blockchain Essentials",
+            "Financial Security"
+        ],
+        comments: [
+            { user: "Ben", text: "Fintech made simple and fun!" },
+            { user: "Clara", text: "Security section was excellent." },
+            { user: "Dan", text: "Great insights into payments!" },
+            { user: "Jack", text: "Swift made so much sense after this!" },
+            { user: "Kelly", text: "Great for beginners and pros alike." },
+            { user: "Leo", text: "Loved the design focus!" },
+            { user: "Dave", text: "Really deepened my understanding of ML!" },
+            { user: "Eve", text: "Practical examples were a game-changer." },
+            { user: "Frank", text: "AWS integration was well-explained!" }
+        ] },
+    { id: 16, title: "Tesla AI Vision", companyImg: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Tesla_T_symbol.svg", stages: 8, rating: 4.8, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
+        learningSections: [
+            "Fintech Basics",
+            "Payment System Design",
+            "Blockchain Essentials",
+            "Financial Security"
+        ],
+        comments: [
+            { user: "Ben", text: "Fintech made simple and fun!" },
+            { user: "Clara", text: "Security section was excellent." },
+            { user: "Dan", text: "Great insights into payments!" },
+            { user: "Jack", text: "Swift made so much sense after this!" },
+            { user: "Kelly", text: "Great for beginners and pros alike." },
+            { user: "Leo", text: "Loved the design focus!" },
+            { user: "Dave", text: "Really deepened my understanding of ML!" },
+            { user: "Eve", text: "Practical examples were a game-changer." },
+            { user: "Frank", text: "AWS integration was well-explained!" }
+        ] },
+    { id: 17, title: "Extra Staff Pick", companyImg: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Tesla_T_symbol.svg", stages: 7, rating: 4.7, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
+        learningSections: [
+            "Fintech Basics",
+            "Payment System Design",
+            "Blockchain Essentials",
+            "Financial Security"
+        ],
+        comments: [
+            { user: "Ben", text: "Fintech made simple and fun!" },
+            { user: "Clara", text: "Security section was excellent." },
+            { user: "Dan", text: "Great insights into payments!" },
+            { user: "Jack", text: "Swift made so much sense after this!" },
+            { user: "Kelly", text: "Great for beginners and pros alike." },
+            { user: "Leo", text: "Loved the design focus!" },
+            { user: "Dave", text: "Really deepened my understanding of ML!" },
+            { user: "Eve", text: "Practical examples were a game-changer." },
+            { user: "Frank", text: "AWS integration was well-explained!" }
+        ] },
+    { id: 21, title: "Razorpay Fintech", companyImg: "https://upload.wikimedia.org/wikipedia/en/thumb/1/19/Razorpay_logo.svg/1200px-Razorpay_logo.svg.png", stages: 6, rating: 4.6, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
+        learningSections: [
+            "Fintech Basics",
+            "Payment System Design",
+            "Blockchain Essentials",
+            "Financial Security"
+        ],
+        comments: [
+            { user: "Ben", text: "Fintech made simple and fun!" },
+            { user: "Clara", text: "Security section was excellent." },
+            { user: "Dan", text: "Great insights into payments!" },
+            { user: "Jack", text: "Swift made so much sense after this!" },
+            { user: "Kelly", text: "Great for beginners and pros alike." },
+            { user: "Leo", text: "Loved the design focus!" },
+            { user: "Dave", text: "Really deepened my understanding of ML!" },
+            { user: "Eve", text: "Practical examples were a game-changer." },
+            { user: "Frank", text: "AWS integration was well-explained!" }
+        ] },
+    { id: 22, title: "Tata AI/ML", companyImg: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Tata_logo.svg", stages: 5, rating: 4.4, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
+        learningSections: [
+            "Fintech Basics",
+            "Payment System Design",
+            "Blockchain Essentials",
+            "Financial Security"
+        ],
+        comments: [
+            { user: "Ben", text: "Fintech made simple and fun!" },
+            { user: "Clara", text: "Security section was excellent." },
+            { user: "Dan", text: "Great insights into payments!" },
+            { user: "Jack", text: "Swift made so much sense after this!" },
+            { user: "Kelly", text: "Great for beginners and pros alike." },
+            { user: "Leo", text: "Loved the design focus!" },
+            { user: "Dave", text: "Really deepened my understanding of ML!" },
+            { user: "Eve", text: "Practical examples were a game-changer." },
+            { user: "Frank", text: "AWS integration was well-explained!" }
+        ] },
+    { id: 23, title: "Paytm Product Management", companyImg: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Paytm_logo.png", stages: 7, rating: 4.5, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
+        learningSections: [
+            "Fintech Basics",
+            "Payment System Design",
+            "Blockchain Essentials",
+            "Financial Security"
+        ],
+        comments: [
+            { user: "Ben", text: "Fintech made simple and fun!" },
+            { user: "Clara", text: "Security section was excellent." },
+            { user: "Dan", text: "Great insights into payments!" },
+            { user: "Jack", text: "Swift made so much sense after this!" },
+            { user: "Kelly", text: "Great for beginners and pros alike." },
+            { user: "Leo", text: "Loved the design focus!" },
+            { user: "Dave", text: "Really deepened my understanding of ML!" },
+            { user: "Eve", text: "Practical examples were a game-changer." },
+            { user: "Frank", text: "AWS integration was well-explained!" }
+        ] },
+        {
+            id: 24,
+            title: "Google SWE",
+            companyImg: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+            stages: 8,
+            rating: 4.7,
+            buttonTitle: "Enroll Now",
+            description: "Master software development engineering with Google's best practices and cutting-edge technologies.",
+            learningSections: [
+                "Introduction to Software Engineering",
+                "Advanced Data Structures",
+                "System Design Basics",
+                "Google Cloud Fundamentals"
+            ],
+            comments: [
+                { user: "Alice", text: "Amazing course, learned a lot about scalable systems!" },
+                { user: "Bob", text: "The instructors are top-notch, highly recommend!" },
+                { user: "Charlie", text: "Great hands-on projects!" },
+                { user: "Jack", text: "Swift made so much sense after this!" },
+                { user: "Kelly", text: "Great for beginners and pros alike." },
+                { user: "Leo", text: "Loved the design focus!" },
+                { user: "Dave", text: "Really deepened my understanding of ML!" },
+                { user: "Eve", text: "Practical examples were a game-changer." },
+                { user: "Frank", text: "AWS integration was well-explained!" }
+            ]
+        },
+ 
 ];

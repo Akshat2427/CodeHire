@@ -29,14 +29,14 @@ const menuItems = [
 const Sidebar = () => {
   const [selected, setSelected] = useState("Dashboard"); // Default selection
   const navigate = useNavigate();
-  const user = useSelector(state => state.user.user)
+  const user = useSelector(state => state.user.user);
 
   return (
     <div className="fixed bg-white text-gray-900 h-screen w-60 flex flex-col border-r border-gray-300 shadow-lg z-20">
       {/* Logo */}
       <div className="p-2 flex items-center space-x-3">
         <img
-          src="/images/image.png"
+          src="https://static.vecteezy.com/system/resources/previews/004/909/777/non_2x/coding-logo-design-template-vector.jpg"
           alt="Logo"
           className="h-12 w-12 rounded-full"
         />
@@ -62,8 +62,6 @@ const Sidebar = () => {
         ))}
       </div>
 
-
-
       <div className="mt-2">
         <div
           className={`flex items-center p-3 px-6 cursor-pointer hover:bg-gray-100 rounded-lg transition-all font-medium 
@@ -77,7 +75,6 @@ const Sidebar = () => {
           <HelpCircle size={20} className="mr-3 text-gray-600" />
           <span className="text-md">Help Center</span>
         </div>
-
 
         {/* <div
           className={`flex items-center p-3 px-6 cursor-pointer hover:bg-gray-100 rounded-lg transition-all font-medium 
@@ -98,24 +95,24 @@ const Sidebar = () => {
         onClick={() => {
           setSelected('Profile')
           navigate("/profile")
-        }
-        } // Navigate to /profile route when clicked
+        }} // Navigate to /profile route when clicked
         className={`flex items-center p-4 border-t border-gray-200 cursor-pointer hover:bg-gray-100
-           ${selected === "Profile" ? "bg-blue-100 text-blue-600 font-semibold" : ""}`
-        }
+           ${selected === "Profile" ? "bg-blue-100 text-blue-600 font-semibold" : ""}`}
       >
-      <div className="flex justify-center items-center">
-     <div className="flex justify-center space-x-5"> <img src={user.imgUrl === "./images/pfp.jpg"  ? "./images/pfp.jpg" :    `https://images.weserv.nl/?url=${encodeURIComponent(user.imgUrl)}` } alt={user.imgUrl} className="h-12 w-12 rounded-full " />
-      
-      <div>
-        <p className="text-md font-semibold">{user.username ?? "User"}</p>
-        <p className="text-sm text-gray-500">{user.role ?? "User"}</p>
-      </div></div>
+        <div className="flex justify-center items-center">
+          <div className="flex justify-center space-x-5">
+            <img
+              src={user.imgUrl === "./images/pfp.jpg" ? "./images/pfp.jpg" : `https://images.weserv.nl/?url=${encodeURIComponent(user.imgUrl)}`}
+              alt={user.imgUrl}
+              className="h-12 w-12 rounded-full"
+            />
+            <div>
+              <p className="text-md font-semibold">{user.username ?? "User"}</p>
+              <p className="text-sm text-gray-500">{user.role ?? "User"}</p>
+            </div>
+          </div>
+        </div>
       </div>
-
-      </div>
-
-
     </div>
   );
 };

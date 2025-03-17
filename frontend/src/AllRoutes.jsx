@@ -5,8 +5,9 @@ import Profile from './Components/Profile'
 import SavedCourses from './Components/SavedCourses'
 import Report from './Components/Report'
 import ExploreCourses from './Components/ExploreCourses'
-import Certificates from './Components/Certificates'
-
+import MyCourses from './Components/MyCourses'
+import CourseView from './Components/Courses/CourseView'
+import CourseDescription from './Components/Courses/CourseDescription'
 
 const AllRoutes = () => {
   return (
@@ -18,8 +19,8 @@ const AllRoutes = () => {
       <Route path='/report' element={<Report/>}/>
       <Route path='/explore-courses' element={<ExploreCourses/>}/>
       <Route path='/my-courses' element={<MyCourses/>}/>
-      <Route path="/course/description/:id" element={<CourseDescription />} />
-      <Route path="/course/:id" element={<CourseView />} />
+      <Route path="/course/description/:id" element={<CourseDescription />} /> 
+       <Route path="/course/:id" element={<CourseView />} />
      
 
     </Routes>
