@@ -12,7 +12,7 @@ const Courses = () => {
 
   // Sample course data
   const maangCourses = [
-    { id: 1, title: "Google SDE", companyImg: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg", stages: 8, rating: 4.7, buttonTitle: "Enroll Now" },
+    { id: 24, title: "Google SWE", companyImg: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg", stages: 8, rating: 4.7, buttonTitle: "Enroll Now" },
     { id: 2, title: "Amazon ML", companyImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSN0qIpl2wbLurDxYE3L2TVVMt3TqOG3XAQQ&s", stages: 6, rating: 4.5, buttonTitle: "Enroll Now" },
     { id: 3, title: "Meta Frontend", companyImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNbpIfA-_GwTVZBVlpCvdIcLVOsCxn4BmqHA&s", stages: 7, rating: 4.6, buttonTitle: "Enroll Now" },
     { id: 4, title: "Apple iOS Dev", companyImg: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg", stages: 5, rating: 4.4, buttonTitle: "Enroll Now" },
@@ -34,18 +34,18 @@ const Courses = () => {
     { id: 12, title: "Tata AI/ML", companyImg: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Tata_logo.svg", stages: 5, rating: 4.4, buttonTitle: "Enroll Now" },
     { id: 13, title: "Paytm ", companyImg: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Paytm_logo.png", stages: 7, rating: 4.5, buttonTitle: "Enroll Now" },
     { id: 14, title: "Extra Trending Course", companyImg: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Paytm_logo.png", stages: 6, rating: 4.5, buttonTitle: "Enroll Now" },
-    { id: 11, title: "Razorpay Fintech", companyImg: "https://upload.wikimedia.org/wikipedia/en/thumb/1/19/Razorpay_logo.svg/1200px-Razorpay_logo.svg.png", stages: 6, rating: 4.6, buttonTitle: "Enroll Now" },
-    { id: 12, title: "Tata AI/ML", companyImg: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Tata_logo.svg", stages: 5, rating: 4.4, buttonTitle: "Enroll Now" },
-    { id: 13, title: "Paytm Product Management", companyImg: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Paytm_logo.png", stages: 7, rating: 4.5, buttonTitle: "Enroll Now" },
+    { id: 18, title: "Razorpay Fintech", companyImg: "https://upload.wikimedia.org/wikipedia/en/thumb/1/19/Razorpay_logo.svg/1200px-Razorpay_logo.svg.png", stages: 6, rating: 4.6, buttonTitle: "Enroll Now" },
+    { id: 19, title: "Tata AI/ML", companyImg: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Tata_logo.svg", stages: 5, rating: 4.4, buttonTitle: "Enroll Now" },
+    { id: 20, title: "Paytm Product Management", companyImg: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Paytm_logo.png", stages: 7, rating: 4.5, buttonTitle: "Enroll Now" },
   ];
 
   const staffPicks = [
     { id: 15, title: "SpaceX Aerospace Dev", companyImg: "https://upload.wikimedia.org/wikipedia/commons/d/de/SpaceX-Logo.svg", stages: 9, rating: 4.9, buttonTitle: "Enroll Now" },
     { id: 16, title: "Tesla AI Vision", companyImg: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Tesla_T_symbol.svg", stages: 8, rating: 4.8, buttonTitle: "Enroll Now" },
     { id: 17, title: "Extra Staff Pick", companyImg: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Tesla_T_symbol.svg", stages: 7, rating: 4.7, buttonTitle: "Enroll Now" },
-    { id: 11, title: "Razorpay Fintech", companyImg: "https://upload.wikimedia.org/wikipedia/en/thumb/1/19/Razorpay_logo.svg/1200px-Razorpay_logo.svg.png", stages: 6, rating: 4.6, buttonTitle: "Enroll Now" },
-    { id: 12, title: "Tata AI/ML", companyImg: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Tata_logo.svg", stages: 5, rating: 4.4, buttonTitle: "Enroll Now" },
-    { id: 13, title: "Paytm Product Management", companyImg: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Paytm_logo.png", stages: 7, rating: 4.5, buttonTitle: "Enroll Now" },
+    { id: 21, title: "Razorpay Fintech", companyImg: "https://upload.wikimedia.org/wikipedia/en/thumb/1/19/Razorpay_logo.svg/1200px-Razorpay_logo.svg.png", stages: 6, rating: 4.6, buttonTitle: "Enroll Now" },
+    { id: 22, title: "Tata AI/ML", companyImg: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Tata_logo.svg", stages: 5, rating: 4.4, buttonTitle: "Enroll Now" },
+    { id: 23, title: "Paytm Product Management", companyImg: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Paytm_logo.png", stages: 7, rating: 4.5, buttonTitle: "Enroll Now" },
   ];
 
   const handleScroll = (setScroll, currentScroll, totalCourses, direction) => {

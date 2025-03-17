@@ -72,7 +72,7 @@ const Card = ({ companyImg, title, stages, rating, buttonTitle, id, description,
           </div>
         </div>
         <p className="text-lg font-bold text-gray-900">
-          {price ? `$${price}` : "$99.99"} <span className="text-xs text-gray-500 font-normal">/ course</span>
+          {price ? `$${price}` : `$${parseInt(Math.random()*1000)}`} <span className="text-xs text-gray-500 font-normal">/ course</span>
         </p>
       </div>
 
