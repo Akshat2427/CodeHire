@@ -91,7 +91,7 @@ module.exports.userMyCourses = async (req, res) => {
     res.json(courses);
 }
 
-module.exports.userCourses = async (req, res) => {
+module.exports.allCourses = async (req, res) => {
     const courses = await prisma.course.findMany();
     res.json(courses);
 }
