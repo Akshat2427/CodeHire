@@ -33,7 +33,8 @@ const Sidebar = () => {
       {/* Logo */}
       <div className="p-2 flex items-center space-x-3">
         <img
-          src="https://static.vecteezy.com/system/resources/previews/004/909/777/non_2x/coding-logo-design-template-vector.jpg"
+                   src="https://static.vecteezy.com/system/resources/previews/004/909/777/non_2x/coding-logo-design-template-vector.jpg"
+
           alt="Logo"
           className="h-12 w-12 rounded-full"
         />
