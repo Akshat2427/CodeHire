@@ -18,7 +18,7 @@ const AllRoutes = () => {
       <Route path='/profile' element={<Profile   />} />
       <Route path='/saved-courses' element={<SavedCourses/>}/>
       <Route path='/report' element={<Report/>}/>
-      <Route path="/reports/:userId" element={<ReportDetail />} />
+      <Route path='/reports/:userId' element={<ReportDetail/>}/>
       <Route path='/explore-courses' element={<ExploreCourses/>}/>
       <Route path='/my-courses' element={<MyCourses/>}/>
       <Route path="/course/description/:id" element={<CourseDescription />} /> 
