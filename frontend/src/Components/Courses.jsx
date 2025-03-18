@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Card from "./Card"; // Importing Card Component
-import { ChevronRight, ChevronLeft } from "lucide-react"; // Adding arrow icons from Lucide
+import { ChevronRight, ChevronLeft } from "lucide-react"; 
 
 const Courses = () => {
   const [maangScroll, setMaangScroll] = useState(0);
@@ -8,9 +8,9 @@ const Courses = () => {
   const [trendingScroll, setTrendingScroll] = useState(0);
   const [staffScroll, setStaffScroll] = useState(0);
 
-  const coursesPerPage = 5; // Show 5 courses at a time
+  const coursesPerPage = 5; 
 
-  // Sample course data
+ 
   const maangCourses = [
     { id: 24, title: "Google SWE", companyImg: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg", stages: 8, rating: 4.7, buttonTitle: "Enroll Now" },
     { id: 2, title: "Amazon ML", companyImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSN0qIpl2wbLurDxYE3L2TVVMt3TqOG3XAQQ&s", stages: 6, rating: 4.5, buttonTitle: "Enroll Now" },
@@ -51,15 +51,15 @@ const Courses = () => {
   const handleScroll = (setScroll, currentScroll, totalCourses, direction) => {
     const maxScroll = Math.max(0, totalCourses - coursesPerPage);
     if (direction === 'right') {
-      setScroll((prev) => (prev < maxScroll ? prev + 1 : 0)); // Loop back to start if at end
+      setScroll((prev) => (prev < maxScroll ? prev + 1 : 0));
     } else {
-      setScroll((prev) => (prev > 0 ? prev - 1 : maxScroll)); // Loop back to end if at start
+      setScroll((prev) => (prev > 0 ? prev - 1 : maxScroll)); 
     }
   };
 
   return (
     <div className="p-8 ml-64">
-      {/* Section 1: MAANG Courses */}
+      
       <h2 className="text-2xl font-bold mb-4 mt-8">🔥 MAANG Courses</h2>
       <div className="relative">
         <div className="flex space-x-6 overflow-hidden">
@@ -92,7 +92,7 @@ const Courses = () => {
         )}
       </div>
 
-      {/* Section 3: Latest Courses */}
+      
       <h2 className="text-2xl font-bold mt-8 mb-4">🚀 Latest Courses</h2>
       <div className="relative">
         <div className="flex space-x-6 overflow-hidden">
@@ -125,7 +125,7 @@ const Courses = () => {
         )}
       </div>
 
-      {/* Section 4: Trending Now */}
+      
       <h2 className="text-2xl font-bold mt-8 mb-4">🌟 Trending Now</h2>
       <div className="relative">
         <div className="flex space-x-6 overflow-hidden">
@@ -158,7 +158,7 @@ const Courses = () => {
         )}
       </div>
 
-      {/* Section 5: Staff Picks */}
+      
       <h2 className="text-2xl font-bold mt-8 mb-4">🎯 Staff Picks</h2>
       <div className="relative">
         <div className="flex space-x-6 overflow-hidden">

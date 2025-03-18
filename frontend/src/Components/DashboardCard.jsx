@@ -10,7 +10,7 @@ const cardData = [
 const CardsDashboard = ({ title, value, color, icon }) => (
   <div className="p-4 bg-white rounded-lg shadow-lg flex items-center gap-4">
     <div className="w-12 h-12 flex items-center justify-center bg-gray-200 rounded-full">
-      {icon}
+      {icon}    
     </div>
     <div>
       <h3 className={`text-lg font-semibold ${color}`}>{title}</h3>

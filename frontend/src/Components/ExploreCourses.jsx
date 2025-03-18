@@ -1,10 +1,7 @@
 import React from 'react'
 
-const ExploreCourses = () => {
+export const ExploreCourses = () => {
   return (
-    <div className='flex flex-col items-center justify-center h-screen'>
-        <div> This is ExploreCourses Page!!</div>
-    </div>
+    <div>ExploreCourses</div>
   )
 }
-export default ExploreCourses

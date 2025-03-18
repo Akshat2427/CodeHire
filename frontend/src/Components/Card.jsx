@@ -1,5 +1,5 @@
 import React from "react";
-import { Bookmark } from "lucide-react"; // Using Lucide for better icons
+import { Bookmark } from "lucide-react"; 
 import { saveCourse } from "../store/saved_courses";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +22,7 @@ const Card = ({ companyImg, title, stages, rating, buttonTitle, id, description,
     }
   };
 
-  // Generate star rating
+  
   const renderStars = (rating) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -37,7 +37,7 @@ const Card = ({ companyImg, title, stages, rating, buttonTitle, id, description,
 
   return (
     <div className="bg-white rounded-2xl shadow-xl p-6 flex flex-col items-start w-80 max-w-xs transform hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden border border-gray-100">
-      {/* Save Icon at Top Right */}
+      
       <button
         onClick={addToSaveCourses}
         className="absolute right-4 top-4 text-gray-500 bg-white p-2 rounded-full hover:bg-blue-50 hover:text-blue-600 transition-all z-10 shadow-md"
@@ -54,15 +54,15 @@ const Card = ({ companyImg, title, stages, rating, buttonTitle, id, description,
         />
       </div>
 
-      {/* Course Title */}
+      
       <h3 className="text-2xl font-bold text-gray-900 mb-2">{title}</h3>
 
-      {/* Description */}
+     
       <p className="text-gray-600 text-sm line-clamp-3 mb-4">
         {description || "Learn industry-leading skills with this comprehensive course designed to boost your career."}
       </p>
 
-      {/* Stages, Rating, and Price */}
+      
       <div className="w-full mb-5">
         <div className="flex justify-between items-center text-gray-700 mb-2">
           <p className="text-sm font-medium">Stages: <span className="font-semibold">{stages}</span></p>
@@ -76,7 +76,7 @@ const Card = ({ companyImg, title, stages, rating, buttonTitle, id, description,
         </p>
       </div>
 
-      {/* Enroll Button */}
+      
       <button
         onClick={handleRouteChange}
         className="w-full py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl text-base font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-md hover:shadow-lg"
