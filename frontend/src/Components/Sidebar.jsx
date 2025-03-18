@@ -5,12 +5,15 @@ import {
   Bookmark,
   LineChart,
   Compass,
+  IdCard,
   Wallet,
   HelpCircle,
+  Settings,
   User,
-  Notebook,
+  Notebook
 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import { useSelector } from "react-redux";
 
 const menuItems = [
@@ -24,9 +27,9 @@ const menuItems = [
 ];
 
 const Sidebar = () => {
-  const [selected, setSelected] = useState("Dashboard"); 
+  const [selected, setSelected] = useState("Dashboard"); // Default selection
   const navigate = useNavigate();
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector(state => state.user.user)
 
   return (
     <div className="fixed bg-white text-gray-900 h-screen w-60 flex flex-col border-r border-gray-300 shadow-lg z-20">
@@ -45,28 +48,27 @@ const Sidebar = () => {
         {menuItems.map((item) => (
           <div
             key={item.name}
-            className={`flex items-center p-3 px-6 cursor-pointer rounded-lg transition-all font-medium ${
-              selected === item.name
-                ? "bg-blue-100 text-blue-600 font-semibold"
-                : "hover:bg-gray-100"
-            }`}
-            onClick={() => {
-              setSelected(item.name);
-              navigate(item.link);
-            }}
+            className={`flex items-center p-3 px-6 cursor-pointer rounded-lg transition-all font-medium ${selected === item.name
+              ? "bg-blue-100 text-blue-600 font-semibold"
+              : "hover:bg-gray-100"
+              }`}
+            onClick={() => setSelected(item.name)}
           >
             <div className="mr-3 text-gray-600">{item.icon}</div>
-            <span className="text-md">{item.name}</span>
+            <span className="text-md">
+              <Link to={item.link}>{item.name}</Link>
+            </span>
           </div>
         ))}
       </div>
 
-      {/* Help Center */}
+
+
       <div className="mt-2">
         <div
-          className={`flex items-center p-3 px-6 cursor-pointer hover:bg-gray-100 rounded-lg transition-all font-medium ${
-            selected === "Help Center" ? "bg-blue-100 text-blue-600 font-semibold" : ""
-          }`}
+          className={`flex items-center p-3 px-6 cursor-pointer hover:bg-gray-100 rounded-lg transition-all font-medium 
+            ${selected === "Help Center" ? "bg-blue-100 text-blue-600 font-semibold" : ""
+            }`}
           onClick={() => {
             setSelected("Help Center");
             navigate("/helpcenter");
@@ -75,36 +77,45 @@ const Sidebar = () => {
           <HelpCircle size={20} className="mr-3 text-gray-600" />
           <span className="text-md">Help Center</span>
         </div>
+
+
+        {/* <div
+          className={`flex items-center p-3 px-6 cursor-pointer hover:bg-gray-100 rounded-lg transition-all font-medium 
+            ${selected === "Settings" ? "bg-blue-100 text-blue-600 font-semibold" : ""}`
+          }
+          onClick={() => {
+            setSelected("Settings");
+            navigate("/settings");
+          }}
+        >
+          <Settings size={20} className="mr-3 text-gray-600" />
+          <span className="text-md">Settings</span>
+        </div> */}
       </div>
 
       {/* User Profile */}
       <div
         onClick={() => {
-          setSelected("Profile");
-          navigate("/profile");
-        }}
-        className={`flex items-center p-4 border-t border-gray-200 cursor-pointer hover:bg-gray-100 ${
-          selected === "Profile" ? "bg-blue-100 text-blue-600 font-semibold" : ""
-        }`}
+          setSelected('Profile')
+          navigate("/profile")
+        }
+        } // Navigate to /profile route when clicked
+        className={`flex items-center p-4 border-t border-gray-200 cursor-pointer hover:bg-gray-100
+           ${selected === "Profile" ? "bg-blue-100 text-blue-600 font-semibold" : ""}`
+        }
       >
-        <div className="flex justify-center items-center">
-          <div className="flex justify-center space-x-5">
-            <img
-              src={
-                user.imgUrl === "./images/pfp.jpg"
-                  ? "./images/pfp.jpg"
-                  : `https://images.weserv.nl/?url=${encodeURIComponent(user.imgUrl)}`
-              }
-              alt={user.imgUrl}
-              className="h-12 w-12 rounded-full"
-            />
-            <div>
-              <p className="text-md font-semibold">{user.username ?? "User"}</p>
-              <p className="text-sm text-gray-500">{user.role ?? "User"}</p>
-            </div>
-          </div>
-        </div>
+      <div className="flex justify-center items-center">
+     <div className="flex justify-center space-x-5"> <img src={user.imgUrl === "./images/pfp.jpg"  ? "./images/pfp.jpg" :    `https://images.weserv.nl/?url=${encodeURIComponent(user.imgUrl)}` } alt={user.imgUrl} className="h-12 w-12 rounded-full " />
+      
+      <div>
+        <p className="text-md font-semibold">{user.username ?? "User"}</p>
+        <p className="text-sm text-gray-500">{user.role ?? "User"}</p>
+      </div></div>
       </div>
+
+      </div>
+
+
     </div>
   );
 };
