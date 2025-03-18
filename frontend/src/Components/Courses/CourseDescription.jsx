@@ -63,7 +63,7 @@ function CourseDescription() {
           <div className="min-h-screen bg-gray-100 flex flex-col">
             {/* Header Section */}
             <header className="bg-blue-600 text-white p-4">
-                <h1 className="text-3xl font-bold">Course Details</h1>
+                {/* <h1 className="text-3xl font-bold">Course Details</h1> */}
             </header>
 
             {/* Main Content */}
