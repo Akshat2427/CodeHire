@@ -61,12 +61,12 @@ function CourseDescription() {
     return (
      <div div className="flex justify-center items-center h-screen w-full pt-20 pl-60 ">
           <div className="min-h-screen bg-gray-100 flex flex-col">
-           
-            {/* <header className="bg-blue-600 text-white m-4 p-4">
-                <h1 className="text-3xl font-bold">Course Details</h1>
-            </header> */}
+            {/* Header Section */}
+            <header className="bg-blue-600 text-white p-4">
+                {/* <h1 className="text-3xl font-bold">Course Details</h1> */}
+            </header>
 
-           
+            {/* Main Content */}
             <main className="flex-grow py-8 px-4 sm:px-6 lg:px-8 ">
                 <div className="max-w-7xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
                     <div className="flex flex-col md:flex-row-reverse">
