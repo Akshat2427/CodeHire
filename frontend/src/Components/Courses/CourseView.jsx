@@ -22,7 +22,7 @@ function CourseView() {
           <div
             key={index}
             onClick={() => {
-              if (item !== "Interview") setActive(item); // Prevent click on locked stage
+              if (item !== "#Interview") setActive(item); // Prevent click on locked stage
             }}
             className={`flex justify-center items-center px-6 py-3 text-center rounded-lg shadow-md font-semibold transition-all duration-300 cursor-pointer
               ${
@@ -41,7 +41,7 @@ function CourseView() {
           </div>
         ))}
        </div>
-       <div>Rounds</div>
+ 
       </div>
 
       {/* Content View */}

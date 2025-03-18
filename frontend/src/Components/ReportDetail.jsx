@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 
 const ReportDetail = () => {
   const { userId } = useParams();
+  console.log("userId called at ReportDetail", userId);
 
   // Dummy data (in a real app, fetch this based on userId)
   const userReports = {
