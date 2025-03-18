@@ -24,7 +24,7 @@ const menuItems = [
 ];
 
 const Sidebar = () => {
-  const [selected, setSelected] = useState("Dashboard"); // Default selection
+  const [selected, setSelected] = useState("Dashboard"); 
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
 
