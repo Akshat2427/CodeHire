@@ -41,7 +41,7 @@ function CourseView() {
           </div>
         ))}
        </div>
-     
+       <div>Rounds</div>
       </div>
 
       {/* Content View */}

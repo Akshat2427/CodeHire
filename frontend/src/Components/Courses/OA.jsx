@@ -1,38 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSolvedProblems } from "../../store/codingProfile";
-import { Link } from "lucide-react";
+import { fetchSolvedProblems } from "../../store/codingProfile"; 
+import { CheckCircle, XCircle, Link } from "lucide-react";
 
 function OA() {
-  const dispatch = useDispatch();
-  const { profile, solvedQuestions } = useSelector((state) => state.codingProfile);
+    const dispatch = useDispatch();
+    const { profile , solvedQuestions} = useSelector((state) => state.codingProfile); // Get data from Redux store
+    console.log("Redux Solved Questions:", solvedQuestions);
+    console.log("Redux Profile:", profile);
 
-  const [allQuestions, setAllQuestions] = useState([]);
-  const [testQuestions, setTestQuestions] = useState([]);
-  const [timeLeft, setTimeLeft] = useState(2 * 60 * 60); // 2 hours in seconds
-  const [testStarted, setTestStarted] = useState(false);
-  const [testSubmitted, setTestSubmitted] = useState(false);
-  const [leetcodeUser, setLeetcodeUser] = useState(profile.leetcode);
+    const [questions, setQuestions] = useState([]);
+    const [sortFilter, setSortFilter] = useState("all");
+    const [leetcodeUser, setLeetcodeUser] = useState(profile.leetcode);
+    const [gfgUser, setGfgUser] = useState(profile.gfg);
+    const [codingNinjasUser, setCodingNinjasUser] = useState(profile.ninja);
 
-  // Fetch questions from CSV
-  useEffect(() => {
-    async function fetchLeetCodeQuestions() {
-      const csvUrl =
-        "https://raw.githubusercontent.com/liquidslr/leetcode-company-wise-problems/main/Amazon/1.%20Thirty%20Days.csv";
-      try {
-        const response = await fetch(csvUrl);
-        const csvText = await response.text();
-        const rows = csvText.split("\n").map((row) => row.split(","));
+    useEffect(() => {
+        async function fetchLeetCodeQuestions() {
+            const csvUrl = "https://raw.githubusercontent.com/liquidslr/leetcode-company-wise-problems/main/Amazon/1.%20Thirty%20Days.csv";
+            try {
+                const response = await fetch(csvUrl);
+                const csvText = await response.text();
+                const rows = csvText.split("\n").map(row => row.split(","));
 
-        const extractedData = rows
-          .slice(1)
-          .map((row) => ({
-            difficulty: row[0],
-            title: row[1],
-            frequency: row[2],
-            link: row[4],
-          }))
-          .filter((row) => row.title);
+                const extractedData = rows.slice(1).map(row => ({
+                    difficulty: row[0],
+                    title: row[1],
+                    frequency: row[2],
+                    link: row[4]
+                })).filter(row => row.title);
 
         setAllQuestions(extractedData);
 
