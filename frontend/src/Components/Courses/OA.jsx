@@ -1,34 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSolvedProblems } from "../../store/codingProfile"; 
-import { CheckCircle, XCircle, Link } from "lucide-react";
+import { fetchSolvedProblems } from "../../store/codingProfile";
+import { Link } from "lucide-react";
 
 function OA() {
-    const dispatch = useDispatch();
-    const { profile , solvedQuestions} = useSelector((state) => state.codingProfile); // Get data from Redux store
-    console.log("Redux Solved Questions:", solvedQuestions);
-    console.log("Redux Profile:", profile);
+  const dispatch = useDispatch();
+  const { profile, solvedQuestions } = useSelector((state) => state.codingProfile);
 
-    const [questions, setQuestions] = useState([]);
-    const [sortFilter, setSortFilter] = useState("all");
-    const [leetcodeUser, setLeetcodeUser] = useState(profile.leetcode);
-    const [gfgUser, setGfgUser] = useState(profile.gfg);
-    const [codingNinjasUser, setCodingNinjasUser] = useState(profile.ninja);
+  const [allQuestions, setAllQuestions] = useState([]);
+  const [testQuestions, setTestQuestions] = useState([]);
+  const [timeLeft, setTimeLeft] = useState(2 * 60 * 60); // 2 hours in seconds
+  const [testStarted, setTestStarted] = useState(false);
+  const [testSubmitted, setTestSubmitted] = useState(false);
+  const [leetcodeUser, setLeetcodeUser] = useState(profile.leetcode);
 
-    useEffect(() => {
-        async function fetchLeetCodeQuestions() {
-            const csvUrl = "https://raw.githubusercontent.com/liquidslr/leetcode-company-wise-problems/main/Amazon/1.%20Thirty%20Days.csv";
-            try {
-                const response = await fetch(csvUrl);
-                const csvText = await response.text();
-                const rows = csvText.split("\n").map(row => row.split(","));
+  // Fetch questions from CSV
+  useEffect(() => {
+    async function fetchLeetCodeQuestions() {
+      const csvUrl =
+        "https://raw.githubusercontent.com/liquidslr/leetcode-company-wise-problems/main/Amazon/1.%20Thirty%20Days.csv";
+      try {
+        const response = await fetch(csvUrl);
+        const csvText = await response.text();
+        const rows = csvText.split("\n").map((row) => row.split(","));
 
-                const extractedData = rows.slice(1).map(row => ({
-                    difficulty: row[0],
-                    title: row[1],
-                    frequency: row[2],
-                    link: row[4]
-                })).filter(row => row.title);
+        const extractedData = rows
+          .slice(1)
+          .map((row) => ({
+            difficulty: row[0],
+            title: row[1],
+            frequency: row[2],
+            link: row[4],
+          }))
+          .filter((row) => row.title);
 
                 setQuestions(extractedData);
                 console.log("Questions:", extractedData);
@@ -40,12 +44,11 @@ function OA() {
         fetchLeetCodeQuestions();
     }, []);
 
-    // Fetch solved problems from Redux when the button is clicked
     const handleFetchSolved = () => {
-        dispatch(fetchSolvedProblems(leetcodeUser)); // Dispatch Redux action to update solved questions
+        dispatch(fetchSolvedProblems(leetcodeUser)); 
     };
 
-    // Filter the questions based on user selection
+   
     const filteredQuestions = questions.filter(q => {
         if (sortFilter === "solved") return questions.includes(q.title);
         if (sortFilter === "unsolved") return !questions.includes(q.title);
@@ -56,7 +59,7 @@ function OA() {
         <div className="container mx-auto p-6">
             <h1 className="text-3xl font-bold text-center mb-6">Online Assessment Questions</h1>
 
-            {/* User Profile Inputs */}
+           
             <div className="flex gap-4 mb-4 ml-64">
                 <input
                     type="text"
@@ -87,7 +90,7 @@ function OA() {
                 </button>
             </div>
 
-            {/* Sorting Dropdown */}
+            
             <div className="ml-64 mb-4">
                 <label className="mr-2">Sort By:</label>
                 <select
@@ -101,7 +104,7 @@ function OA() {
                 </select>
             </div>
 
-            {/* Questions Table */}
+            
             <div className="ml-52 overflow-x-auto">
                 <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
                     <thead className="bg-blue-500 text-white">
