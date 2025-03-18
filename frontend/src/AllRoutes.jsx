@@ -8,6 +8,7 @@ import ExploreCourses from './Components/Courses'
 import MyCourses from './Components/MyCourses'
 import CourseView from './Components/Courses/CourseView'
 import CourseDescription from './Components/Courses/CourseDescription'
+import ReportDetail from './Components/ReportDetail'
 
 const AllRoutes = () => {
   return (
