@@ -15,8 +15,10 @@ function CourseView() {
   return (
     <>
       {/* Navigation Stages */}
-      <div className="ml-64 pt-18 flex justify-around space-x-4">
-        
+      <div className="ml-64 pt-18 flex justify-between space-x-4">
+        <div>
+          Rounds
+        </div>
        <div className="flex justify-center space-x-4">
        {arr.map((item, index) => (
           <div
@@ -41,7 +43,7 @@ function CourseView() {
           </div>
         ))}
        </div>
-     
+       <div>Rounds</div>
       </div>
 
       {/* Content View */}
