@@ -22,7 +22,7 @@ const Report = () => {
       img: "https://via.placeholder.com/100?text=Google",
       resumeScore: 90,
       oaScore: 80,
-      interviewScore: 85,
+      interviewScore: 87,
     },
     {
       userId: "U003",
