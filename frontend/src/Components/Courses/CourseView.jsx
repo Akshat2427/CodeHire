@@ -14,7 +14,7 @@ function CourseView() {
 
   return (
     <>
-      {/* Navigation Stages */}
+      
       <div className="ml-64 pt-18 flex justify-between space-x-4">
         <div>
           Rounds
