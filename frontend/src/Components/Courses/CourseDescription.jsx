@@ -26,7 +26,7 @@ function CourseDescription() {
         );
     }
 
-    // Generate star rating
+  
     const renderStars = (rating) => {
         const stars = [];
         for (let i = 1; i <= 5; i++) {
@@ -39,7 +39,7 @@ function CourseDescription() {
         return stars;
     };
 
-    // Dummy images for comments (using Unsplash placeholders)
+    
     const commentImages = [
         "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100",
         "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100",
@@ -48,7 +48,7 @@ function CourseDescription() {
         "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=100",
     ];
 
-    // Expanded description as a paragraph
+    
     const expandedDescription = `
         This course is meticulously designed to elevate your skills and increase your chances of landing a role at your dream company. 
         Whether you're aiming to master cutting-edge technologies or refine your expertise in a specialized field, this program offers 
@@ -61,16 +61,16 @@ function CourseDescription() {
     return (
      <div div className="flex justify-center items-center h-screen w-full pt-20 pl-60 ">
           <div className="min-h-screen bg-gray-100 flex flex-col">
-            {/* Header Section */}
-            <header className="bg-blue-600 text-white p-4">
+           
+            {/* <header className="bg-blue-600 text-white m-4 p-4">
                 <h1 className="text-3xl font-bold">Course Details</h1>
-            </header>
+            </header> */}
 
-            {/* Main Content */}
+           
             <main className="flex-grow py-8 px-4 sm:px-6 lg:px-8 ">
                 <div className="max-w-7xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
                     <div className="flex flex-col md:flex-row-reverse">
-                        {/* Right Section - Image */}
+                       
                         <div className="md:w-1/3 p-6 flex flex-col items-center bg-gray-50">
                             <img
                                 src={course.companyImg}
@@ -90,14 +90,14 @@ function CourseDescription() {
                             </div>
                         </div>
 
-                        {/* Left Section - Description and Details */}
+                        
                         <div className="md:w-2/3 p-6">
                             <h2 className="text-2xl font-semibold text-gray-800 mb-4">
                                 Course Description
                             </h2>
                             <p className="text-gray-600 mb-6">{expandedDescription}</p>
 
-                            {/* Learning Sections */}
+                          
                             <h3 className="text-xl font-semibold text-gray-800 mb-3">
                                 What You'll Learn
                             </h3>
@@ -118,7 +118,7 @@ function CourseDescription() {
                         </div>
                     </div>
 
-                    {/* Comments Section - Show 3 at a time */}
+                   
                     <div className="p-6 border-t border-gray-200">
                         <h3 className="text-xl font-semibold text-gray-800 mb-4">
                             Student Feedback

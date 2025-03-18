@@ -40,12 +40,11 @@ function OA() {
         fetchLeetCodeQuestions();
     }, []);
 
-    // Fetch solved problems from Redux when the button is clicked
     const handleFetchSolved = () => {
-        dispatch(fetchSolvedProblems(leetcodeUser)); // Dispatch Redux action to update solved questions
+        dispatch(fetchSolvedProblems(leetcodeUser)); 
     };
 
-    // Filter the questions based on user selection
+   
     const filteredQuestions = questions.filter(q => {
         if (sortFilter === "solved") return questions.includes(q.title);
         if (sortFilter === "unsolved") return !questions.includes(q.title);
@@ -56,7 +55,7 @@ function OA() {
         <div className="container mx-auto p-6">
             <h1 className="text-3xl font-bold text-center mb-6">Online Assessment Questions</h1>
 
-            {/* User Profile Inputs */}
+           
             <div className="flex gap-4 mb-4 ml-64">
                 <input
                     type="text"
@@ -87,7 +86,7 @@ function OA() {
                 </button>
             </div>
 
-            {/* Sorting Dropdown */}
+            
             <div className="ml-64 mb-4">
                 <label className="mr-2">Sort By:</label>
                 <select
@@ -101,7 +100,7 @@ function OA() {
                 </select>
             </div>
 
-            {/* Questions Table */}
+            
             <div className="ml-52 overflow-x-auto">
                 <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
                     <thead className="bg-blue-500 text-white">

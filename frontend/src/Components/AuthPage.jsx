@@ -8,7 +8,7 @@ import Google from "../features/Google";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// Register GSAP plugin
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function AuthPage() {
@@ -70,7 +70,7 @@ export default function AuthPage() {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      {/* <ToastContainer position="top-right" autoClose={3000} /> */}
+      
       
       <motion.div 
         className="bg-white p-8 rounded-2xl shadow-2xl w-96 text-center border-2 border-green-500"

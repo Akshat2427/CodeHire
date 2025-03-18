@@ -7,7 +7,7 @@ function Interview() {
     const serverSecret = import.meta.env.VITE_SECRETSERVER;
     const meetingContainerRef = useRef(null);
     const [isInterviewCompleted, setIsInterviewCompleted] = useState(false);
-    const [isMeetingActive, setIsMeetingActive] = useState(false); // Renamed from isMeetting
+    const [isMeetingActive, setIsMeetingActive] = useState(false); 
 
     const startInterview = async () => {
         const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
@@ -29,7 +29,7 @@ function Interview() {
                 setIsMeetingActive(false);
             },
         });
-        setIsMeetingActive(true); // Show the meeting container when interview starts
+        setIsMeetingActive(true); 
     };
 
     return (

@@ -14,7 +14,7 @@ function CourseView() {
 
   return (
     <>
-      {/* Navigation Stages */}
+      
       <div className="ml-64 pt-18 flex justify-between space-x-4">
         <div>
           Rounds
@@ -24,7 +24,7 @@ function CourseView() {
           <div
             key={index}
             onClick={() => {
-              if (item !== "Interview") setActive(item); // Prevent click on locked stage
+              if (item !== "#Interview") setActive(item);
             }}
             className={`flex justify-center items-center px-6 py-3 text-center rounded-lg shadow-md font-semibold transition-all duration-300 cursor-pointer
               ${
@@ -46,7 +46,7 @@ function CourseView() {
        <div>Rounds</div>
       </div>
 
-      {/* Content View */}
+      
       <div className="mt-6">{active === "Resume" ? <Resume /> : active === "OA" ? <OA /> : <Interview />}</div>
     </>
   );
