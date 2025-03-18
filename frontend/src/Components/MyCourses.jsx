@@ -21,4 +21,4 @@ const MyCourses = () => {
     </div>
   )
 }
-export default  MyCourses 
+export default MyCourses 
