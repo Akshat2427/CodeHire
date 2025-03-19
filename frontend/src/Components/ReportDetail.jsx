@@ -5,7 +5,7 @@ const ReportDetail = () => {
   const { userId } = useParams();
   console.log("userId called at ReportDetail", userId);
 
-  // Dummy data (in a real app, fetch this based on userId)
+  // Dummy data ( fetch this based on userId)
   const userReports = {
     U001: {
       name: "John Doe",
