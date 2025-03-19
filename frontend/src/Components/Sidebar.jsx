@@ -34,7 +34,7 @@ const Sidebar = () => {
       {/* Logo */}
       <div className="p-2 flex items-center space-x-3">
         <img
-src="/images/CodeHireLogo.png"
+          src="/images/CodeHireLogo.png"
           alt="Logo"
           className="h-12 w-12 rounded-full"
         />
