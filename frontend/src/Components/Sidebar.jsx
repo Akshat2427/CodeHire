@@ -20,7 +20,8 @@ const menuItems = [
   { name: "Saved Courses", icon: <Bookmark size={20} />, link: "/saved-courses" },
   { name: "Report", icon: <LineChart size={20} />, link: "/report" },
   { name: "Explore Courses", icon: <Compass size={20} />, link: "/explore-courses" },
-  { name: "Transaction", icon: <Wallet size={20} />, link: "/transaction" },
+ 
+  { name: "Mentorship", icon: <User size={20} />, link: "/mentorship" },
 ];
 
 const Sidebar = () => {
