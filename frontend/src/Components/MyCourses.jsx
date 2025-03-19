@@ -4,8 +4,7 @@ import Card from './Card'
 
 const myCoursesArray = [
     { id: 1, title: "Google SDE", companyImg: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg", stages: 8, rating: 4.7 , buttonTitle: "Resume" },
-    { id: 2, title: "Amazon ML", companyImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSN0qIpl2wbLurDxYE3L2TVVMt3TqOG3XAQQ&s", stages: 6, rating: 4.5, buttonTitle: "Resume" },
-    {id:3 , title:data.info.company_name , companyImg: data.info.imgUrl, stages: 5, rating: 4.5, buttonTitle: "Resume" }
+   
 ]
 const MyCourses = () => {
   return (

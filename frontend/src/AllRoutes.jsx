@@ -11,6 +11,7 @@ import CourseDescription from './Components/Courses/CourseDescription'
 import ReportDetail from './Components/ReportDetail'
 import Mentorship from './Components/Mentorship'
 import MentorHired from './Components/MentorHired'
+import HelpCenter from './Components/HelpCenter'
 
 const AllRoutes = () => {
   return (
@@ -24,6 +25,9 @@ const AllRoutes = () => {
       <Route path='/explore-courses' element={<ExploreCourses/>}/>
       <Route path='/my-courses' element={<MyCourses/>}/>
       <Route path="/course/description/:id" element={<CourseDescription />} /> 
+       <Route path="/course/:id" element={<CourseView />} />
+       <Route path='/helpcenter' element={<HelpCenter/>}/>
+     
       <Route path="/course/:id" element={<CourseView />} />
       <Route path="/mentorship" element={<Mentorship />} />
       <Route path="/mentor-hired" element={<MentorHired />}/>
