@@ -9,6 +9,7 @@ import MyCourses from './Components/MyCourses'
 import CourseView from './Components/Courses/CourseView'
 import CourseDescription from './Components/Courses/CourseDescription'
 import ReportDetail from './Components/ReportDetail'
+import HelpCenter from './Components/HelpCenter'
 
 const AllRoutes = () => {
   return (
@@ -23,6 +24,7 @@ const AllRoutes = () => {
       <Route path='/my-courses' element={<MyCourses/>}/>
       <Route path="/course/description/:id" element={<CourseDescription />} /> 
        <Route path="/course/:id" element={<CourseView />} />
+       <Route path='/helpcenter' element={<HelpCenter/>}/>
      
     </Routes>
   )
