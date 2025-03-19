@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-const mentor = [
+const mentors = [
     {
         id: 1,
         name: 'John Doe',
@@ -73,7 +73,6 @@ const mentor = [
         bio: 'Skilled in automated and manual testing, ensuring the highest quality of software products.'
     }
 ];
-
 
 const MentorCard = ({ mentor }) => {
     const navigate = useNavigate();
