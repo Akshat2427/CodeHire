@@ -49,7 +49,9 @@ const Sidebar = () => {
       {/* Logo Section */}
       <div className="p-2 flex items-center space-x-3 relative">
         <img
-          src="https://static.vecteezy.com/system/resources/previews/004/909/777/non_2x/coding-logo-design-template-vector.jpg"
+
+          src="/images/CodeHireLogo.png"
+
           alt="Logo"
           className={`rounded-full transition-all duration-300 ${
             isCollapsed ? "h-10 w-10" : "h-12 w-12"
@@ -152,3 +154,6 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+
+//this is sidebar 
+//ye h mera nya branch
