@@ -76,9 +76,9 @@ function App() {
       {user.isAuthenticated ? (
         <>
           <Sidebar />
-          <Navbar title={`Hello 👋 , ${user.user.username ?? 'User'}`} />  
+         <div className='w-full h-14'> <Navbar title={`Hello 👋 , ${user.user.username ?? 'User'}`} />  </div>
           <AllRoutes />
-          {/* <footer className="bg-gray-800 text-white p-4 text-center ml-60">
+          {/* <footer className="bg-gray-800 text-white p-4 text-center  ">
                 <p>&copy; 2025 xAI Learning Platform. All rights reserved.</p>
             </footer> */}
         </>

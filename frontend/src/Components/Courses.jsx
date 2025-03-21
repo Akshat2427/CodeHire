@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import Card from "./Card"; // Importing Card Component
 import { ChevronRight, ChevronLeft } from "lucide-react"; 
+import { useSelector } from "react-redux";
 
 const Courses = () => {
   const [maangScroll, setMaangScroll] = useState(0);
   const [latestScroll, setLatestScroll] = useState(0);
   const [trendingScroll, setTrendingScroll] = useState(0);
   const [staffScroll, setStaffScroll] = useState(0);
+  const openSidebar = useSelector((state) => state.ui_store.openSidebar);
+  const isCollapsed = useSelector((state) => state.ui_store.isCollapsed || false);
+  //const courses = useSelector((state) => state.courses_store.courses);
 
   const coursesPerPage = 5; 
 
@@ -58,9 +62,15 @@ const Courses = () => {
   };
 
   return (
-    <div className="p-8 ml-64">
+    <div    className={`p-8 min-h-screen bg-gray-50 transition-all duration-300 ${
+      openSidebar && !isCollapsed
+        ? "ml-60" // Expanded sidebar (240px)
+        : openSidebar && isCollapsed
+        ? "ml-16" // Collapsed sidebar (approx 60px)
+        : "ml-16" // No sidebar offset
+    }`}>
       
-      <h2 className="text-2xl font-bold mb-4 mt-8">🔥 MAANG Courses</h2>
+      <h2 className="text-2xl font-bold mb-4 ">🔥 MAANG Courses</h2>
       <div className="relative">
         <div className="flex space-x-6 overflow-hidden">
           <div
