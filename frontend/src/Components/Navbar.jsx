@@ -1,8 +1,24 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../store/user"; // Import your logout action
-import { Bell, Search, CalendarDays, LayoutDashboard, Brush, Code, BookOpen, Video, Edit, FileText, Terminal, Mic } from "lucide-react"; // Importing Lucide icons
+import { logout } from "../store/user";
+import { setSideBar } from "../store/ui_store"; // Import the UI store action
+import { 
+  Bell, 
+  Search, 
+  CalendarDays, 
+  LayoutDashboard, 
+  Brush, 
+  Code, 
+  BookOpen, 
+  Video, 
+  Edit, 
+  FileText, 
+  Terminal, 
+  Mic,
+  Menu  // Import Menu icon for the hamburger
+} from "lucide-react";
+
 
 const ICON_MAP = {
   LayoutDashboard: <LayoutDashboard className="text-blue-500" />,
@@ -23,32 +39,60 @@ const Navbar = ({ title }) => {
   const schedule = useSelector((state) => state.schedule.schedule);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
+  const openSidebar = useSelector((state) => state.ui_store.openSidebar);
+    const isCollapsed = useSelector((state) => state.ui_store.isCollapsed || false);
 
+  // Toggle the profile dropdown
   const toggleProfileDropdown = () => {
     setIsProfileOpen(!isProfileOpen);
     setIsNotificationOpen(false); // Close notification dropdown if open
   };
 
+  // Toggle the notification dropdown
   const toggleNotificationDropdown = () => {
     setIsNotificationOpen(!isNotificationOpen);
     setIsProfileOpen(false); // Close profile dropdown if open
   };
 
+  // Logout handler
   const logoutHandler = () => {
     dispatch(logout());
     setIsProfileOpen(false);
   };
 
+  // Navigate to schedule page and close notification dropdown
   const handleScheduleClick = () => {
     navigate("/schedule");
     setIsNotificationOpen(false);
   };
 
-  return (
-    <div className="bg-white text-gray-800 h-16 flex items-center px-6 pl-72 fixed w-full top-0 z-10 shadow-md">
-      {/* Left Side - Title */}
-      <h1 className="text-2xl font-bold tracking-tight font-[Poppins] text-gray-900">{title}</h1>
+  // Toggle sidebar open (for mobile view)
+  const toggleSidebar = () => {
+    dispatch(setSideBar(true));
+  };
 
+  return (
+    // Responsive container: on medium and above screens, add left padding to account for sidebar width; on mobile, full width is used
+    <div className="bg-white text-gray-800 h-16 flex items-center px-4 md:px-6 fixed w-full top-0 z-10 shadow-md">
+      <div className="flex items-center">
+        {/* Hamburger Icon visible only on mobile */}
+        <button className="mr-4 md:hidden" onClick={toggleSidebar}>
+          <Menu size={24} className="text-gray-800" />
+        </button>
+        {/* Title */}
+        <h1
+  className={`text-2xl font-bold tracking-tight font-[Poppins] text-gray-900 transition-all duration-300 ${
+    openSidebar && !isCollapsed
+      ? "ml-60" // Expanded sidebar (240px)
+      : openSidebar && isCollapsed
+      ? "ml-16" // Collapsed sidebar (approx 60px)
+      : "ml-16" // No sidebar offset
+  }`}
+>
+  {title}
+</h1>
+      </div>
+      
       {/* Right Side - Search, Notification, Profile */}
       <div className="ml-auto flex items-center space-x-8">
         {/* Search Bar */}
@@ -77,7 +121,7 @@ const Navbar = ({ title }) => {
 
           {/* Notification Dropdown */}
           {isNotificationOpen && (
-            <div className="absolute right-0 mt-3 w-80 bg-white shadow-xl rounded-lg py-3 border border-gray-100 max-h-96 overflow-y-auto hover:cursor-pointer  ">
+            <div className="absolute right-0 mt-3 w-80 bg-white shadow-xl rounded-lg py-3 border border-gray-100 max-h-96 overflow-y-auto hover:cursor-pointer">
               {schedule.length === 0 ? (
                 <p className="px-4 py-2 text-gray-500 text-sm">No upcoming events</p>
               ) : (

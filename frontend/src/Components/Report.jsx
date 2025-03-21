@@ -38,7 +38,7 @@ const Report = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 py-10 flex justify-center">
-      <div className="w-full max-w-4xl mt-14">
+      <div className="w-full max-w-4xl ">
         {/* Header */}
       
 

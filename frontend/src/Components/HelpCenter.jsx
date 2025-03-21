@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Search, HelpCircle, Mail, ChevronDown, ChevronUp, Phone, ArrowUp, User, AlertTriangle, Play, ShoppingCart, Smartphone, Lock } from 'lucide-react';
-
+import { useSelector } from 'react-redux';
 // FAQ Data with Topics
 const faqs = [
   { topic: "Getting Started", question: "How do I get started with the platform?", answer: "Sign up with your email, verify your account, and start exploring courses." },
@@ -139,10 +139,17 @@ const HelpCenter = () => {
   const [selectedTopic, setSelectedTopic] = useState(null);
   const [openIndex, setOpenIndex] = useState(null); // Moved state to parent component
   const filteredFaqs = selectedTopic ? faqs.filter(faq => faq.topic === selectedTopic) : faqs;
-
+  const openSidebar = useSelector((state) => state.ui_store.openSidebar);
+  const isCollapsed = useSelector((state) => state.ui_store.isCollapsed || false);
   return (
-    <div className="max-w-5xl mx-auto p-6 md:p-10 bg-gray-50 min-h-screen">
-      <h1 className="text-4xl font-bold text-gray-800 mb-6 mt-16">Help Center</h1>
+    <div className={`mx-auto p-6 md:p-10 bg-gray-50 min-h-screen ${
+      openSidebar && !isCollapsed
+        ? "ml-60" // Expanded sidebar width
+        : openSidebar && isCollapsed
+        ? "ml-16" // Collapsed sidebar width (approx 60px)
+        : "ml-16" // No sidebar offset on mobile or when closed
+    }`}>
+      <h1 className="text-4xl font-bold text-gray-800 mb-6 ">Help Center</h1>
       <p className="text-lg text-gray-600 mb-10">Find answers to your questions or reach out for support.</p>
 
       <section className="mb-12">

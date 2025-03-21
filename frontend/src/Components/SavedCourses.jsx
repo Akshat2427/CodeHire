@@ -1,37 +1,50 @@
 import React from "react";
-import Card from "./Card"; 
 import { useSelector } from "react-redux";
+import Card from "./Card";
 import data from "./Courses/courseData.js";
 
-const Courses = () => {
-  
-
+const SavedCourses = () => {
   const savedCourseIds = useSelector((state) => state.savedCourses.savedCourses);
-  // console.log("savedCourseIds",savedCourseIds)
+  const openSidebar = useSelector((state) => state.ui_store.openSidebar);
+  const isCollapsed = useSelector((state) => state.ui_store.isCollapsed || false); // Assuming this might be added
 
-  // Filter courses that are saved
-  const savedCourses = [];
-  for(let i=0;i<data.length;i++){
-   for(let j=0;j<savedCourseIds.length;j++){
-     if(data[i].id === savedCourseIds[j].id){
-       savedCourses.push(data[i])
-     }
-   }
-  }
-  // console.log("savedCourses",savedCourses)
+  // Optimize filtering using a Set for O(n) lookup
+  const savedIdsSet = new Set(savedCourseIds.map((item) => item.id));
+  const savedCourses = data.filter((course) => savedIdsSet.has(course.id));
 
   return (
-    <div className="p-8 ml-64">
-      {/* Section 1: MAANG Courses */}
-      <div className="flex space-x-6 overflow-x-auto scrollbar-hide mt-8">
+    <div
+      className={`p-8 min-h-screen bg-gray-50 transition-all duration-300 ${
+        openSidebar && !isCollapsed
+          ? "ml-60" // Expanded sidebar (240px)
+          : openSidebar && isCollapsed
+          ? "ml-16" // Collapsed sidebar (approx 60px)
+          : "ml-16" // No sidebar offset
+      }`}
+    >
+      <h2 className="text-2xl font-bold text-gray-800 mb-6">Saved Courses</h2>
+      <div
+        className="flex flex-wrap gap-6 overflow-x-auto scrollbar-hide pb-4"
+        role="region"
+        aria-label="Saved courses list"
+      >
         {savedCourses.length > 0 ? (
-          savedCourses.map((course) => <Card key={course.id} {...course} />)
+          savedCourses.map((course) => (
+            <div
+              className="min-w-[250px] flex-shrink-0"
+              key={course.id}
+            >
+              <Card {...course} />
+            </div>
+          ))
         ) : (
-          <p className="text-gray-500">No saved courses yet.</p>
+          <p className="text-gray-500 text-center w-full">
+            No saved courses yet.
+          </p>
         )}
       </div>
     </div>
   );
 };
 
-export default Courses;
+export default SavedCourses;

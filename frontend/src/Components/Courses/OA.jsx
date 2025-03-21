@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSolvedProblems } from "../../store/codingProfile";
-import { Link } from "lucide-react";
+import { Link as LinkIcon } from "lucide-react";
 
-function OA() {
+const OA = () => {
   const dispatch = useDispatch();
   const { profile, solvedQuestions } = useSelector((state) => state.codingProfile);
+  const openSidebar = useSelector((state) => state.ui_store.openSidebar);
+  const isCollapsed = useSelector((state) => state.ui_store.isCollapsed || false); // Assuming this might be added
 
   const [allQuestions, setAllQuestions] = useState([]);
   const [testQuestions, setTestQuestions] = useState([]);
@@ -13,14 +15,19 @@ function OA() {
   const [testStarted, setTestStarted] = useState(false);
   const [testSubmitted, setTestSubmitted] = useState(false);
   const [leetcodeUser, setLeetcodeUser] = useState(profile.leetcode);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   // Fetch questions from CSV
   useEffect(() => {
-    async function fetchLeetCodeQuestions() {
+    const fetchLeetCodeQuestions = async () => {
+      setLoading(true);
+      setError(null);
       const csvUrl =
         "https://raw.githubusercontent.com/liquidslr/leetcode-company-wise-problems/main/Amazon/1.%20Thirty%20Days.csv";
       try {
         const response = await fetch(csvUrl);
+        if (!response.ok) throw new Error("Failed to fetch questions");
         const csvText = await response.text();
         const rows = csvText.split("\n").map((row) => row.split(","));
 
@@ -32,46 +39,56 @@ function OA() {
             frequency: row[2],
             link: row[4],
           }))
-          .filter((row) => row.title);
+          .filter((row) => row.title && row.link);
 
         setAllQuestions(extractedData);
-
-        // Pre-select 4 questions to show outside
         const shuffled = [...extractedData].sort(() => 0.5 - Math.random());
         setTestQuestions(shuffled.slice(0, 4));
       } catch (error) {
         console.error("Error fetching CSV:", error);
+        setError("Failed to load questions. Please try again later.");
+      } finally {
+        setLoading(false);
       }
-    }
+    };
+
     dispatch(fetchSolvedProblems(leetcodeUser));
     fetchLeetCodeQuestions();
   }, [dispatch, leetcodeUser]);
 
-  // Start the test
-  const startTest = () => {
+  // Timer logic with cleanup
+  useEffect(() => {
+    let timer;
+    if (testStarted && !testSubmitted && timeLeft > 0) {
+      timer = setInterval(() => {
+        setTimeLeft((prev) => {
+          const newTime = prev - 1;
+          const allSolved = testQuestions.every((q) =>
+            solvedQuestions.includes(q.title)
+          );
+          if (allSolved || newTime <= 0) {
+            setTestSubmitted(true);
+            return 0;
+          }
+          return newTime;
+        });
+      }, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [testStarted, testSubmitted, timeLeft, testQuestions, solvedQuestions]);
+
+  // Start test
+  const startTest = useCallback(() => {
     setTestStarted(true);
     setTestSubmitted(false);
     setTimeLeft(2 * 60 * 60);
-  };
+  }, []);
 
-  // Timer logic and continuous submission check
-  useEffect(() => {
-    if (testStarted && !testSubmitted && timeLeft > 0) {
-      const timer = setInterval(() => {
-        setTimeLeft((prev) => prev - 1);
-
-        // Continuously check if all questions are solved
-        const allSolved = testQuestions.every((q) =>
-          solvedQuestions.includes(q.title)
-        );
-        if (allSolved) {
-          setTestSubmitted(true);
-          setTimeLeft(0);
-        }
-      }, 1000);
-      return () => clearInterval(timer);
-    }
-  }, [testStarted, testSubmitted, timeLeft, testQuestions, solvedQuestions]);
+  // Submit test
+  const submitTest = useCallback(() => {
+    setTestSubmitted(true);
+    setTimeLeft(0);
+  }, []);
 
   // Format time
   const formatTime = (seconds) => {
@@ -83,18 +100,24 @@ function OA() {
       .padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
   };
 
-  // Submit test
-  const submitTest = () => {
-    setTestSubmitted(true);
-    setTimeLeft(0);
-  };
-
   return (
-    <div className="ml-60 bg-gray-100 flex p-6">
-      {!testStarted ? (
-        <div className="flex w-full max-w-6xl">
+    <div
+      className={`min-h-screen bg-gray-100 p-6 transition-all duration-300 ${
+        openSidebar && !isCollapsed
+          ? "ml-60" // Expanded sidebar
+          : openSidebar && isCollapsed
+          ? "ml-16" // Collapsed sidebar
+          : "ml-16" // No sidebar offset
+      }`}
+    >
+      {loading ? (
+        <div className="text-center text-gray-600">Loading questions...</div>
+      ) : error ? (
+        <div className="text-center text-red-500">{error}</div>
+      ) : !testStarted ? (
+        <div className="flex flex-col lg:flex-row w-full max-w-6xl gap-6">
           {/* Left Side: Question Titles */}
-          <div className="w-1/3 bg-white p-6 rounded-lg shadow-lg mr-4">
+          <div className="lg:w-1/3 w-full bg-white p-6 rounded-lg shadow-lg">
             <h2 className="text-xl font-semibold text-gray-800 mb-4">
               Test Questions
             </h2>
@@ -108,31 +131,26 @@ function OA() {
           </div>
 
           {/* Right Side: Description */}
-          <div className="w-2/3 bg-white p-8 rounded-lg shadow-lg">
+          <div className="lg:w-2/3 w-full bg-white p-8 rounded-lg shadow-lg">
             <h1 className="text-3xl font-bold text-blue-600 mb-4">Coding Test</h1>
             <div className="mb-6">
-              <h2 className="text-xl font-semibold mb-2">About This Test:</h2>
+              <h2 className="text-xl font-semibold mb-2 text-gray-800">
+                About This Test:
+              </h2>
               <ul className="list-disc pl-5 text-gray-700">
-                <li>
-                  4 questions selected from previous Online Assessments (OAs).
-                </li>
+                <li>4 questions from previous Online Assessments (OAs).</li>
                 <li>You have 2 hours to complete the test.</li>
+                <li>Solve each problem on LeetCode via the "Solve" link.</li>
+                <li>Progress tracked based on your solved problems.</li>
                 <li>
-                  Click the "Solve" link to attempt each problem on LeetCode.
-                </li>
-                <li>
-                  Your progress is tracked based on solved problems in your
-                  profile.
-                </li>
-                <li>
-                  Submit the test manually or automatically pass if all
-                  questions are solved.
+                  Auto-submit when all solved or manually submit early.
                 </li>
               </ul>
             </div>
             <button
               onClick={startTest}
-              className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300"
+              className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-300"
+              aria-label="Start coding test"
             >
               Start Test
             </button>
@@ -188,9 +206,10 @@ function OA() {
                         href={q.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700 transition duration-300"
+                        className="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                        aria-label={`Solve ${q.title} on LeetCode`}
                       >
-                        <Link size={16} /> Solve
+                        <LinkIcon size={16} /> Solve
                       </a>
                     </td>
                   </tr>
@@ -204,7 +223,8 @@ function OA() {
             <div className="text-center mt-6">
               <button
                 onClick={submitTest}
-                className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition duration-300"
+                className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-300"
+                aria-label="Submit test"
               >
                 Submit Test
               </button>
@@ -217,12 +237,13 @@ function OA() {
               <h2 className="text-2xl font-bold text-green-600">
                 Test Submitted Successfully!
               </h2>
-              <p className="text-lg mt-2">
-                Your score will be shown shortly on mail or in our platform.
+              <p className="text-lg mt-2 text-gray-700">
+                Your score will be emailed or displayed on the platform soon.
               </p>
               <button
                 onClick={startTest}
-                className="mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300"
+                className="mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                aria-label="Take another test"
               >
                 Take Another Test
               </button>
@@ -232,6 +253,6 @@ function OA() {
       )}
     </div>
   );
-}
+};
 
 export default OA;
