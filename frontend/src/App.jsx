@@ -8,6 +8,7 @@ import { jwtDecode } from 'jwt-decode';
 import { login } from './store/user';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { setFullScreenSideBar } from './store/ui_store';
 
 function App() {
   const dispatch = useDispatch();
@@ -69,6 +70,14 @@ function App() {
 
     fetchData();
   }, [dispatch]);
+
+  useEffect(()=>{
+    if(window.innerWidth <= 768)
+      dispatch(setFullScreenSideBar(false))
+    else
+    dispatch(setFullScreenSideBar(true))
+
+  },[window.innerWidth])
 
   return (
     <>

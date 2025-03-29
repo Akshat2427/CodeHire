@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
 openSidebar : true,
+fullscreenSidebar : false,
 };
 
 const ui_store = createSlice({
@@ -11,9 +12,12 @@ const ui_store = createSlice({
     setSideBar: (state, action) => {
         state.openSidebar = action.payload;
     },
+    setFullScreenSideBar: (state, action) => {
+        state.fullscreenSidebar = action.payload;
+    }
    
   },
 });
 
-export const { setSideBar } = ui_store.actions;
+export const { setSideBar , setFullScreenSideBar } = ui_store.actions;
 export default ui_store.reducer;

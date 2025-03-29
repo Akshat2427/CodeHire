@@ -30,21 +30,26 @@ const EXPANDED_WIDTH = 240; // Sidebar width when expanded
 
 const Sidebar = () => {
   const [selected, setSelected] = useState("Dashboard");
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
+  const fullscreenSidebar = useSelector((state) => state.ui_store.fullscreenSidebar);
+  const openSidebar = useSelector((state) => state.ui_store.openSidebar);
+  console.log("openSidebar" , openSidebar);
+ 
+  console.log("fullscreenSidebar" , fullscreenSidebar);
   const dispatch = useDispatch();
 
   // Toggle sidebar collapsed state
   const toggleCollapse = () => {
-    setIsCollapsed((prev) => !prev);
-    dispatch(setSideBar(isCollapsed));
+    
+    dispatch(setSideBar(!openSidebar));
   };
 
   return (
     <div
-      className={`fixed bg-white text-gray-900 h-full flex flex-col border-r border-gray-300 shadow-lg z-20 transition-all duration-300`}
-      style={{ width: isCollapsed ? MIN_WIDTH : EXPANDED_WIDTH }}
+      className={` lg:visible  fixed  bg-white text-gray-900 h-full transition-all duration-300   ${  !fullscreenSidebar ? "hidden" :"flex flex-col border-r border-gray-300 shadow-lg z-20 transition-all duration-300 "}`}
+      style={{ width: window.innerWidth >= 768 ?  !openSidebar ? MIN_WIDTH : EXPANDED_WIDTH : "100%"}}
     >
       {/* Logo Section */}
       <div className="p-2 flex items-center space-x-3 relative">
@@ -54,10 +59,10 @@ const Sidebar = () => {
 
           alt="Logo"
           className={`rounded-full transition-all duration-300 ${
-            isCollapsed ? "h-10 w-10" : "h-12 w-12"
+           ! openSidebar ? "h-10 w-10" : "h-12 w-12"
           }`}
         />
-        {!isCollapsed && (
+        {openSidebar && (
           <h1 className="text-2xl font-bold tracking-wide font-[Poppins]">
             CodeHire
           </h1>
@@ -74,7 +79,7 @@ const Sidebar = () => {
           onClick={toggleCollapse}
           className="absolute -right-3 top-4 transform -translate-y-1/2 bg-white border border-gray-300 rounded-full shadow-md p-1 hover:bg-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-300"
         >
-          {isCollapsed ? (
+          {!openSidebar ? (
             <ChevronRight size={20} className="text-gray-600" />
           ) : (
             <ChevronLeft size={20} className="text-gray-600" />
@@ -84,7 +89,7 @@ const Sidebar = () => {
           <div
             key={item.name}
             className={`flex items-center p-3 ${
-              isCollapsed ? "px-3 justify-center" : "px-6"
+              !openSidebar ? "px-3 justify-center" : "px-6"
             } cursor-pointer rounded-lg transition-all font-medium ${
               selected === item.name
                 ? "bg-blue-100 text-blue-600 font-semibold"
@@ -94,10 +99,10 @@ const Sidebar = () => {
               setSelected(item.name);
               navigate(item.link);
             }}
-            title={isCollapsed ? item.name : ""} // Tooltip when collapsed
+            title={!openSidebar ? item.name : ""} // Tooltip when collapsed
           >
-            <div className={`${!isCollapsed && "mr-3"} text-gray-600`}>{item.icon}</div>
-            {!isCollapsed && <span className="text-md">{item.name}</span>}
+            <div className={`${!openSidebar && "mr-3"} text-gray-600 px-4`}>{item.icon}</div>
+            {openSidebar && <span className="text-md">{item.name}</span>}
           </div>
         ))}
       </div>
@@ -106,7 +111,7 @@ const Sidebar = () => {
       <div className="mt-2">
         <div
           className={`flex items-center p-3 ${
-            isCollapsed ? "px-3 justify-center" : "px-6"
+            !openSidebar ? "px-3 justify-center" : "px-6"
           } cursor-pointer rounded-lg transition-all font-medium ${
             selected === "Help Center" ? "bg-blue-100 text-blue-600 font-semibold" : "hover:bg-gray-100"
           }`}
@@ -114,10 +119,10 @@ const Sidebar = () => {
             setSelected("Help Center");
             navigate("/helpcenter");
           }}
-          title={isCollapsed ? "Help Center" : ""}
+          title={!openSidebar ? "Help Center" : ""}
         >
-          <HelpCircle size={20} className={`${!isCollapsed && "mr-3"} text-gray-600`} />
-          {!isCollapsed && <span className="text-md">Help Center</span>}
+          <HelpCircle size={20} className={`${openSidebar && "mr-3"} text-gray-600`} />
+          {openSidebar && <span className="text-md">Help Center</span>}
         </div>
       </div>
 
@@ -139,9 +144,9 @@ const Sidebar = () => {
                 : `https://images.weserv.nl/?url=${encodeURIComponent(user.imgUrl)}`
             }
             alt="Profile"
-            className={`rounded-full ${isCollapsed ? "h-8  w-12 " : "h-12 w-12"}`}
+            className={`rounded-full ${!openSidebar ? "h-8  w-12 " : "h-12 w-12"}`}
           />
-          {!isCollapsed && (
+          {openSidebar && (
             <div className="ml-3">
               <p className="text-md font-semibold">{user.username ?? "User"}</p>
               <p className="text-sm text-gray-500">{user.role ?? "User"}</p>

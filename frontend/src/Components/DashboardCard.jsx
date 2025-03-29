@@ -8,7 +8,7 @@ const cardData = [
 ];
 
 const CardsDashboard = ({ title, value, color, icon }) => (
-  <div className="p-4 bg-white rounded-lg shadow-lg flex items-center gap-4">
+  <div className="p-4 bg-white rounded-lg shadow-lg flex items-center gap-4 w-full">
     <div className="w-12 h-12 flex items-center justify-center bg-gray-200 rounded-full">
       {icon}    
     </div>
@@ -21,7 +21,7 @@ const CardsDashboard = ({ title, value, color, icon }) => (
 
 export default function Dashboard() {
   return (
-    <div className="grid grid-cols-4 gap-4 mb-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
       {cardData.map((card, index) => (
         <CardsDashboard key={index} {...card} />
       ))}

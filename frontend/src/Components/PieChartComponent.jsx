@@ -21,25 +21,21 @@ const RadarChartComponent = () => {
   }, []);
 
   return (
-    <div className="flex w-full p-8 bg-gray-50 shadow-md rounded-lg">
+    <div className="flex flex-col md:flex-row w-full p-4 md:p-8 bg-gray-50 shadow-md rounded-lg">
       {/* Left: Skill Legend */}
-      <div className="flex-1/4 pr-8">
-        {/* <h2 className="text-2xl font-bold text-gray-800 mb-4">Skill Breakdown</h2>
-        <p className="text-gray-600 mb-4">This chart represents proficiency levels across different skills.</p> */}
-
-        {/* Skill Legend */}
-        <div className="space-y-2 flex justify-center flex-col">
+     { window.innerWidth >=768 ?  <div className="w-full md:w-1/4 pr-0 md:pr-8 mb-4 md:mb-0 flex justify-center md:justify-start">
+        <div className="space-y-2 flex flex-col">
           {chartData.map((entry, index) => (
-            <div key={index} className="flex  items-center">
+            <div key={index} className="flex items-center">
               <div className="w-4 h-4 rounded-full mr-2" style={{ backgroundColor: SKILL_COLOR }}></div>
               <span className="text-gray-700 font-semibold">{entry.skill}</span>
             </div>
           ))}
         </div>
-      </div>
+      </div> : <h1 className="text-center font-bold text-2xl">Skill Radar</h1>}
 
       {/* Right: Radar Chart */}
-      <div className="flex-3/4">
+      <div className="w-full md:w-3/4">
         <ResponsiveContainer width="100%" height={300}>
           <RadarChart cx="50%" cy="50%" outerRadius="80%" data={chartData}>
             <PolarGrid />

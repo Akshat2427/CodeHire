@@ -5,6 +5,7 @@ import PieChartComponent from "./PieChartComponent";
 import BarChartComponent from "./BarChartComponent";
 import ScheduleCard from "./ScheduleTask";
 import DashboardCard from "./DashboardCard";
+import PieChartComponentSmallScreen from "./SmallScreenPieChartComponent";
 
 const CardsDashboard = ({ title, value, color }) => {
   return (
@@ -24,7 +25,8 @@ const Dashboard = () => {
   const user = useSelector((state) => state.user.user.username);
   const openSidebar = useSelector((state) => state.ui_store.openSidebar);
   const isCollapsed = useSelector((state) => state.ui_store.isCollapsed || false); // Assuming this might be added
-
+  const fullscreenSidebar = useSelector((state) => state.ui_store.fullscreenSidebar);
+  console.log("fullscreenSidebar" , fullscreenSidebar);
   // Update page name only when user changes
   useEffect(() => {
     dispatch(pageNameUpdated(`Hello 👋 , ${user || "User"}`));
@@ -32,13 +34,11 @@ const Dashboard = () => {
 
   return (
     <main
-      className={`p-8 min-h-screen grid gap-6 bg-gray-100 transition-all duration-300 ${
-        openSidebar && !isCollapsed
-          ? "ml-60" // Expanded sidebar (240px)
-          : openSidebar && isCollapsed
-          ? "ml-16" // Collapsed sidebar (approx 60px)
-          : "ml-0" // No sidebar offset
-      }`}
+    className={`p-8 min-h-screen grid gap-6 bg-gray-100 transition-all duration-300 ${
+      window.innerWidth <= 768 
+        ? (fullscreenSidebar ? "hidden" : "ml-0")
+        : (openSidebar ? "ml-60" : "ml-16")
+    }`}
     >
       <div className="p-6 rounded-lg">
         <DashboardCard />
@@ -53,7 +53,7 @@ const Dashboard = () => {
         </div>
 
         <div className="w-full bg-white rounded-lg shadow-md p-4">
-          <BarChartComponent />
+      { window.innerWidth <=768 ? <PieChartComponentSmallScreen></PieChartComponentSmallScreen> :   <BarChartComponent />}
         </div>
       </div>
     </main>

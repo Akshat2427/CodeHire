@@ -141,13 +141,13 @@ const HelpCenter = () => {
   const filteredFaqs = selectedTopic ? faqs.filter(faq => faq.topic === selectedTopic) : faqs;
   const openSidebar = useSelector((state) => state.ui_store.openSidebar);
   const isCollapsed = useSelector((state) => state.ui_store.isCollapsed || false);
+  const fullscreenSidebar = useSelector((state) => state.ui_store.fullscreenSidebar);
+  console.log("fullscreenSidebar" , fullscreenSidebar);
   return (
     <div className={`mx-auto p-6 md:p-10 bg-gray-50 min-h-screen ${
-      openSidebar && !isCollapsed
-        ? "ml-60" // Expanded sidebar width
-        : openSidebar && isCollapsed
-        ? "ml-16" // Collapsed sidebar width (approx 60px)
-        : "ml-16" // No sidebar offset on mobile or when closed
+      window.innerWidth <= 768 
+        ? (fullscreenSidebar ? "hidden" : "ml-0")
+        : (openSidebar ? "ml-60" : "ml-16")
     }`}>
       <h1 className="text-4xl font-bold text-gray-800 mb-6 ">Help Center</h1>
       <p className="text-lg text-gray-600 mb-10">Find answers to your questions or reach out for support.</p>

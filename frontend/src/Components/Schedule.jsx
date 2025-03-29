@@ -33,6 +33,8 @@ const Schedule = () => {
   const openSidebar = useSelector((state) => state.ui_store.openSidebar);
   const isCollapsed = useSelector((state) => state.ui_store.isCollapsed || false); // Assuming this might be added
   const localizer = momentLocalizer(moment);
+  const fullscreenSidebar = useSelector((state) => state.ui_store.fullscreenSidebar);
+    console.log("fullscreenSidebar" , fullscreenSidebar);
 
   // Restrict view to valid react-big-calendar views
   const [view, setView] = useState(Views.MONTH);
@@ -85,11 +87,9 @@ const Schedule = () => {
   return (
     <div
       className={`flex flex-col lg:flex-row min-h-screen bg-gray-50 p-6 transition-all duration-300 ${
-        openSidebar && !isCollapsed
-          ? "ml-60" // Expanded sidebar
-          : openSidebar && isCollapsed
-          ? "ml-16" // Collapsed sidebar
-          : "ml-8" // No sidebar offset
+        window.innerWidth <= 768 
+          ? (fullscreenSidebar ? "hidden" : "ml-0")
+          : (openSidebar ? "ml-60" : "ml-16")
       }`}
     >
       {/* Left Section - Schedule List */}
