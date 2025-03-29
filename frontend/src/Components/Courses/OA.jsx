@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchSolvedProblems } from "../../store/codingProfile";
 import { Link as LinkIcon } from "lucide-react";
 
+
 const OA = () => {
   const dispatch = useDispatch();
   const { profile, solvedQuestions } = useSelector((state) => state.codingProfile);
@@ -17,6 +18,7 @@ const OA = () => {
   const [leetcodeUser, setLeetcodeUser] = useState(profile.leetcode);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const fullscreenSidebar = useSelector((state) => state.ui_store.fullscreenSidebar);
 
   // Fetch questions from CSV
   useEffect(() => {
@@ -102,13 +104,11 @@ const OA = () => {
 
   return (
     <div
-      className={`min-h-screen bg-gray-100 p-6 transition-all duration-300 ${
-        openSidebar && !isCollapsed
-          ? "ml-60" // Expanded sidebar
-          : openSidebar && isCollapsed
-          ? "ml-16" // Collapsed sidebar
-          : "ml-16" // No sidebar offset
-      }`}
+      className={`min-h-screen bg-gray-100 p-6 transition-all duration-300  ${
+      window.innerWidth <= 768 
+        ? (fullscreenSidebar ? "hidden" : "ml-0")
+        : (openSidebar ? "ml-60" : "ml-16")
+    }`}
     >
       {loading ? (
         <div className="text-center text-gray-600">Loading questions...</div>

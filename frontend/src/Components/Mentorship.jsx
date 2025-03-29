@@ -113,23 +113,20 @@ const MentorCard = ({ mentor }) => {
 const Mentorship = () => {
   const openSidebar = useSelector((state) => state.ui_store.openSidebar);
   const isCollapsed = useSelector((state) => state.ui_store.isCollapsed || false); // Assuming you might add this to your store later
-
+  const fullscreenSidebar = useSelector((state) => state.ui_store.fullscreenSidebar);
+    console.log("fullscreenSidebar" , fullscreenSidebar);
   return (
     <div className="p-6 min-h-screen bg-gray-50">
-      <h2 className={`text-3xl font-bold mb-6 text-gray-800 ${
-          openSidebar && !isCollapsed
-            ? "ml-60" // Expanded sidebar width
-            : openSidebar && isCollapsed
-            ? "ml-16" // Collapsed sidebar width (approx 60px)
-            : "ml-0" // No sidebar offset on mobile or when closed
-        }`}>Mentorship Program</h2>
+      <h2 className={`text-3xl font-bold mb-6 text-gray-800 transition-all duration-300 ${
+      window.innerWidth <= 768 
+        ? (fullscreenSidebar ? "hidden" : "ml-0")
+        : (openSidebar ? "ml-60" : "ml-16")
+    }`}>Mentorship Program</h2>
       <div
         className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-300 ${
-          openSidebar && !isCollapsed
-            ? "ml-60" // Expanded sidebar width
-            : openSidebar && isCollapsed
-            ? "ml-16" // Collapsed sidebar width (approx 60px)
-            : "ml-16" // No sidebar offset on mobile or when closed
+          window.innerWidth <= 768 
+            ? (fullscreenSidebar ? "hidden" : "ml-0")
+            : (openSidebar ? "ml-60" : "ml-16")
         }`}
       >
         {mentors.map((mentor) => (

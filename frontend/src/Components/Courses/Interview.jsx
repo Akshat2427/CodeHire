@@ -1,5 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
+import { toast, ToastContainer } from 'react-toastify';
 
 function Interview() {
     const roomID = import.meta.env.VITE_ROOMID;
@@ -8,6 +9,14 @@ function Interview() {
     const meetingContainerRef = useRef(null);
     const [isInterviewCompleted, setIsInterviewCompleted] = useState(false);
     const [isMeetingActive, setIsMeetingActive] = useState(false); 
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+    // Track window size to detect mobile screens
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 768);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const startInterview = async () => {
         const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
@@ -29,32 +38,45 @@ function Interview() {
                 setIsMeetingActive(false);
             },
         });
-        setIsMeetingActive(true); 
+        setIsMeetingActive(true);
     };
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen bg-gray-100 relative">
-            {!isInterviewCompleted ? (
-                <>
-                    <h1 className="text-3xl font-bold mb-4">CodeHire Interview Room</h1>
-                    <button
-                        onClick={startInterview}
-                        className="px-6 py-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition mb-4 z-10"
-                    >
-                        Start Interview
-                    </button>
-                    <div 
-                        ref={meetingContainerRef} 
-                        className={`w-full h-screen absolute top-0 ${isMeetingActive ? 'z-[100000]' : 'hidden'}`}
-                    ></div>
-                </>
+        <>
+            <ToastContainer />
+            {isMobile ? (
+                <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+                    <h1 className="text-3xl font-bold mb-4 text-center">
+                        Please use a desktop device to access the interview room.
+                    </h1>
+                </div>
             ) : (
-                <div className="text-center">
-                    <h1 className="text-3xl font-bold mb-4">Interview Completed</h1>
-                    <p className="text-lg text-gray-600">Thank you for participating in the CodeHire interview.</p>
+                <div className="flex flex-col items-center justify-center h-screen bg-gray-100 relative">
+                    {!isInterviewCompleted ? (
+                        <>
+                            <h1 className="text-3xl font-bold mb-4">CodeHire Interview Room</h1>
+                            <button
+                                onClick={startInterview}
+                                className="px-6 py-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition mb-4 z-10"
+                            >
+                                Start Interview
+                            </button>
+                            <div 
+                                ref={meetingContainerRef} 
+                                className={`w-full h-screen absolute top-0 ${isMeetingActive ? 'z-[100000]' : 'hidden'}`}
+                            ></div>
+                        </>
+                    ) : (
+                        <div className="text-center">
+                            <h1 className="text-3xl font-bold mb-4">Interview Completed</h1>
+                            <p className="text-lg text-gray-600">
+                                Thank you for participating in the CodeHire interview.
+                            </p>
+                        </div>
+                    )}
                 </div>
             )}
-        </div>
+        </>
     );
 }
 

@@ -10,6 +10,8 @@ const Courses = () => {
   const [staffScroll, setStaffScroll] = useState(0);
   const openSidebar = useSelector((state) => state.ui_store.openSidebar);
   const isCollapsed = useSelector((state) => state.ui_store.isCollapsed || false);
+  const fullscreenSidebar = useSelector((state) => state.ui_store.fullscreenSidebar);
+    console.log("fullscreenSidebar" , fullscreenSidebar);
   //const courses = useSelector((state) => state.courses_store.courses);
 
   const coursesPerPage = 5; 
@@ -63,11 +65,9 @@ const Courses = () => {
 
   return (
     <div    className={`p-8 min-h-screen bg-gray-50 transition-all duration-300 ${
-      openSidebar && !isCollapsed
-        ? "ml-60" // Expanded sidebar (240px)
-        : openSidebar && isCollapsed
-        ? "ml-16" // Collapsed sidebar (approx 60px)
-        : "ml-16" // No sidebar offset
+      window.innerWidth <= 768 
+        ? (fullscreenSidebar ? "hidden" : "ml-0")
+        : (openSidebar ? "ml-60" : "ml-16")
     }`}>
       
       <h2 className="text-2xl font-bold mb-4 ">🔥 MAANG Courses</h2>
@@ -78,7 +78,7 @@ const Courses = () => {
             style={{ transform: `translateX(-${maangScroll * 20}%)` }}
           >
             {maangCourses.map((course) => (
-              <div className="w-1/5 flex-shrink-0" key={course.id}>
+              <div className=" w-1/5 flex-shrink-0" key={course.id}>
                 <Card {...course} />
               </div>
             ))}

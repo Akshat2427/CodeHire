@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Report = () => {
-  // Dummy data for user performance reports
   const userReports = [
     {
       userId: "U001",
@@ -37,51 +36,44 @@ const Report = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100 py-10 flex justify-center">
-      <div className="w-full max-w-4xl ">
-        {/* Header */}
-      
-
-        {/* Reports Container */}
+    <div className="min-h-screen bg-gray-100 py-10 flex justify-center px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-4xl">
         <div className="space-y-6">
           {userReports.map((report) => (
             <div
               key={report.userId}
-              className="bg-white rounded-lg shadow-md p-6 flex items-center justify-between transition-all duration-300 hover:shadow-lg"
+              className="bg-white rounded-lg shadow-md p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between transition-all duration-300 hover:shadow-lg space-y-4 sm:space-y-0"
             >
-              {/* Left: Image and Company */}
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-4 w-full sm:w-auto">
                 <img
                   src={report.img}
                   alt={`${report.company} logo`}
-                  className="w-20 h-16  object-cover"
+                  className="w-16 h-14 sm:w-20 sm:h-16 object-cover"
                 />
                 <div>
-                  <h2 className="text-lg font-semibold text-gray-800">
+                  <h2 className="text-base sm:text-lg font-semibold text-gray-800">
                     {report.name} ({report.company})
                   </h2>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-xs sm:text-sm text-gray-500">
                     ID: {report.userId} | {report.date}
                   </p>
                 </div>
               </div>
 
-              {/* Center: Scores */}
-              <div className="flex space-x-6 text-sm">
-                <span className="text-gray-600">
+              <div className="flex flex-wrap justify-center sm:justify-start space-x-3 text-xs sm:text-sm text-gray-600">
+                <span>
                   Resume: <span className="font-bold text-blue-600">{report.resumeScore}%</span>
                 </span>
-                <span className="text-gray-600">
+                <span>
                   OA: <span className="font-bold text-blue-600">{report.oaScore}%</span>
                 </span>
-                <span className="text-gray-600">
+                <span>
                   Interview: <span className="font-bold text-blue-600">{report.interviewScore}%</span>
                 </span>
               </div>
 
-              {/* Right: View Details Button */}
-              <Link to={`/reports/${report.userId}`}>
-                <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+              <Link to={`/reports/${report.userId}`} className="w-full sm:w-auto">
+                <button className="w-full sm:w-auto bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
                   View Details
                 </button>
               </Link>

@@ -39,6 +39,8 @@ function Profile() {
 
   const [formData, setFormData] = useState(initialFormData);
   const [isEditing, setIsEditing] = useState(false);
+  const openSidebar = useSelector((state) => state.ui_store.openSidebar);
+  const fullscreenSidebar = useSelector((state) => state.ui_store.fullscreenSidebar);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -59,7 +61,13 @@ function Profile() {
 
   return (
     <div>
-      <main className="w-[85vw] ml-[13vw] p-8  h-screen grid ">
+      <main className={`
+       ${
+        window.innerWidth <= 768 
+          ? (fullscreenSidebar ? "hidden" : "ml-0")
+          : (openSidebar ? "ml-60" : "ml-16")
+      }
+       " p-8  h-screen grid transition-all duration-300 "`}>
         <div className="grid grid-cols-6 gap-8">
           {/* Profile Picture and User Information (similar structure) */}
           {/* Profile Picture */}
