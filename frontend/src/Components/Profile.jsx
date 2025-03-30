@@ -52,33 +52,69 @@ function Profile() {
   return (
     <div>
       <main className={`
-       ${
-        isMobile 
-          ? "ml-0 p-4 h-auto grid" 
-          : (openSidebar ? "ml-60" : "ml-16")
-      }
-       transition-all duration-300`}>
+        ${isMobile ? "ml-0 p-4" : openSidebar ? "ml-60" : "ml-16"} 
+        transition-all duration-300 grid gap-8
+      `}>
         <div className={`grid ${isMobile ? "grid-cols-1" : "grid-cols-6"} gap-8`}>
-          <div className="col-span-2 flex justify-center items-start mt-10">
-            <div className="relative">
-              <img
-                className={`rounded-full border-5 border-gray-300 shadow-lg ${isMobile ? "h-32 w-32" : "h-64 w-64"}`}
-                src={user.imgUrl === "./images/pfp.jpg" ? "./images/pfp.jpg" : `https://images.weserv.nl/?url=${encodeURIComponent(user.imgUrl)}`}
-                alt="Profile Pic"
-              />
+          
+          {/* Profile Picture & Social Media */}
+          <div className="col-span-2 flex flex-col items-center mt-10">
+            <img
+              className="h-32 w-32 md:h-64 md:w-64 rounded-full border-4 border-gray-300 shadow-lg"
+              src={user.imgUrl === "./images/pfp.jpg" ? "./images/pfp.jpg" : `https://images.weserv.nl/?url=${encodeURIComponent(user.imgUrl)}`}
+              alt="Profile Pic"
+            />
+            <div className="w-full mt-4 ml-10 flex flex-col gap-3">
+              
+              {/* GitHub Link */}
+              <div className="flex items-center gap-2 w-full">
+                <img 
+                  src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" 
+                  alt="GitHub" 
+                  className="w-8 h-8" 
+                />
+                <div className="w-2/3">
+                  <input 
+                    type="text" 
+                    placeholder="GitHub" 
+                    className="w-full text-sm p-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+                  />
+                </div>
+              </div>
+
+              {/* LinkedIn Link */}
+              <div className="flex items-center gap-2 w-full">
+                <img 
+                  src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" 
+                  alt="LinkedIn" 
+                  className="w-8 h-8" 
+                />
+                <div className="w-2/3">
+                  <input 
+                    type="text" 
+                    placeholder="LinkedIn" 
+                    className="w-full text-sm p-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+                  />
+                </div>
+              </div>
             </div>
           </div>
-          <div className="col-span-4 rounded-lg p-4 md:p-8">
+
+          {/* Profile Details */}
+          <div className="col-span-4 bg-white shadow-lg rounded-lg p-4 md:p-8">
             <button
               onClick={handleEditClick}
               className="absolute right-5 px-4 py-2 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700"
             >
               Edit
             </button>
+
             <div className="grid gap-4 mt-10 md:mt-16">
               {Object.keys(formData).map((key) => (
                 <div className="flex flex-col md:flex-row md:items-center" key={key}>
-                  <label className="font-medium text-gray-600 md:w-32 capitalize">{key.replace(/([A-Z])/g, ' $1')}:</label>
+                  <label className="font-medium text-gray-600 md:w-32 capitalize">
+                    {key.replace(/([A-Z])/g, ' $1')}:
+                  </label>
                   <input
                     type="text"
                     name={key}
@@ -90,6 +126,32 @@ function Profile() {
                 </div>
               ))}
             </div>
+
+            {/* Upload Resume Button for Students */}
+            {role === 'student' && (
+              <div className="flex items-center mt-4">
+                <label className="w-32 font-medium text-gray-600">Resume:</label>
+                <button className="px-4 py-2 bg-green-600 text-white font-semibold rounded-md hover:bg-green-800">
+                  Upload
+                </button>
+              </div>
+            )}
+
+            {/* Availability Section for Mentors */}
+            {role === 'mentor' && (
+              <div className="flex flex-col md:flex-row md:items-start mt-4">
+                <label className="w-32 font-medium text-gray-600">Availability:</label>
+                <div className="gap-2 flex flex-wrap">
+                  {formData.availability?.map((day, index) => (
+                    <button key={index} className="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300">
+                      {day}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Save Button */}
             {isEditing && (
               <button
                 onClick={handleSaveClick}
