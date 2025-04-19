@@ -42,7 +42,7 @@ const Navbar = ({ title }) => {
   const openSidebar = useSelector((state) => state.ui_store.openSidebar);
   const isCollapsed = useSelector((state) => state.ui_store.isCollapsed || false);
   const fullscreenSidebar = useSelector((state) => state.ui_store.fullscreenSidebar);
-  console.log("fullscreenSidebar" , fullscreenSidebar);
+  // console.log("fullscreenSidebar" , fullscreenSidebar);
 
   // Toggle the profile dropdown
   const toggleProfileDropdown = () => {
@@ -75,7 +75,7 @@ const Navbar = ({ title }) => {
 
   // Toggle sidebar open (for mobile view)
   const toggleSidebar = () => {
-    console.log("doing it");
+    // console.log("doing it");
     dispatch(setFullScreenSideBar(!fullscreenSidebar)); // Use the current state value
   };
   

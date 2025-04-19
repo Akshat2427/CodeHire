@@ -64,7 +64,7 @@ const Courses = () => {
   };
 
   return (
-    <div    className={`p-8 min-h-screen bg-gray-50 transition-all duration-300 ${
+    <div className={`p-8 min-h-screen bg-gray-50 transition-all duration-300 ${
       window.innerWidth <= 768 
         ? (fullscreenSidebar ? "hidden" : "ml-0")
         : (openSidebar ? "ml-60" : "ml-16")

@@ -19,7 +19,7 @@ router.get('/profile',auth.authUser,require('../controllers/user.controller').us
 router.get('/logout',auth.authUser,require('../controllers/user.controller').userLogout);
 
 // router.get('/courses',auth.authUser,require('../controllers/user.controller').userCourses);
-router.get('/courses',require('../controllers/user.controller').userCourses);
+router.get('/explore-courses',require('../controllers/user.controller').userCourses);
 
 router.get('/courses/:id',auth.authUser,require('../controllers/user.controller').userCourse);
 

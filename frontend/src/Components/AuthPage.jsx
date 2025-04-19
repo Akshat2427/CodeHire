@@ -34,6 +34,7 @@ export default function AuthPage() {
       });
 
       const data = await response.json();
+      //console.log(data);
       // console.log("data : error" , data)
       if (data.error ) {
         toast.error(`Error: ${data.error}`);
@@ -46,7 +47,9 @@ export default function AuthPage() {
 
       toast.success(isLogin ? "Login Successful!" : "Account Created Successfully!");
       localStorage.setItem("token_codehire" , data.token);
+      localStorage.setItem("user_codehire",JSON.stringify(data.user));
       dispatch(login(data));
+      
     } catch (error) {
       toast.error("Authentication Failed. Try again!");
       console.error("Error during authentication:", error);
