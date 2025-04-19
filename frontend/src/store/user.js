@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice,nanoid } from "@reduxjs/toolkit";
 
 const initialState = {
   user: {
@@ -10,8 +10,6 @@ const initialState = {
   },
   isAuthenticated: false,
   token:  null,    
-
-  
 };
 
 const userSlice = createSlice({
@@ -19,24 +17,23 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      console.log("Login Action:", action.payload);
+      console.log(action.payload);
         const userToken = action.payload?.token || null;
         const result = action.payload?.user ;
-        console.log("ngfhiu" , result);
-        state.user.id = result?.id || 0;
+        state.user.id = result?.u_id || 0;
         state.user.username = result?.name || "User";
         state.user.email = result?.email ;
         state.user.role = result?.role?.toLowerCase() || "student";
         state.user.imgUrl = result?.imgUrl || "./images/pfp.jpg";
-        console.log('====================================');
-        console.log(state.user);
-        console.log('====================================');    
+        // console.log('====================================');
+        // console.log(state.user);
+        // console.log('====================================');    
         state.isAuthenticated = true;
         state.token = userToken;
         
       
     },
-    logout: (state ) => {
+    logout: (state) => {
       const token = state.token
         state.user = {
           id: 1,
@@ -46,15 +43,16 @@ const userSlice = createSlice({
           imgUrl : "./images/AnshulPhoto_2.jpg"
         },
         state.isAuthenticated = false;
-        localStorage.removeItem("token_codehire")
+        localStorage.removeItem("token_codehire");
+        localStorage.removeItem("user_codehire");
+        state.token = null;
+
         fetch("http://localhost:8080/user/logout",{
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
           },
         });
-
-     
     },
   },
 });

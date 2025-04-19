@@ -43,6 +43,7 @@ module.exports.userLogin = async (req, res) => {
     }
     const token = jwt.sign({ userId: user.u_id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
     res.cookie('token', token);
+    console.log(user);
     res.json({ token, user });
 };
 
@@ -120,4 +121,40 @@ module.exports.userEnrollCourse = async (req, res) => {
         res.status(400).json({ error: 'Enrollment failed' });
     }
 }
+
+
+
+// app.post('/forgot-password',async (req,res)=>{
+
+//     const {email} = req.body;
+//     try{
+//         const user = await UserActivation.findOne({email});
+//         if(!user){
+//             return res.message('User doesnnt exist');
+//         }
+
+//         const token = await user.generateToken();
+//         user.resetToken = token;
+//         user.tokenExpiry = Date.now()+3600000;
+//         await user.save();
+
+//         const transporter = nodemailer.createTransport({
+//             service:"gmail",
+//             auth:{
+//                 user:"",
+//                 pass:""
+//             }
+//         });
+//         const mailMsg ={
+//             from:"",
+//             to:"",
+//             subject:"",
+//             html:""
+//         }
+//         await transporter.sendMail(mailMsg);
+//     }
+//     catch(err){
+//         res.json({'message':err.message});
+//     }
+// })
 

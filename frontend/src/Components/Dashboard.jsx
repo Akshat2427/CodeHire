@@ -26,7 +26,7 @@ const Dashboard = () => {
   const openSidebar = useSelector((state) => state.ui_store.openSidebar);
   const isCollapsed = useSelector((state) => state.ui_store.isCollapsed || false); // Assuming this might be added
   const fullscreenSidebar = useSelector((state) => state.ui_store.fullscreenSidebar);
-  console.log("fullscreenSidebar" , fullscreenSidebar);
+  // console.log("fullscreenSidebar" , fullscreenSidebar);
   // Update page name only when user changes
   useEffect(() => {
     dispatch(pageNameUpdated(`Hello 👋 , ${user || "User"}`));

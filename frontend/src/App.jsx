@@ -14,11 +14,11 @@ function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   // console.log(user);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token_codehire');
+        const savedUser = localStorage.getItem('user_codehire');
         // console.log("toekn : 1" , token)
         if (!token) return;
         // console.log("toekn : 2" , token)
@@ -29,8 +29,13 @@ function App() {
         if (decode.exp < currentTime) {
           // console.log('Token has expired');
           localStorage.removeItem('token_codehire');
+          localStorage.removeItem('user_codehire');
           toast.error('Session expired! Please login again.');
           return;
+        }
+
+        if(savedUser){
+          dispatch(login({token,user:JSON.parse(savedUser)}));
         }
 
         const res = await fetch('http://localhost:8080/user/profile', {
@@ -42,8 +47,10 @@ function App() {
 
         if (!res.ok) {
           console.error('Error fetching profile:', res.status);
+          
           if (res.status === 401) {
             localStorage.removeItem('token_codehire');
+            localStorage.removeItem('user_codehire');
             toast.error('Session expired! Please login again.');
           }
           return;
