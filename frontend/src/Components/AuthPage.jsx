@@ -40,7 +40,8 @@ export default function AuthPage() {
         return;
       }
       if(data.errors){
-        toast.error(`Error: ${data.errors[0]}`);
+        console.log("data . eoors ", data.errors)
+        toast.error(`Error: ${data.errors[0].msg}`);
         return;
       }
 
