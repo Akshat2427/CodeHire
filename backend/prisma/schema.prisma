@@ -20,7 +20,7 @@ model User {
   password        String
   name            String
   role            Role             @default(STUDENT)
-  authProvider    AuthProvider @default(EMAIL)  
+  authProvider    AuthProvider     @default(EMAIL)
   enrolledCourses CourseProgress[]
   interviews      Interview[]
   courseId        String[]
@@ -34,16 +34,19 @@ model BlacklistedToken {
 }
 
 model Course {
-  c_id             String             @id @default(uuid())
-  c_name           String
-  c_desc           String
-  c_price          Float
-  c_rating         Float
-  rounds           Round[]
-  progresses       CourseProgress[]
-  Resume           Resume[]
-  Hackathon        Hackathon[]
-  Interview        Interview[]
+  c_id       String           @id @default(uuid())
+  c_name     String
+  logo       String
+  c_desc     String
+  c_price    Float
+  c_rating   Float
+  category   CourseCategory   @default(NONE)
+  stageCount Int
+  rounds     Round[]
+  progresses CourseProgress[]
+  Resume     Resume[]
+  Hackathon  Hackathon[]
+  Interview  Interview[]
   // OnlineAssessment OnlineAssessment[]
 }
 
@@ -81,8 +84,6 @@ model Interview {
   interviewer_id         String?
 }
 
-
-
 model CourseProgress {
   p_id                String  @id @default(uuid())
   user                User    @relation(fields: [u_id], references: [u_id], onDelete: Cascade)
@@ -97,12 +98,19 @@ model CourseProgress {
   interviewer_id      String?
 }
 
-enum AuthProvider {
-  EMAIL      // Email & password authentication
-  GOOGLE     // Google OAuth
-  GITHUB     // GitHub OAuth (if added)
+enum CourseCategory {
+  MAANG
+  TRENDING
+  LATEST
+  STAFF_PICK
+  NONE
 }
 
+enum AuthProvider {
+  EMAIL // Email & password authentication
+  GOOGLE // Google OAuth
+  GITHUB // GitHub OAuth (if added)
+}
 
 enum Role {
   STUDENT

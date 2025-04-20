@@ -6,6 +6,7 @@ import  metaInfo  from "./metaInfo";
 import codingProfile from "./codingProfile";
 import  purchaseCourse  from "./purchased_courses";
 import ui_store from "./ui_store";
+import coursesSlice from "./courseReducers";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,8 @@ const store = configureStore({
     codingProfile: codingProfile,
     purchasedCourses: purchaseCourse,
     ui_store: ui_store,
+    courses: coursesSlice,
+
 
   },
 });
