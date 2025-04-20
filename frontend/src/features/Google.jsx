@@ -22,6 +22,7 @@ const GoogleLogin = () => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential?.accessToken;
         const user = result.user;
+        // console.log(user,token);
 
         // console.log("User:", user?.displayName);
         // console.log("Profile Picture:", user?.photoURL);
@@ -31,8 +32,8 @@ const GoogleLogin = () => {
             id:0,
             name: user?.displayName,
             email: user?.email,
-            imgUrl: user?.photoURL,
-            role: "student"
+            
+            imgUrl: user?.photoURL,role: "student"
         }
        dispatch(login({token : null , user : userInStore}));
         navigate("/");
@@ -49,7 +50,7 @@ const GoogleLogin = () => {
       onClick={handleGoogleLogin}
     >
       <FaGoogle className="mr-2" /> Login via Google
-      
+
     </div>
   );
 };

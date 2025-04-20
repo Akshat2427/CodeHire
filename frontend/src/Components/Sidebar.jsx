@@ -35,9 +35,9 @@ const Sidebar = () => {
   const user = useSelector((state) => state.user.user);
   const fullscreenSidebar = useSelector((state) => state.ui_store.fullscreenSidebar);
   const openSidebar = useSelector((state) => state.ui_store.openSidebar);
-  console.log("openSidebar" , openSidebar);
+  // console.log("openSidebar" , openSidebar);
  
-  console.log("fullscreenSidebar" , fullscreenSidebar);
+  // console.log("fullscreenSidebar" , fullscreenSidebar);
   const dispatch = useDispatch();
 
   // Toggle sidebar collapsed state
