@@ -20,7 +20,6 @@ export default function AuthPage() {
 
   const handleAuth = async (e) => {
     e.preventDefault();
-   
 
     try {
       const response = await fetch(`http://localhost:8080/user/${isLogin ? "login" : "register"}`, {

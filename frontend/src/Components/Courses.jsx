@@ -5,6 +5,7 @@ import Card from "./Card"; // Importing Card Component
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCourses } from "../store/courseReducers";
+import Loading from "./Loading";
 
 const Courses = () => {
   const openSidebar = useSelector((state) => state.ui_store.openSidebar);
@@ -54,15 +55,13 @@ const Courses = () => {
 
   }, [dispatch, status]);
   if (status === "loading") {
-    return <div className="flex justify-center items-center h-screen">Loading...</div>
+    return <Loading/>
   }
   if (status === "failed") {
     return <div className="flex justify-center items-center h-screen">Error: {error}</div>
   }
-  console.log(courses);
 
   const coursesPerPage = 5;
-
 
   // const maangCourses = [
   //   { id: 24, c_name: "Google SWE", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg", stages: 8, rating: 4.7, buttonTitle: "Enroll Now" },
@@ -108,7 +107,7 @@ const Courses = () => {
         : (openSidebar ? "ml-60" : "ml-16")
       }`}>
 
-      <h2 className="text-2xl font-bold mb-4 ">🔥 MAANG Courses</h2>
+      <h2 className="text-2xl font-bold mb-4">🔥 MAANG Courses</h2>
       <div className="relative">
         <ScrollMenu>
           <div ref={maangRef} className="flex space-x-6 overflow-hidden">
