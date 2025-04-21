@@ -9,6 +9,7 @@ import { login } from './store/user';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { setFullScreenSideBar } from './store/ui_store';
+import AdminAccess from './Components/AdminAccess';
 
 function App() {
   const dispatch = useDispatch();
@@ -90,14 +91,20 @@ function App() {
     <>
       <ToastContainer position="top-right" autoClose={3000} />
       {user.isAuthenticated ? (
-        <>
-          <Sidebar />
-         <div className='w-full h-14'> <Navbar title={`Hello 👋 , ${user.user.username ?? 'User'}`} />  </div>
-          <AllRoutes />
-          {/* <footer className="bg-gray-800 text-white p-4 text-center  ">
-                <p>&copy; 2025 xAI Learning Platform. All rights reserved.</p>
-            </footer> */}
-        </>
+        user.user.role === "admin" ? (
+          <AdminAccess />
+        ) : (
+          <>
+            <Sidebar />
+            <div className='w-full h-14'>
+              <Navbar title={`Hello 👋 , ${user.user.username ?? 'User'}`} />
+            </div>
+            <AllRoutes />
+            {/* <footer className="bg-gray-800 text-white p-4 text-center  ">
+                  <p>&copy; 2025 xAI Learning Platform. All rights reserved.</p>
+              </footer> */}
+          </>
+        )
       ) : (
         <AuthPage />
       )}

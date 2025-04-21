@@ -4,21 +4,21 @@ import { saveCourse } from "../store/saved_courses";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const Card = ({ companyImg, title, stages, rating, buttonTitle, id, description, price }) => {
+const Card = ({ logo, c_name, stageCount, c_rating, c_id, c_desc, c_price }) => {
   const purchasedCourses = useSelector((state) => state.purchasedCourses.purchasedCourses);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const addToSaveCourses = () => {
-    dispatch(saveCourse({ id }));
+    dispatch(saveCourse({ c_id }));
   };
 
   const handleRouteChange = () => {
-    console.log("purchasedCourses", purchasedCourses.find(course => course.id === id));
-    if (purchasedCourses.find(course => course.id === id)) {
-      navigate(`/course/${id}`);
+    console.log("purchasedCourses", purchasedCourses.find(course => course.id === c_id));
+    if (purchasedCourses.find(course => course.id === c_id)) {
+      navigate(`/course/${c_id}`);
     } else {
-      navigate(`/course/description/${id}`);
+      navigate(`/course/description/${c_id}`);
     }
   };
 
@@ -45,28 +45,28 @@ const Card = ({ companyImg, title, stages, rating, buttonTitle, id, description,
 
       <div className="w-full h-32 sm:h-40 bg-gray-50 rounded-xl overflow-hidden mb-4 sm:mb-5 relative">
         <img
-          src={companyImg}
-          alt={`${title} Logo`}
+          src={logo}
+          alt={`${c_name} Logo`}
           className="w-full h-full object-contain p-2 sm:p-3 transition-transform duration-300 hover:scale-105"
         />
       </div>
 
-      <h3 className="text-lg sm:text-2xl font-bold text-gray-900 mb-2">{title}</h3>
+      <h3 className="text-lg sm:text-2xl font-bold text-gray-900 mb-2">{c_name}</h3>
 
       <p className="text-gray-600 text-xs sm:text-sm line-clamp-3 mb-3 sm:mb-4">
-        {description || "Learn industry-leading skills with this comprehensive course designed to boost your career."}
+        {c_desc || "Learn industry-leading skills with this comprehensive course designed to boost your career."}
       </p>
 
       <div className="w-full mb-4 sm:mb-5">
         <div className="flex justify-between items-center text-gray-700 mb-2">
-          <p className="text-xs sm:text-sm font-medium">Stages: <span className="font-semibold">{stages}</span></p>
+          <p className="text-xs sm:text-sm font-medium">Stages: <span className="font-semibold">{stageCount}</span></p>
           <div className="flex items-center space-x-1">
-            {renderStars(rating)}
-            <span className="text-xs sm:text-sm font-semibold text-gray-800 ml-1">({rating})</span>
+            {renderStars(c_rating)}
+            <span className="text-xs sm:text-sm font-semibold text-gray-800 ml-1">({c_rating})</span>
           </div>
         </div>
         <p className="text-sm sm:text-lg font-bold text-gray-900">
-          {price ? `$${price}` : `$${parseInt(Math.random()*1000)}`} <span className="text-xs text-gray-500 font-normal">/ course</span>
+          {c_price ? `$${c_price}` : `$${parseInt(Math.random()*1000)}`} <span className="text-xs text-gray-500 font-normal">/ course</span>
         </p>
       </div>
 
@@ -74,7 +74,7 @@ const Card = ({ companyImg, title, stages, rating, buttonTitle, id, description,
         onClick={handleRouteChange}
         className="w-full py-2 sm:py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl text-sm sm:text-base font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-md hover:shadow-lg"
       >
-        {buttonTitle}
+        {purchasedCourses.find(course => course.id === c_id) ? "Go to Course" : "View Details"}
       </button>
     </div>
   );
