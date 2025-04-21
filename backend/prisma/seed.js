@@ -1,6 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const bcrypt = require('bcryptjs');
-
+require('dotenv').config();
 const prisma = new PrismaClient();
 
 async function main() {
@@ -24,38 +24,33 @@ async function main() {
     data: [
       {
         c_id: 'course-101',
-        c_name: 'Full Stack Development',
-        c_desc: 'Master front-end and back-end development.',
-        c_price: 4999.99,
-        c_rating: 4.8,
+        logo:"https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+        c_name: 'Google SWE',
+        c_desc: 'Master front-end and back-end development with Google.',
+        c_price: 25.99,
+        c_rating: 4.7,
+        category: "MAANG",
+        stageCount:6
       },
       {
         c_id: 'course-102',
-        c_name: 'Data Structures & Algorithms',
-        c_desc: 'Learn DSA with real-world applications.',
-        c_price: 2999.99,
-        c_rating: 4.7,
+        logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSN0qIpl2wbLurDxYE3L2TVVMt3TqOG3XAQQ&s",
+        c_name: 'Amazon SDE',
+        c_desc: 'Learn data structures and algorithms with Amazon.',
+        c_price: 29.99,
+        c_rating: 4.8,
+        category: "MAANG",  
+        stageCount:6
       },
       {
         c_id: 'course-103',
-        c_name: 'Cloud Computing with AWS',
-        c_desc: 'Explore AWS services and cloud computing concepts.',
-        c_price: 3999.99,
+        logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNbpIfA-_GwTVZBVlpCvdIcLVOsCxn4BmqHA&s",
+        c_name: 'Meta Frontend',
+        c_desc: 'Become a proficient front-end developer with Meta.',
+        c_price: 19.99,
         c_rating: 4.6,
-      },
-      {
-        c_id: 'course-104',
-        c_name: 'Machine Learning & AI',
-        c_desc: 'Understand ML algorithms and AI applications.',
-        c_price: 5999.99,
-        c_rating: 4.9,
-      },
-      {
-        c_id: 'course-105',
-        c_name: 'Cybersecurity Fundamentals',
-        c_desc: 'Learn about ethical hacking and security best practices.',
-        c_price: 3499.99,
-        c_rating: 4.5,
+        category: "MAANG",
+        stageCount:6
       },
     ],
     skipDuplicates: true,
