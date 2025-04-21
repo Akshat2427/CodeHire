@@ -8,7 +8,6 @@ const SavedCourses = () => {
   const openSidebar = useSelector((state) => state.ui_store.openSidebar);
   const isCollapsed = useSelector((state) => state.ui_store.isCollapsed || false); // Assuming this might be added
   const fullscreenSidebar = useSelector((state) => state.ui_store.fullscreenSidebar);
-    console.log("fullscreenSidebar" , fullscreenSidebar);
 
   // Optimize filtering using a Set for O(n) lookup
   const savedIdsSet = new Set(savedCourseIds.map((item) => item.id));
