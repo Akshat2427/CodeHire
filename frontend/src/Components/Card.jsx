@@ -3,6 +3,9 @@ import { Bookmark } from "lucide-react";
 import { saveCourse } from "../store/saved_courses";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { purchaseCourse } from "../store/purchased_courses";
 
 const Card = ({ logo, c_name, stageCount, c_rating, c_id, c_desc, c_price }) => {
   const purchasedCourses = useSelector((state) => state.purchasedCourses.purchasedCourses);
@@ -11,10 +14,10 @@ const Card = ({ logo, c_name, stageCount, c_rating, c_id, c_desc, c_price }) => 
 
   const addToSaveCourses = () => {
     dispatch(saveCourse({ c_id }));
+    toast.success("Added to Saved Courses");
   };
 
   const handleRouteChange = () => {
-    console.log("purchasedCourses", purchasedCourses.find(course => course.id === c_id));
     if (purchasedCourses.find(course => course.id === c_id)) {
       navigate(`/course/${c_id}`);
     } else {
@@ -74,7 +77,7 @@ const Card = ({ logo, c_name, stageCount, c_rating, c_id, c_desc, c_price }) => 
         onClick={handleRouteChange}
         className="w-full py-2 sm:py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl text-sm sm:text-base font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-md hover:shadow-lg"
       >
-        {purchasedCourses.find(course => course.id === c_id) ? "Go to Course" : "View Details"}
+        {purchasedCourses.find(course => course.c_id === c_id) ? "Go to Course" : "View Details"}
       </button>
     </div>
   );

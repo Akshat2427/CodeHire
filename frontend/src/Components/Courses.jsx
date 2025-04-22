@@ -115,7 +115,7 @@ const Courses = () => {
               className="flex transition-transform duration-500"
             >
               {maangCourses.map((course) => (
-                <div className=" w-1/5 flex-shrink-0" key={course.id}>
+                <div className=" w-1/5 flex-shrink-0" key={course.c_id}>
                   <Card {...course} />
                 </div>
               ))}
@@ -147,7 +147,7 @@ const Courses = () => {
               className="flex transition-transform duration-500"
             >
               {latestCourses.map((course) => (
-                <div className="w-1/5 flex-shrink-0" key={course.id}>
+                <div className="w-1/5 flex-shrink-0" key={course.c_id}>
                   <Card {...course} />
                 </div>
               ))}
@@ -177,7 +177,7 @@ const Courses = () => {
               className="flex transition-transform duration-500"
             >
               {trendingCourses.map((course) => (
-                <div className="w-1/5 flex-shrink-0" key={course.id}>
+                <div className="w-1/5 flex-shrink-0" key={course.c_id}>
                   <Card {...course} />
                 </div>
               ))}
@@ -209,7 +209,7 @@ const Courses = () => {
               className="flex transition-transform duration-500"
             >
               {staffPicks.map((course) => (
-                <div className="w-1/5 flex-shrink-0" key={course.id}>
+                <div className="w-1/5 flex-shrink-0" key={course.c_id}>
                   <Card {...course} />
                 </div>
               ))}

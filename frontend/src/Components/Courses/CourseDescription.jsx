@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import courses from './courseData';
+import { useSelector } from 'react-redux';
 
 function CourseDescription() {
-    const { id } = useParams();
-    const courseId = parseInt(id);
-    const course = courses.find(course => course.id === courseId);
+    const { c_id } = useParams();
+    // const courseId = parseInt(id);
+    // const viewingCourses = useSelector((state) => state.courses.courses);
+    const course = courses.find(course => course.c_id === c_id);
     const [commentIndex, setCommentIndex] = useState(0);
 
     // Auto-scroll comments every 3 seconds
