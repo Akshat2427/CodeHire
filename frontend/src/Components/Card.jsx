@@ -1,24 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Bookmark } from "lucide-react"; 
-import { saveCourse } from "../store/saved_courses";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { purchaseCourse } from "../store/purchased_courses";
+import { saveCourseToBackend } from "../store/saveCourseThunk";
 
-const Card = ({ logo, c_name, stageCount, c_rating, c_id, c_desc, c_price }) => {
+const Card = ({logo, c_name, stageCount, c_rating, c_id, c_desc, c_price }) => {
   const purchasedCourses = useSelector((state) => state.purchasedCourses.purchasedCourses);
+  // const courses = useSelector((state) => state.courses.courses);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const addToSaveCourses = () => {
-    dispatch(saveCourse({ c_id }));
-    toast.success("Added to Saved Courses");
+    dispatch(saveCourseToBackend( c_id )).unwrap().then(()=> toast.success("Added to Saved Courses")).catch(()=> toast.error("Failed to add to Saved Courses"));
+    // toast.success("Added to Saved Courses");
   };
 
   const handleRouteChange = () => {
-    if (purchasedCourses.find(course => course.id === c_id)) {
+    if (purchasedCourses.find(course => course === c_id)) {
       navigate(`/course/${c_id}`);
     } else {
       navigate(`/course/description/${c_id}`);
@@ -77,7 +77,7 @@ const Card = ({ logo, c_name, stageCount, c_rating, c_id, c_desc, c_price }) => 
         onClick={handleRouteChange}
         className="w-full py-2 sm:py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl text-sm sm:text-base font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-md hover:shadow-lg"
       >
-        {purchasedCourses.find(course => course.c_id === c_id) ? "Go to Course" : "View Details"}
+        {purchasedCourses.find(course => course === c_id) ? "Go to Course" : "View Details"}
       </button>
     </div>
   );
