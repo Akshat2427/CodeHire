@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { act } from "react";
 
 const initialState = {
-  savedCourses: [{id:24}],
+  savedCourses: [{c_id:""}],
 };
 
 const savedCoursesSlice = createSlice({
@@ -9,11 +10,13 @@ const savedCoursesSlice = createSlice({
   initialState,
   reducers: {
     saveCourse: (state, action) => {
-      const existingCourse = state.savedCourses.find(course => course.id === action.payload.id);
+      // console.log(action.payload);
+      const existingCourse = state.savedCourses.find(course => course.c_id === action.payload.c_id);
       if (!existingCourse) {
         state.savedCourses.push(action.payload); 
       }
-      console.log("state.savedCourses", JSON.parse(JSON.stringify(state.savedCourses))); 
+      console.log(JSON.parse(JSON.stringify(state.savedCourses)));
+      // console.log("state.savedCourses", JSON.parse(JSON.stringify(state.savedCourses))); 
     },
     unSaveCourse: (state, action) => {
       state.savedCourses = state.savedCourses.filter(
