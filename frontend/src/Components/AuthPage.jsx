@@ -20,6 +20,7 @@ export default function AuthPage() {
 
   const handleAuth = async (e) => {
     e.preventDefault();
+   
 
     try {
       const response = await fetch(`http://localhost:8080/user/${isLogin ? "login" : "register"}`, {
@@ -40,7 +41,8 @@ export default function AuthPage() {
         return;
       }
       if(data.errors){
-        toast.error(`Error: ${data.errors[0]}`);
+        console.log("data . eoors ", data.errors)
+        toast.error(`Error: ${data.errors[0].msg}`);
         return;
       }
 
