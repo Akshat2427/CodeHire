@@ -4,25 +4,20 @@ import Card from "./Card";
 import data from "./Courses/tempUserCourse.json"; // Assuming this will be used
 
 // Sample data (replace with dynamic data from `data` or Redux if intended)
-const myCoursesArray = [
-  {
-    id: 1,
-    title: "Google SDE",
-    companyImg: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-    stages: 8,
-    rating: 4.7,
-    buttonTitle: "Resume",
-  },
-];
 
 const MyCourses = () => {
   const openSidebar = useSelector((state) => state.ui_store.openSidebar);
   const isCollapsed = useSelector((state) => state.ui_store.isCollapsed || false); // Assuming this might be added
   const fullscreenSidebar = useSelector((state) => state.ui_store.fullscreenSidebar);
-    console.log("fullscreenSidebar" , fullscreenSidebar);
-
+  const [inMyCourses, setInMyCourses] = React.useState(false);
   // Optionally use imported data instead of hardcoded array
-  const courses = data.length > 0 ? data : myCoursesArray;
+  // const courses = data.length > 0 ? data : myCoursesArray;
+  const purchasedCourses = useSelector((state) => state.purchasedCourses.purchasedCourses);
+  const courses = useSelector((state) => state.courses.courses);
+  const filteredData = purchasedCourses.map((course) => {
+    const courseData = courses.find((item) => item.c_id === course);
+    return courseData ? { ...courseData, c_id: course } : null;
+  });
 
   return (
     <div
@@ -40,11 +35,11 @@ const MyCourses = () => {
         role="region"
         aria-label="My enrolled courses list"
       >
-        {courses.length > 0 ? (
-          courses.map((course) => (
+        {filteredData.length > 0 ? (
+          filteredData.map((course) => (
             <div
               className="min-w-[250px] flex-shrink-0"
-              key={course.id}
+              key={course.c_id}
             >
               <Card {...course} />
             </div>
