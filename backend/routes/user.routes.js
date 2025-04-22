@@ -27,6 +27,8 @@ router.get('/my-courses',auth.authUser,require('../controllers/user.controller')
 
 router.post('/save-course/:courseId',auth.authUser,require('../controllers/user.controller').userSaveCourse);
 
+router.get('/saved-courses',auth.authUser,require('../controllers/user.controller').userSavedCourses);
+
 router.post('/courses/:id/enroll',auth.authUser,require('../controllers/user.controller').userEnrollCourse);
 
 

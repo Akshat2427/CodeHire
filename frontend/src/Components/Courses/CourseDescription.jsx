@@ -2,14 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import courses from './courseData';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { purchaseCourse } from '../../store/purchased_courses';
+import { toast } from 'react-toastify';
 
 function CourseDescription() {
     const { c_id } = useParams();
     // const courseId = parseInt(id);
     // const viewingCourses = useSelector((state) => state.courses.courses);
+    // const course = useSelector((state) => state.courses.courses);
     const course = courses.find(course => course.c_id === c_id);
     const [commentIndex, setCommentIndex] = useState(0);
-
+    const dispatch = useDispatch();
     // Auto-scroll comments every 3 seconds
     useEffect(() => {
         if (course && course.comments.length > 3) {
@@ -19,7 +23,6 @@ function CourseDescription() {
             return () => clearInterval(interval);
         }
     }, [course]);
-
     if (!course) {
         return (
             <div className="min-h-screen flex items-center justify-center">
@@ -60,8 +63,13 @@ function CourseDescription() {
         crafted to empower you with the tools and confidence needed to succeed.
     `;
 
+    const handleEnrollClick = ()=>{
+        dispatch(purchaseCourse(c_id));
+        toast.success("Course Enrolled Successfully");
+    }
+
     return (
-     <div div className="flex justify-center items-center h-screen w-full pt-20 pl-60 ">
+     <div className="flex justify-center items-center h-screen w-full pt-20 pl-60 ">
           <div className="min-h-screen bg-gray-100 flex flex-col">
            
             {/* <header className="bg-blue-600 text-white m-4 p-4">
@@ -110,7 +118,7 @@ function CourseDescription() {
                             </ul>
 
                             <div className="flex items-center justify-between">
-                                <button className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors">
+                                <button onClick={handleEnrollClick} className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors">
                                     {course.buttonTitle}
                                 </button>
                                 <div className="text-sm text-gray-500">

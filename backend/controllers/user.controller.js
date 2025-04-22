@@ -122,6 +122,18 @@ module.exports.userEnrollCourse = async (req, res) => {
     }
 }
 
+module.exports.userSavedCourses = async (req, res) => {
+    const user = req.user;
+    const savedCourses = await prisma.course.findMany({
+        where: {
+            c_id: {
+                in: user.courseId
+            }
+        }
+    });
+    res.json(savedCourses);
+}
+
 
 
 // app.post('/forgot-password',async (req,res)=>{

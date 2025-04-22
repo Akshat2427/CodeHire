@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  purchasedCourses: [{c_id:101} ],
+  purchasedCourses: [],
 };
 
 const purchasedCoursesSlice = createSlice({
@@ -9,7 +9,7 @@ const purchasedCoursesSlice = createSlice({
   initialState,
   reducers: {
     purchaseCourse: (state, action) => {
-      const existingCourse = state.purchasedCourses.find(course => course.c_id === action.payload.c_id);
+      const existingCourse = state.purchasedCourses.find(course => course.c_id === action.payload);
       if (!existingCourse) {
         state.purchasedCourses.push(action.payload); 
       }
