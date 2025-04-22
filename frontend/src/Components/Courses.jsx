@@ -3,6 +3,7 @@ import { ChevronRight, ChevronLeft } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCourses } from "../store/courseReducers";
 import Card from "./Card"; // Importing Card Component
+import Loading from "./Loading";
 
 const Courses = () => {
   const openSidebar = useSelector((state) => state.ui_store.openSidebar);
@@ -48,11 +49,12 @@ const Courses = () => {
   useEffect(() => {
     if (status === "idle") {
       dispatch(fetchCourses());
+      
     }
   }, [dispatch, status]);
 
   if (status === "loading") {
-    return <div className="flex justify-center items-center h-screen text-xl font-semibold">Loading...</div>;
+    return <Loading />; 
   }
 
   if (status === "failed") {

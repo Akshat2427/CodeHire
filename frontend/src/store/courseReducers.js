@@ -25,7 +25,7 @@ const coursesSlice = createSlice({
             .addCase(fetchCourses.pending, (state) => {
                 state.status = "loading";
             })
-            .addCase(fetchCourses.fulfilled, (state, action) => {
+            .addCase(fetchCourses.fulfilled, (state, action) => {0
                 state.status = "succeeded";
                 state.courses = action.payload;
             })
