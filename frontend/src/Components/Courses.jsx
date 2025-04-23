@@ -49,6 +49,7 @@ const Courses = () => {
   useEffect(() => {
     if (status === "idle") {
       dispatch(fetchCourses());
+      
     }
   }, [dispatch, status]);
 
