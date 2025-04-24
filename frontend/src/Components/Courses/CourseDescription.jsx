@@ -122,7 +122,7 @@ function CourseDescription() {
                                     {course.buttonTitle}
                                 </button>
                                 <div className="text-sm text-gray-500">
-                                    Course ID: {course.id}
+                                    Course ID: {course.c_id.substring(7)}
                                 </div>
                             </div>
                         </div>

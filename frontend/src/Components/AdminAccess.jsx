@@ -102,7 +102,7 @@ const AdminAccess = () => {
                         <option value="TRENDING">TRENDING</option>
                         <option value="LATEST">LATEST</option>
                         <option value="STAFF_PICK">STAFF_PICK</option>
-                        <option value="NONE">NONE</option>
+                        <option value="NONE" disabled>NONE</option>
                         <option value="MAANG">MAANG</option>
                     </select>
                 </div>
