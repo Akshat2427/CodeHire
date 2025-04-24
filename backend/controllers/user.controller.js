@@ -81,15 +81,14 @@ module.exports.userSaveCourse = async (req, res) => {
 }
 
 module.exports.userMyCourses = async (req, res) => {
-    const user = req.user;
-    const courses = await prisma.course.findMany({
-        where: {
-            c_id: {
-                in: user.courseId
-            }
-        }
+    const userId = req.user.u_id;
+
+    const enrolledCourses = await prisma.courseProgress.findMany({
+        where: { u_id: userId },
+        select: { c_id: true }
     });
-    res.json(courses);
+
+    res.json(enrolledCourses.map(c => c.c_id));
 }
 
 module.exports.userCourses = async (req, res) => {
@@ -107,6 +106,16 @@ module.exports.userEnrollCourse = async (req, res) => {
     const { id } = req.params;
     const userId = req.user.u_id;
     try {
+        const existingProgress = await prisma.courseProgress.findFirst({
+            where: {
+                c_id: id,
+                u_id: userId,
+            },
+        });
+        if(existingProgress) {
+            return res.status(400).json({ error: 'Already enrolled in this course' });
+        }
+
         const progress = await prisma.courseProgress.create({
             data: {
                 c_id: id,
@@ -116,7 +125,7 @@ module.exports.userEnrollCourse = async (req, res) => {
                 scores: [],
             }
         });
-        res.status(201).json(progress);
+        res.json(progress);
     } catch (error) {
         res.status(400).json({ error: 'Enrollment failed' });
     }
