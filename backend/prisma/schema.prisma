@@ -61,7 +61,7 @@ model Round {
 model Resume {
   r_id                          String   @id @default(uuid())
   course                        Course   @relation(fields: [c_id], references: [c_id], onDelete: Cascade)
-  c_id                          String
+  c_id                          String   @unique
   r_previous_resume_shortlisted String[] // Keeping as an array for now
   r_key_words                   String[]
 }
