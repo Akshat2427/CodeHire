@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { purchaseCourse } from '../../store/purchased_courses';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 function CourseDescription() {
     const { c_id } = useParams();
@@ -63,9 +64,32 @@ function CourseDescription() {
         crafted to empower you with the tools and confidence needed to succeed.
     `;
 
-    const handleEnrollClick = ()=>{
-        dispatch(purchaseCourse(c_id));
-        toast.success("Course Enrolled Successfully");
+    const purchasedCourses = useSelector((state)=>state.purchasedCourses.purchasedCourses);
+
+    const handleEnrollClick =async ()=>{
+        if(purchasedCourses.includes(c_id)){
+            toast.info("You are already enrolled in this course!!!");
+            return ;
+        }
+        try {
+            const response = await axios.post(`http://localhost:8080/user/courses/${c_id}/enroll`,{},{
+                headers:{
+                    Authorization: `Bearer ${localStorage.getItem("token_codehire")}`
+                }
+            });
+            if(response.status === 200){
+                dispatch(purchaseCourse(c_id));
+                toast.success("Course Enrolled Successfully");
+            }
+            else{
+                toast.error("Failed to enroll in course");
+            }
+        } catch (error) {
+            console.error("Error enrolling in course:", error);
+            toast.error("Something went wrong");
+        }
+        // dispatch(purchaseCourse(c_id));
+        // toast.success("Course Enrolled Successfully");
     }
 
     return (
