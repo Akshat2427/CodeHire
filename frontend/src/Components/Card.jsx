@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { purchaseCourse } from "../store/purchased_courses";
+import { fetchPurchasedCourses, purchaseCourse } from "../store/purchased_courses";
 import { saveCourseToBackend } from "../store/saveCourseThunk";
 
 const Card = ({logo, c_name, stageCount, c_rating, c_id, c_desc, c_price }) => {
@@ -16,6 +16,8 @@ const Card = ({logo, c_name, stageCount, c_rating, c_id, c_desc, c_price }) => {
     dispatch(saveCourseToBackend( c_id )).unwrap().then(()=> toast.success("Added to Saved Courses")).catch(()=> toast.error("Failed to add to Saved Courses"));
     // toast.success("Added to Saved Courses");
   };
+
+  
 
   const handleRouteChange = () => {
     if (purchasedCourses.find(course => course === c_id)) {
