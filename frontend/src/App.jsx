@@ -10,6 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { setFullScreenSideBar } from './store/ui_store';
 import AdminAccess from './Components/AdminAccess';
+import { fetchPurchasedCourses } from './store/purchased_courses';
 
 function App() {
   const dispatch = useDispatch();
@@ -86,6 +87,10 @@ function App() {
     dispatch(setFullScreenSideBar(true))
 
   },[window.innerWidth])
+
+  useEffect(() => {
+    dispatch(fetchPurchasedCourses());
+  }, [dispatch]);
 
   return (
     <>

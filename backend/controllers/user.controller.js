@@ -3,6 +3,12 @@ const jwt = require('jsonwebtoken');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const { validationResult } = require('express-validator');
+const pdfParse = require("pdf-parse");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+const fs = require('fs');
+const { formatGeminiText } = require('../services/formatGeminitext');
+
+const genAI = new GoogleGenerativeAI("AIzaSyDeLI_3d47Upy22AXdyFLWInv3V41jy3WE");
 
 module.exports.userRegister = async (req, res) => {
     const errors = validationResult(req);
@@ -112,7 +118,7 @@ module.exports.userEnrollCourse = async (req, res) => {
                 u_id: userId,
             },
         });
-        if(existingProgress) {
+        if (existingProgress) {
             return res.status(400).json({ error: 'Already enrolled in this course' });
         }
 
@@ -141,6 +147,76 @@ module.exports.userSavedCourses = async (req, res) => {
         }
     });
     res.json(savedCourses);
+}
+
+module.exports.getResumeKeywords = async (req, res) => {
+    const { id } = req.params;
+    const userId = req.user.u_id;
+    try {
+        const progress = await prisma.resume.findFirst({
+            where: {
+                c_id: id,
+            },
+        });
+        if (!progress) {
+            return res.status(404).json({ error: 'Progress not found' });
+        }
+        console.log(progress)
+        res.json(progress.r_key_words);
+    } catch (error) {
+        res.status(500).json({ error: 'Server error' });
+    }
+}
+
+
+module.exports.uploadResume = async (req, res) => {
+    const { id } = req.params;
+    const file = req.file;
+    const keywords = JSON.parse(req.body.keywords);
+    if (!file) {
+        return res.status(400).json({ status: "error", message: "No file uploaded." });
+    }
+
+    try {
+        const fileBuffer = fs.readFileSync(file.path);
+        const pdfData = await pdfParse(fileBuffer);
+        const extractedText = pdfData.text;
+
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        const prompt = `
+            Analyze this resume based on the following extracted text.
+
+            1. Evaluate it based on these criteria: skills, experience, education, and relevant keywords.
+            2. Provide a score out of 100 based on how well it matches these given keywords: [Insert your keywords here].
+            3. Summarize strengths and weaknesses briefly.
+            4. Suggest job-fit (role types) in short.
+            5. Mention 1-2 areas for improvement (very concise).
+
+            Keep the response short, structured in points, and to the point max to max 4 lines are allowed and short.
+            Provide as much metrics as possible and less text
+            Provide response in plain text, do not use any markdowns like **bold** or *italics*.
+            Provide some line breaks between the points.
+            Here is the resume text:
+
+            ${extractedText}
+        `;
+        const result = await model.generateContent(prompt);
+        const response = result.response;
+        const geminiText = response.text();
+        const newtext = formatGeminiText(geminiText)
+        res.status(200).json({
+            status: "success",
+            message: "Resume analyzed successfully.",
+            analysis: newtext
+        });
+    } catch (error) {
+        console.error("Error analyzing resume:", error);
+        res.status(500).json({
+            status: "error",
+            message: "Something went wrong while analyzing the resume."
+        });
+
+    }
 }
 
 

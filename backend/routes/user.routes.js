@@ -1,6 +1,10 @@
 const router = require('express').Router();
 const {body} = require('express-validator');
 const auth = require('../middlewares/user.middleware');
+const multer = require('multer');
+const { uploadResume } = require('../controllers/user.controller');
+
+const upload = multer({ dest: 'uploads/' });
 
 router.post('/register',[
     body('name').isLength({min: 3}).withMessage('Name must be at least 3 characters long'),
@@ -30,6 +34,12 @@ router.post('/save-course/:courseId',auth.authUser,require('../controllers/user.
 router.get('/saved-courses',auth.authUser,require('../controllers/user.controller').userSavedCourses);
 
 router.post('/courses/:id/enroll',auth.authUser,require('../controllers/user.controller').userEnrollCourse);
+
+//get resume keywords api
+router.get('/resume-keywords/:id',auth.authUser,require('../controllers/user.controller').getResumeKeywords);
+
+//upload-resume api
+router.post("/upload-resume/:id",upload.single("file"),uploadResume);
 
 
 
