@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import courses from './courseData';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -24,15 +24,25 @@ function CourseDescription() {
             return () => clearInterval(interval);
         }
     }, [course]);
+
+    // if (!course) {
+    //     return (
+    //         <div className="min-h-screen flex items-center justify-center">
+    //             <h2 className="text-2xl text-gray-600">Course not found</h2>
+    //         </div>
+    //     );
+    // }
     if (!course) {
-        return (
-            <div className="min-h-screen flex items-center justify-center">
-                <h2 className="text-2xl text-gray-600">Course not found</h2>
-            </div>
-        );
+        return <Navigate to="/explore-courses" />;
+         //return <Navigate to={`/course/description/${c_id}`} replace />;
+    }
+    const purchasedCourses = useSelector((state)=>state.purchasedCourses.purchasedCourses);
+
+    const isPurchased = purchasedCourses.some((purchased) => purchased.c_id === c_id);
+    if (isPurchased) {
+        return <Navigate to={`/course/${c_id}`} replace />;
     }
 
-  
     const renderStars = (rating) => {
         const stars = [];
         for (let i = 1; i <= 5; i++) {
@@ -64,7 +74,7 @@ function CourseDescription() {
         crafted to empower you with the tools and confidence needed to succeed.
     `;
 
-    const purchasedCourses = useSelector((state)=>state.purchasedCourses.purchasedCourses);
+    
 
     const handleEnrollClick =async ()=>{
         if(purchasedCourses.includes(c_id)){
