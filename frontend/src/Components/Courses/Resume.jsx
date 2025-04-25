@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import data from "./tempUserCourse.json";
 import { NavLink } from "react-router-dom";
 import { UploadCloud, Info } from "lucide-react";
 import axios from "axios";
 
-function Resume({ rKeyWords,c_id }) {
-  console.log(c_id);
+function Resume({ rKeyWords,c_id, onProgressUpdate , setActive}) {
   const [resumeFile, setResumeFile] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [uploadStatus, setUploadStatus] = useState(null);
@@ -36,8 +35,25 @@ function Resume({ rKeyWords,c_id }) {
           },
         }
       );
-      console.log(response.data.analysis);
+      // console.log(response.data.analysis.split("/")[0]);
       setGeminiResponse(response.data.analysis);
+
+      const resp = await axios.post(`http://localhost:8080/user/update-progress/${c_id}`,{
+        current_round: "OA",
+        progress_percentage: 33.33,
+        score: response.data.analysis.split("/")[0],
+      },{
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      });
+      onProgressUpdate();
+
+      setTimeout(() => {
+        console.log("hiii")
+        setActive("OA");
+      },1000)
+
 
       setUploadStatus("Resume uploaded and evaluated successfully!");
     } catch (error) {

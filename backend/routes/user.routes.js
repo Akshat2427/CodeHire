@@ -41,6 +41,11 @@ router.get('/resume-keywords/:id',auth.authUser,require('../controllers/user.con
 //upload-resume api
 router.post("/upload-resume/:id",upload.single("file"),uploadResume);
 
+//updating course progress api
+router.post('/update-progress/:id',auth.authUser,require('../controllers/user.controller').updateProgress);
+
+router.get('/current-round/:id',auth.authUser,require('../controllers/user.controller').getCurrentRound);
+
 
 
 module.exports = router;

@@ -161,7 +161,7 @@ module.exports.getResumeKeywords = async (req, res) => {
         if (!progress) {
             return res.status(404).json({ error: 'Progress not found' });
         }
-        console.log(progress)
+        // console.log(progress)
         res.json(progress.r_key_words);
     } catch (error) {
         res.status(500).json({ error: 'Server error' });
@@ -185,19 +185,12 @@ module.exports.uploadResume = async (req, res) => {
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
         const prompt = `
             Analyze this resume based on the following extracted text.
+            Provide a score out of 100 based on how well it matches these given keywords: ${keywords}.
+            only provide the score like this: marks/100
+            be real with it dont give it very high if it is not good
+            Dont give too low or too high
 
-            1. Evaluate it based on these criteria: skills, experience, education, and relevant keywords.
-            2. Provide a score out of 100 based on how well it matches these given keywords: [Insert your keywords here].
-            3. Summarize strengths and weaknesses briefly.
-            4. Suggest job-fit (role types) in short.
-            5. Mention 1-2 areas for improvement (very concise).
-
-            Keep the response short, structured in points, and to the point max to max 4 lines are allowed and short.
-            Provide as much metrics as possible and less text
-            Provide response in plain text, do not use any markdowns like **bold** or *italics*.
-            Provide some line breaks between the points.
             Here is the resume text:
-
             ${extractedText}
         `;
         const result = await model.generateContent(prompt);
@@ -216,6 +209,51 @@ module.exports.uploadResume = async (req, res) => {
             message: "Something went wrong while analyzing the resume."
         });
 
+    }
+}
+
+module.exports.updateProgress = async (req,res)=>{
+    const {id} = req.params;
+    const {current_round, progress_percentage, scores} = req.body;
+    try{
+        const progress = await prisma.courseProgress.update({
+            where: {
+                u_id_c_id: {
+                  u_id: req.user.u_id,
+                  c_id: id
+                }
+            },
+            data:{
+                current_round,
+                progress_percentage,
+                scores
+            }
+        })
+        res.json(progress);
+    }
+    catch(err){
+        console.log(err)
+        res.status(500).json({error: 'Server error'});
+    }
+}
+
+
+module.exports.getCurrentRound = async (req,res)=>{
+    const {id} = req.params;
+    try{
+        const progress = await prisma.courseProgress.findFirst({
+            where:{
+                c_id: id,
+                u_id: req.user.u_id
+            }
+        })
+        if(!progress){
+            return res.status(404).json({error: 'Progress not found'});
+        }
+        return res.json(progress);
+    }
+    catch(err){
+        res.status(500).json({error: 'Server error'});
     }
 }
 

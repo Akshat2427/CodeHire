@@ -96,6 +96,7 @@ model CourseProgress {
   mentor_assigned     String? // Nullable, store mentor ID if assigned
   //interviewer         User?    @relation(fields: [interviewer_id], references: [u_id])
   interviewer_id      String?
+  @@unique([u_id, c_id])
 }
 
 enum CourseCategory {
