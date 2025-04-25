@@ -6,6 +6,7 @@ import Card from "./Card"; // Importing Card Component
 import Loading from "./Loading";
 
 const Courses = () => {
+  console.log()
   const openSidebar = useSelector((state) => state.ui_store.openSidebar);
   const isCollapsed = useSelector((state) => state.ui_store.isCollapsed || false);
   const fullscreenSidebar = useSelector((state) => state.ui_store.fullscreenSidebar);

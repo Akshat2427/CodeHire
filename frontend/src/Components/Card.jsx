@@ -9,6 +9,7 @@ import { saveCourseToBackend } from "../store/saveCourseThunk";
 
 const Card = ({logo, c_name, stageCount, c_rating, c_id, c_desc, c_price }) => {
   const purchasedCourses = useSelector((state) => state.purchasedCourses.purchasedCourses);
+  console.log(purchasedCourses)
   // const courses = useSelector((state) => state.courses.courses);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const Card = ({logo, c_name, stageCount, c_rating, c_id, c_desc, c_price }) => {
   };
 
   const handleRouteChange = () => {
+    console.log(purchasedCourses.some(course => course === c_id))
     if (purchasedCourses.find(course => course === c_id)) {
       navigate(`/course/${c_id}`);
     } else {
