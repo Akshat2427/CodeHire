@@ -13,7 +13,6 @@ export const fetchSolvedProblems = createAsyncThunk(
             });
 
             const data = await response.json();
-            console.log("LeetCode Data:", data);
 
             data.data.recentSubmissionList.forEach(sub => {
                 solvedSet.add(sub.title);

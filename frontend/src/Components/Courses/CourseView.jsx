@@ -6,10 +6,11 @@ import Interview from "./Interview";
 import Resume from "./Resume";
 import OA from "./OA";
 import { useSelector } from "react-redux";
+import Loading from "../Loading";
 
 function CourseView() {
   const { id } = useParams();
-  console.log("id called at CourseView", id);
+  // console.log("id called at CourseView", id);
 
   const arr = ["Resume", "OA", "Interview"];
   const [active, setActive] = React.useState("Resume");
@@ -106,7 +107,7 @@ function CourseView() {
 
 
 
-  if (loading) return <div>Loading keywords...</div>;
+  if (loading) return <Loading/>;
   if (error) return <div>{error}</div>;
 
   return (
@@ -166,7 +167,7 @@ function CourseView() {
         {active === "Resume" && (
           <Resume rKeyWords={rKeyWords} c_id={id} onProgressUpdate={handleProgressUpdate} setActive={setActive}/>
         )}
-        {active === "OA" && !lockedStages.includes("OA") && <OA />}
+        {active === "OA" && !lockedStages.includes("OA") && <OA c_id={id} onProgressUpdate={handleProgressUpdate} setActive={setActive} />}
         {active === "Interview" && !lockedStages.includes("Interview") && <Interview />}
       </div>
     </>

@@ -76,16 +76,18 @@ import SavedCourses from './Components/SavedCourses';
 import Report from './Components/Report';
 import ExploreCourses from './Components/Courses';
 import MyCourses from './Components/MyCourses';
-import CourseView from './Components/Courses/CourseView';
+// import CourseView from './Components/Courses/CourseView';
 import CourseDescription from './Components/Courses/CourseDescription';
 import ReportDetail from './Components/ReportDetail';
 import Mentorship from './Components/Mentorship';
 import MentorHired from './Components/MentorHired';
 import HelpCenter from './Components/HelpCenter';
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setFullScreenSideBar, setSideBar } from './store/ui_store';
+const CourseView = lazy(() => import('./Components/Courses/CourseView'));
 import ProtectedCourseRoute from './Components/ProtectedCourseRoute'; 
+import Loading from './Components/Loading';
 
 const AllRoutes = () => {
   const dispatch = useDispatch();
@@ -126,7 +128,9 @@ const AllRoutes = () => {
         path="/course/:id"
         element={
           <ProtectedCourseRoute>
+            <Suspense fallback={<Loading/>}>
             <CourseView />
+            </Suspense>
           </ProtectedCourseRoute>
         }
       />

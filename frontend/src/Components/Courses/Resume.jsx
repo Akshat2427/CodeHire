@@ -50,7 +50,6 @@ function Resume({ rKeyWords,c_id, onProgressUpdate , setActive}) {
       onProgressUpdate();
 
       setTimeout(() => {
-        console.log("hiii")
         setActive("OA");
       },1000)
 
