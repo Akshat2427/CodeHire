@@ -2,9 +2,10 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSolvedProblems } from "../../store/codingProfile";
 import { Link as LinkIcon } from "lucide-react";
+import axios from "axios";
 
 
-const OA = () => {
+const OA = ({c_id,onProgressUpdate, setActive}) => {
   const dispatch = useDispatch();
   const { profile, solvedQuestions } = useSelector((state) => state.codingProfile);
   const openSidebar = useSelector((state) => state.ui_store.openSidebar);
@@ -56,7 +57,8 @@ const OA = () => {
 
     dispatch(fetchSolvedProblems(leetcodeUser));
     fetchLeetCodeQuestions();
-  }, [dispatch, leetcodeUser]);
+  }, [dispatch, testStarted]);
+
 
   // Timer logic with cleanup
   useEffect(() => {
@@ -87,10 +89,33 @@ const OA = () => {
   }, []);
 
   // Submit test
-  const submitTest = useCallback(() => {
+  async function updateProgress() {
+    const resp = await axios.post(`http://localhost:8080/user/update-progress/${c_id}`, {
+      current_round: "Interview",
+      progress_percentage: 66.67,
+      score: "100"
+    }, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token_codehire")}`,
+      }
+    });
+  }
+  const submitTest = useCallback(async () => {
+    const allQuestionsSolved = testQuestions.every((q) =>
+      solvedQuestions.includes(q.title)
+    );
+    if (!allQuestionsSolved) {
+      alert("You haven't solved all the test questions yet.");
+      return;
+    }
+    await updateProgress();
+    onProgressUpdate();
+    setTimeout(() => {
+      setActive("Interview");
+    }, 1000)
     setTestSubmitted(true);
     setTimeLeft(0);
-  }, []);
+  }, [leetcodeUser]);
 
   // Format time
   const formatTime = (seconds) => {
@@ -104,11 +129,10 @@ const OA = () => {
 
   return (
     <div
-      className={`min-h-screen bg-gray-100 p-6 transition-all duration-300  ${
-      window.innerWidth <= 768 
+      className={`min-h-screen bg-gray-100 p-6 transition-all duration-300  ${window.innerWidth <= 768
         ? (fullscreenSidebar ? "hidden" : "ml-0")
         : (openSidebar ? "ml-60" : "ml-16")
-    }`}
+        }`}
     >
       {loading ? (
         <div className="text-center text-gray-600">Loading questions...</div>
@@ -146,6 +170,22 @@ const OA = () => {
                   Auto-submit when all solved or manually submit early.
                 </li>
               </ul>
+            </div>
+            <div className="mb-6">
+              <label
+                htmlFor="leetcodeProfile"
+                className="block text-gray-800 font-semibold mb-2"
+              >
+                Enter your LeetCode Profile:
+              </label>
+              <input
+                type="text"
+                id="leetcodeProfile"
+                value={leetcodeUser}
+                onChange={(e) => setLeetcodeUser(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
+                placeholder="Enter your LeetCode username"
+              />
             </div>
             <button
               onClick={startTest}

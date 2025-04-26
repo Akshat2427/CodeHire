@@ -9,7 +9,6 @@ import { saveCourseToBackend } from "../store/saveCourseThunk";
 
 const Card = ({logo, c_name, stageCount, c_rating, c_id, c_desc, c_price }) => {
   const purchasedCourses = useSelector((state) => state.purchasedCourses.purchasedCourses);
-  console.log(purchasedCourses)
   // const courses = useSelector((state) => state.courses.courses);
   const dispatch = useDispatch();
   const navigate = useNavigate();

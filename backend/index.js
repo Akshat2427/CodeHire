@@ -17,7 +17,7 @@ app.use("/admin", require("./routes/admin.routes"));
 
 
 app.post("/leetcode", async (req, res) => {
-    console.log("Request body:", req.body);
+    // console.log("Request body:", req.body);
     const { username } = req.body;
 
     const query = {
@@ -54,7 +54,7 @@ app.post("/leetcode", async (req, res) => {
 
         const data = await response.json();
         res.json(data);
-        console.log("LeetCode Data:", data);
+        // console.log("LeetCode Data:", data.data);
     } catch (error) {
         console.error("Error fetching data:", error);
         res.status(500).json({ error: "Failed to fetch data" });
