@@ -46,6 +46,8 @@ router.post('/update-progress/:id',auth.authUser,require('../controllers/user.co
 
 router.get('/current-round/:id',auth.authUser,require('../controllers/user.controller').getCurrentRound);
 
+router.get('/dashboard-details',auth.authUser,require('../controllers/user.controller').getDashboardDetails);
+
 
 
 module.exports = router;

@@ -168,7 +168,7 @@ function CourseView() {
           <Resume rKeyWords={rKeyWords} c_id={id} onProgressUpdate={handleProgressUpdate} setActive={setActive}/>
         )}
         {active === "OA" && !lockedStages.includes("OA") && <OA c_id={id} onProgressUpdate={handleProgressUpdate} setActive={setActive} />}
-        {active === "Interview" && !lockedStages.includes("Interview") && <Interview />}
+        {active === "Interview" && !lockedStages.includes("Interview") && <Interview c_id={id} onProgressUpdate={handleProgressUpdate} setActive={setActive} />}
       </div>
     </>
   );

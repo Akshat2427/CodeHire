@@ -258,6 +258,39 @@ module.exports.getCurrentRound = async (req,res)=>{
 }
 
 
+module.exports.getDashboardDetails = async (req,res)=>{
+    //show total courses, total completed, total uncompleted, hours spent
+    const userId = req.user.u_id;
+    try{
+        const totalCourses = await prisma.courseProgress.count({
+            where: { u_id: userId }
+          });
+          
+        const completedCourses = await prisma.courseProgress.count({
+            where:{
+                u_id: userId,
+                progress_percentage: 100
+            }
+        })
+        const uncompletedCourses = totalCourses - completedCourses;
+        // const hoursSpent = await prisma.courseProgress.aggregate({
+        //     where:{
+        //         u_id: userId
+        //     },
+        //     _sum:{
+        //         progress_percentage: true
+        //     }
+        // })
+        res.json({totalCourses, completedCourses, uncompletedCourses});//, hoursSpent: hoursSpent._sum.progress_percentage});
+    }
+    catch(err){
+        console.log(err)
+        res.status(500).json({error: 'Server error'});
+    }    
+
+}
+
+
 
 // app.post('/forgot-password',async (req,res)=>{
 

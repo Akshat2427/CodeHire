@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 
 function Profile() {
   const user = useSelector((state) => state.user.user);
+  console.log(user);
+  
   const role = user?.role || "student";
 
   const initialStudentData = {
