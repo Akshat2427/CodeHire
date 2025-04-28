@@ -101,7 +101,7 @@
         ]
     },
     {
-        c_id: 5,
+        c_id: "course-105",
         title: "Netflix Backend",
         companyImg: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
         stages: 9,
@@ -127,7 +127,7 @@
         ]
     },
     {
-        c_id: 6,
+        c_id: "course-107",
         title: "Juspay SDE",
         companyImg: "https://static.thearcweb.com/images/PROD/PROD-d8e5f0f6-ef80-4aa1-9a09-c12de42b1124.jpg",
         stages: 7,
@@ -153,7 +153,7 @@
         ]
     },
     {
-        c_id: 7,
+        c_id: "course-108",
         title: "Zomato Data Analytics",
         companyImg: "https://upload.wikimedia.org/wikipedia/commons/7/75/Zomato_logo.png",
         stages: 6,
@@ -179,7 +179,7 @@
         ]
     },
     {
-        c_id: 8,
+        c_id: "course-109",
         title: "Swiggy UX/UI",
         companyImg: "https://upload.wikimedia.org/wikipedia/commons/1/13/Swiggy_logo.png",
         stages: 5,
@@ -205,9 +205,9 @@
         ]
     },
     {
-        c_id: 9,
+        c_id: "course-110",
         title: "Ola AI/ML",
-        companyImg: "https://upload.wikimedia.org/wikipedia/commons/8/8d/Ola_Cabs_logo.svg",
+        companyImg: "https://upload.wikimedia.org/wikipedia/en/0/0f/Ola_Cabs_logo.svg",
         stages: 8,
         rating: 4.7,
         buttonTitle: "Enroll Now",
@@ -231,9 +231,9 @@
         ]
     },
     {
-        c_id: 10,
+        c_id: "course-111",
         title: "CRED Finance",
-        companyImg: "https://upload.wikimedia.org/wikipedia/en/0/06/Cred_app_logo.png",
+        companyImg: "https://upload.wikimedia.org/wikipedia/commons/9/9d/CRED-LOGO2.png",
         stages: 7,
         rating: 4.6,
         buttonTitle: "Enroll Now",
@@ -256,7 +256,7 @@
             { user: "Frank", text: "AWS integration was well-explained!" }
         ]
     },
-    { c_id: 11, title: "Razorpay Fintech", companyImg: "https://upload.wikimedia.org/wikipedia/en/thumb/1/19/Razorpay_logo.svg/1200px-Razorpay_logo.svg.png", stages: 6, rating: 4.6, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
+    { c_id: "course-113", title: "Razorpay Fintech", companyImg: "https://upload.wikimedia.org/wikipedia/commons/8/89/Razorpay_logo.svg", stages: 6, rating: 4.6, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
         learningSections: [
             "Fintech Basics",
             "Payment System Design",
@@ -274,7 +274,7 @@
             { user: "Eve", text: "Practical examples were a game-changer." },
             { user: "Frank", text: "AWS integration was well-explained!" }
         ] },
-    { c_id: 12, title: "Tata AI/ML", companyImg: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Tata_logo.svg", stages: 5, rating: 4.4, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
+    { c_id: "course-114", title: "Tata AI/ML", companyImg: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Tata_logo.svg", stages: 5, rating: 4.4, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
         learningSections: [
             "Fintech Basics",
             "Payment System Design",
@@ -292,7 +292,7 @@
             { user: "Eve", text: "Practical examples were a game-changer." },
             { user: "Frank", text: "AWS integration was well-explained!" }
         ] },
-    { c_id: 13, title: "Paytm ", companyImg: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Paytm_logo.png", stages: 7, rating: 4.5, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
+    { c_id: "course-115", title: "Paytm ", companyImg: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Paytm_Logo_%28standalone%29.svg/2560px-Paytm_Logo_%28standalone%29.svg.png", stages: 7, rating: 4.5, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
         learningSections: [
             "Fintech Basics",
             "Payment System Design",
@@ -310,7 +310,7 @@
             { user: "Eve", text: "Practical examples were a game-changer." },
             { user: "Frank", text: "AWS integration was well-explained!" }
         ] },
-    { c_id: 14, title: "Extra Trending Course", companyImg: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Paytm_logo.png", stages: 6, rating: 4.5, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
+    { c_id: "course-116", title: "Extra Trending Course", companyImg: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Paytm_logo.png", stages: 6, rating: 4.5, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
         learningSections: [
             "Fintech Basics",
             "Payment System Design",
@@ -328,7 +328,25 @@
             { user: "Eve", text: "Practical examples were a game-changer." },
             { user: "Frank", text: "AWS integration was well-explained!" }
         ] },
-    { c_id: 18, title: "Razorpay Fintech", companyImg: "https://upload.wikimedia.org/wikipedia/en/thumb/1/19/Razorpay_logo.svg/1200px-Razorpay_logo.svg.png", stages: 6, rating: 4.6, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
+    // { c_id: "course-114", title: "Razorpay Fintech", companyImg: "https://upload.wikimedia.org/wikipedia/en/thumb/1/19/Razorpay_logo.svg/1200px-Razorpay_logo.svg.png", stages: 6, rating: 4.6, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
+    //     learningSections: [
+    //         "Fintech Basics",
+    //         "Payment System Design",
+    //         "Blockchain Essentials",
+    //         "Financial Security"
+    //     ],
+    //     comments: [
+    //         { user: "Ben", text: "Fintech made simple and fun!" },
+    //         { user: "Clara", text: "Security section was excellent." },
+    //         { user: "Dan", text: "Great insights into payments!" },
+    //         { user: "Jack", text: "Swift made so much sense after this!" },
+    //         { user: "Kelly", text: "Great for beginners and pros alike." },
+    //         { user: "Leo", text: "Loved the design focus!" },
+    //         { user: "Dave", text: "Really deepened my understanding of ML!" },
+    //         { user: "Eve", text: "Practical examples were a game-changer." },
+    //         { user: "Frank", text: "AWS integration was well-explained!" }
+    //     ] },
+    { c_id: "course-115", title: "Tata AI/ML", companyImg: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Tata_logo.svg", stages: 5, rating: 4.4, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
         learningSections: [
             "Fintech Basics",
             "Payment System Design",
@@ -346,25 +364,7 @@
             { user: "Eve", text: "Practical examples were a game-changer." },
             { user: "Frank", text: "AWS integration was well-explained!" }
         ] },
-    { c_id: 19, title: "Tata AI/ML", companyImg: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Tata_logo.svg", stages: 5, rating: 4.4, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
-        learningSections: [
-            "Fintech Basics",
-            "Payment System Design",
-            "Blockchain Essentials",
-            "Financial Security"
-        ],
-        comments: [
-            { user: "Ben", text: "Fintech made simple and fun!" },
-            { user: "Clara", text: "Security section was excellent." },
-            { user: "Dan", text: "Great insights into payments!" },
-            { user: "Jack", text: "Swift made so much sense after this!" },
-            { user: "Kelly", text: "Great for beginners and pros alike." },
-            { user: "Leo", text: "Loved the design focus!" },
-            { user: "Dave", text: "Really deepened my understanding of ML!" },
-            { user: "Eve", text: "Practical examples were a game-changer." },
-            { user: "Frank", text: "AWS integration was well-explained!" }
-        ] },
-    { c_id: 20, title: "Paytm Product Management", companyImg: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Paytm_logo.png", stages: 7, rating: 4.5, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
+    { c_id: "course-116", title: "Paytm Product Management", companyImg: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Paytm_logo.png", stages: 7, rating: 4.5, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
         learningSections: [
             "Fintech Basics",
             "Payment System Design",
@@ -383,7 +383,7 @@
             { user: "Frank", text: "AWS integration was well-explained!" }
         ] },
   
-    { c_id: 15, title: "SpaceX Aerospace Dev", companyImg: "https://upload.wikimedia.org/wikipedia/commons/d/de/SpaceX-Logo.svg", stages: 9, rating: 4.9, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
+    { c_id: "course-118", title: "SpaceX Aerospace Dev", companyImg: "https://upload.wikimedia.org/wikipedia/commons/d/de/SpaceX-Logo.svg", stages: 9, rating: 4.9, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
         learningSections: [
             "Fintech Basics",
             "Payment System Design",
@@ -401,7 +401,7 @@
             { user: "Eve", text: "Practical examples were a game-changer." },
             { user: "Frank", text: "AWS integration was well-explained!" }
         ] },
-    { c_id: 16, title: "Tesla AI Vision", companyImg: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Tesla_T_symbol.svg", stages: 8, rating: 4.8, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
+    { c_id: "course-119", title: "Tesla AI Vision", companyImg: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Tesla_T_symbol.svg", stages: 8, rating: 4.8, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
         learningSections: [
             "Fintech Basics",
             "Payment System Design",
@@ -419,7 +419,7 @@
             { user: "Eve", text: "Practical examples were a game-changer." },
             { user: "Frank", text: "AWS integration was well-explained!" }
         ] },
-    { c_id: 17, title: "Extra Staff Pick", companyImg: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Tesla_T_symbol.svg", stages: 7, rating: 4.7, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
+    { c_id: "course-120", title: "Extra Staff Pick", companyImg: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Tesla_T_symbol.svg", stages: 7, rating: 4.7, buttonTitle: "Enroll Now" , description: "Master financial technology and payment systems with CRED's fintech expertise.",
         learningSections: [
             "Fintech Basics",
             "Payment System Design",

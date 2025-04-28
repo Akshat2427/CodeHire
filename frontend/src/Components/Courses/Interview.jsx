@@ -1,8 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
 import { toast, ToastContainer } from 'react-toastify';
+import axios from 'axios';
 
-function Interview() {
+function Interview({c_id,onProgressUpdate, setActive}) {
     const roomID = import.meta.env.VITE_ROOMID;
     const appID = Number(import.meta.env.VITE_APPID);
     const serverSecret = import.meta.env.VITE_SECRETSERVER;
@@ -17,6 +18,18 @@ function Interview() {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+
+    async function updateProgress() {
+        const resp = await axios.post(`http://localhost:8080/user/update-progress/${c_id}`, {
+          current_round: "N/A",
+          progress_percentage: 100,
+          score: ["100","100","100"]
+        }, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token_codehire")}`,
+          }
+        });
+      }
 
     const startInterview = async () => {
         const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
@@ -33,7 +46,12 @@ function Interview() {
             scenario: {
                 mode: ZegoUIKitPrebuilt.OneONoneCall,
             },
-            onLeaveRoom: () => {
+            onLeaveRoom: async () => {
+                await updateProgress();
+                onProgressUpdate();
+                setTimeout(() => {
+                    setActive("Resume");
+                  }, 1000)
                 setIsInterviewCompleted(true);
                 setIsMeetingActive(false);
             },
