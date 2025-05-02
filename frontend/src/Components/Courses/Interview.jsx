@@ -3,13 +3,13 @@ import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
 import { toast, ToastContainer } from 'react-toastify';
 import axios from 'axios';
 
-function Interview({c_id,onProgressUpdate, setActive}) {
+function Interview({ c_id, onProgressUpdate, setActive }) {
     const roomID = import.meta.env.VITE_ROOMID;
     const appID = Number(import.meta.env.VITE_APPID);
     const serverSecret = import.meta.env.VITE_SECRETSERVER;
     const meetingContainerRef = useRef(null);
     const [isInterviewCompleted, setIsInterviewCompleted] = useState(false);
-    const [isMeetingActive, setIsMeetingActive] = useState(false); 
+    const [isMeetingActive, setIsMeetingActive] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
     // Track window size to detect mobile screens
@@ -21,15 +21,15 @@ function Interview({c_id,onProgressUpdate, setActive}) {
 
     async function updateProgress() {
         const resp = await axios.post(`http://localhost:8080/user/update-progress/${c_id}`, {
-          current_round: "N/A",
-          progress_percentage: 100,
-          score: ["100","100","100"]
+            current_round: "N/A",
+            progress_percentage: 100,
+            score: ["100", "100", "100"]
         }, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token_codehire")}`,
-          }
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token_codehire")}`,
+            }
         });
-      }
+    }
 
     const startInterview = async () => {
         const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
@@ -47,11 +47,19 @@ function Interview({c_id,onProgressUpdate, setActive}) {
                 mode: ZegoUIKitPrebuilt.OneONoneCall,
             },
             onLeaveRoom: async () => {
+                zc.destroy();
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                    stream.getTracks().forEach((track) => track.stop());
+                } catch (err) {
+                    console.error("Failed to stop media devices:", err);
+                }
+                toast.success("Interview Completed");
                 await updateProgress();
                 onProgressUpdate();
                 setTimeout(() => {
                     setActive("Resume");
-                  }, 1000)
+                }, 1000)
                 setIsInterviewCompleted(true);
                 setIsMeetingActive(false);
             },
@@ -79,8 +87,8 @@ function Interview({c_id,onProgressUpdate, setActive}) {
                             >
                                 Start Interview
                             </button>
-                            <div 
-                                ref={meetingContainerRef} 
+                            <div
+                                ref={meetingContainerRef}
                                 className={`w-full h-screen absolute top-0 ${isMeetingActive ? 'z-[100000]' : 'hidden'}`}
                             ></div>
                         </>
