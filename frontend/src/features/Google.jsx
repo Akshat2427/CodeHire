@@ -9,9 +9,9 @@ import { login } from "../store/user";
 const GoogleLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
- 
 
- 
+
+
 
   const handleGoogleLogin = () => {
     const provider = new GoogleAuthProvider();
@@ -29,18 +29,18 @@ const GoogleLogin = () => {
         // console.log("User Email:", user?.email);
         // console.log("Token:", token);
         const userInStore = {
-            id:0,
-            name: user?.displayName,
-            email: user?.email,
-            
-            imgUrl: user?.photoURL,role: "student"
+          id: 0,
+          name: user?.displayName,
+          email: user?.email,
+
+          imgUrl: user?.photoURL, role: "student"
         }
-       dispatch(login({token : null , user : userInStore}));
+        dispatch(login({ token: null, user: userInStore }));
         navigate("/");
       })
       .catch((error) => {
         console.log("Error Google : ", error.message);
-        
+
       });
   };
 

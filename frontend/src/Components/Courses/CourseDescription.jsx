@@ -152,7 +152,7 @@ function CourseDescription() {
                             </ul>
 
                             <div className="flex items-center justify-between">
-                                <button onClick={handleEnrollClick} className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors">
+                                <button onClick={handleEnrollClick} className="cursor-pointer bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors">
                                     {course.buttonTitle}
                                 </button>
                                 <div className="text-sm text-gray-500">

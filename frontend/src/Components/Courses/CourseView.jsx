@@ -7,6 +7,7 @@ import Resume from "./Resume";
 import OA from "./OA";
 import { useSelector } from "react-redux";
 import Loading from "../Loading";
+import CourseCompleted from "./CourseCompleted";
 
 function CourseView() {
   const { id } = useParams();
@@ -21,6 +22,7 @@ function CourseView() {
   const [error, setError] = useState("");
   const [currentRound, setCurrentRound] = useState("Resume");
   const [progressPercentage, setProgressPercentage] = useState(0);
+  const [isCourseCompleted, setIsCourseCompleted] = useState(false);
 
   const openSidebar = useSelector((state) => state.ui_store.openSidebar);
   const fullscreenSidebar = useSelector((state) => state.ui_store.fullscreenSidebar);
@@ -100,13 +102,23 @@ function CourseView() {
       console.log(res.data.current_round);
       setCurrentRound(res.data.current_round);
       setProgressPercentage(res.data.progress_percentage);
+      if (res.data.progress_percentage >= 100) {
+        setIsCourseCompleted(true);
+      }  
     } catch (err) {
       console.error("Error refreshing progress", err);
     }
   };
 
 
-
+  useEffect(() => {
+    if (progressPercentage >= 100) {
+      setIsCourseCompleted(true);
+    }
+  }, [progressPercentage]);
+  if(isCourseCompleted){
+    return <CourseCompleted/>
+  }
   if (loading) return <Loading/>;
   if (error) return <div>{error}</div>;
 
