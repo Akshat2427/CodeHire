@@ -63,7 +63,7 @@ function Profile() {
           <div className="col-span-2 flex flex-col items-center mt-10">
             <img
               className="h-32 w-32 md:h-64 md:w-64 rounded-full border-4 border-gray-300 shadow-lg"
-              src={user.imgUrl === "./images/pfp.jpg" ? "./images/pfp.jpg" : `https://images.weserv.nl/?url=${encodeURIComponent(user.imgUrl)}`}
+              src={user.imgUrl === "./images/pfp.jpg" ? `${import.meta.env.VITE_AWS_S3_URL}/pfp.jpg` : `https://images.weserv.nl/?url=${encodeURIComponent(user.imgUrl)}`}
               alt="Profile Pic"
             />
             <div className="w-full mt-4 ml-10 flex flex-col gap-3">
